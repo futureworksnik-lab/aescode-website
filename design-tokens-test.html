@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AesCode Co. — Design Token Verification</title>
+  <meta name="description" content="Design token verification page for the AesCode Co. design system.">
+
+  <!-- Google Fonts Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Global Design Tokens -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Test page specific styles — not part of the design system */
+    .test-page { padding: 4rem 0; }
+    .test-section { margin-bottom: 4rem; }
+    .test-section-title {
+      font-family: var(--font-sans);
+      font-size: var(--label-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--outline-variant);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .swatch-color {
+      width: 100%;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid rgba(196, 198, 206, 0.3);
+    }
+
+    .swatch-label {
+      font-family: var(--font-sans);
+      font-size: var(--label-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary);
+    }
+
+    .swatch-value {
+      font-family: var(--font-sans);
+      font-size: var(--body-sm);
+      color: var(--on-surface-variant);
+    }
+
+    .type-sample {
+      margin-bottom: 2rem;
+    }
+
+    .type-meta {
+      font-family: var(--font-sans);
+      font-size: var(--label-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary);
+      margin-top: 0.5rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .input-demo {
+      max-width: 400px;
+      margin-bottom: 1rem;
+    }
+
+    .overlay-demo {
+      position: relative;
+      background-color: var(--surface);
+      height: 120px;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid rgba(196, 198, 206, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .overlay-demo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle, var(--primary) 0.5px, transparent 0.5px);
+      background-size: 24px 24px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .overlay-demo span {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-sans);
+      font-size: var(--label-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary);
+    }
+
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: var(--label-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .status-pass {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .status-info {
+      background-color: var(--primary-fixed);
+      color: var(--on-primary-fixed);
+    }
+
+    .checks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-sans);
+      font-size: var(--body-md);
+      color: var(--on-surface);
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2E7D32;
+      color: white;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- The dot-grid overlay is applied via body::before in styles.css -->
+
+  <main class="test-page">
+    <div class="container">
+
+      <!-- Header -->
+      <div style="margin-bottom: 4rem;">
+        <p class="label-sm" style="margin-bottom: 1rem;">DESIGN SYSTEM VERIFICATION</p>
+        <h1>AesCode Co.</h1>
+        <h2 style="font-style: italic; font-size: var(--headline-lg); margin-top: 0.5rem;">Design Token Foundation — Phase 1, Step 1</h2>
+        <div class="hairline" style="margin-top: 1.5rem;"></div>
+      </div>
+
+      <!-- Verification Checklist -->
+      <div class="test-section">
+        <p class="test-section-title">Initialization Checklist</p>
+        <div class="checks">
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Background set to <code>--surface</code> (#FCF9F8) — warm white, never pure white
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Primary navy color set to <code>--primary</code> (#021934)
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Newsreader (serif) imported for headlines and display text
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Public Sans (sans-serif) imported for body, labels, and navigation
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Dot-grid overlay active at 0.03 opacity via <code>body::before</code>
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            All CSS custom properties defined as design tokens
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Border-radius capped at 4px maximum — no pill shapes
+          </div>
+          <div class="check-item">
+            <span class="check-icon">✓</span>
+            Input fields styled as underline-only (0.5px #C4C6CE)
+          </div>
+        </div>
+      </div>
+
+      <!-- Color Palette -->
+      <div class="test-section">
+        <p class="test-section-title">Color Palette — Design Tokens</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--surface);"></div>
+            <span class="swatch-label">--surface</span>
+            <span class="swatch-value">#FCF9F8 · Page background</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--primary);"></div>
+            <span class="swatch-label">--primary</span>
+            <span class="swatch-value">#021934 · Buttons, headings</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--on-surface);"></div>
+            <span class="swatch-label">--on-surface</span>
+            <span class="swatch-value">#1C1B1B · Body text</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--secondary);"></div>
+            <span class="swatch-label">--secondary</span>
+            <span class="swatch-value">#707785 · Labels, muted</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--surface-container-lowest);"></div>
+            <span class="swatch-label">--surface-container-lowest</span>
+            <span class="swatch-value">#FFFFFF · Cards</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--surface-container-low);"></div>
+            <span class="swatch-label">--surface-container-low</span>
+            <span class="swatch-value">#F6F3F2 · Secondary blocks</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--surface-dim);"></div>
+            <span class="swatch-label">--surface-dim</span>
+            <span class="swatch-value">#DCD9D9 · Structural shifts</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--outline-variant);"></div>
+            <span class="swatch-label">--outline-variant</span>
+            <span class="swatch-value">#C4C6CE · Hairlines, inputs</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background-color: var(--error);"></div>
+            <span class="swatch-label">--error</span>
+            <span class="swatch-value">#BA1A1A · Error states</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typography -->
+      <div class="test-section">
+        <p class="test-section-title">Typography — Newsreader + Public Sans</p>
+        
+        <div class="type-sample">
+          <h1>Advancing Clinical Research Through Engineering</h1>
+          <p class="type-meta">H1 · Newsreader · display-lg (3.5rem) · --primary</p>
+        </div>
+
+        <div class="type-sample">
+          <h2 style="font-style: italic;">The Digital Monograph</h2>
+          <p class="type-meta">H2 · Newsreader italic · display-md (2.5rem) · --primary</p>
+        </div>
+
+        <div class="type-sample">
+          <h3>MedTech Research Acceleration</h3>
+          <p class="type-meta">H3 · Newsreader · headline-lg (2rem) · --primary</p>
+        </div>
+
+        <div class="type-sample">
+          <p>AesCode Co. is a MedTech research platform dedicated to accelerating the translation of clinical insights into deployable, evidence-based technological solutions. Our programs prioritize validation over velocity.</p>
+          <p class="type-meta">Body · Public Sans · body-lg (1rem) · --on-surface</p>
+        </div>
+
+        <div class="type-sample">
+          <p class="label-sm">STAY INFORMED · FOUNDATIONAL FRAMEWORK · ORGANISING SECRETARIAT</p>
+          <p class="type-meta">Label-sm · Public Sans · all-caps · letter-spacing +0.2em · --secondary</p>
+        </div>
+
+        <div class="type-sample">
+          <blockquote>"We are not just building software; we are cultivating the next generation of intellectual architects who understand the poetry in the code."</blockquote>
+          <p class="type-meta">Pullquote · Newsreader italic · headline-md (1.75rem) · --primary</p>
+        </div>
+      </div>
+
+      <!-- Dot-Grid Overlay -->
+      <div class="test-section">
+        <p class="test-section-title">Dot-Grid Overlay — 0.03 Opacity</p>
+        <div class="overlay-demo">
+          <span>Dot-grid pattern at 0.03 opacity — look closely at this area</span>
+        </div>
+        <p style="margin-top: 0.75rem; font-size: var(--body-sm); color: var(--secondary);">
+          The dot-grid is applied globally via <code>body::before</code> — fixed position, full viewport, z-index: 0, pointer-events: none. The pattern above is shown at a visible isolation for verification.
+        </p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="test-section">
+        <p class="test-section-title">Buttons — 4px Maximum Radius</p>
+        <div class="button-row">
+          <button class="btn-primary">Explore Cohort 1</button>
+          <button class="btn-secondary">Get Involved</button>
+          <button class="btn-tertiary">Learn More →</button>
+          <button class="btn-primary loading" disabled>Submitting…</button>
+        </div>
+      </div>
+
+      <!-- Input Fields -->
+      <div class="test-section">
+        <p class="test-section-title">Input Fields — Underline-Only</p>
+        <div class="input-demo">
+          <input type="email" class="input-underline" placeholder="Email address">
+        </div>
+        <p style="font-size: var(--body-sm); color: var(--secondary);">
+          Default: 0.5px #C4C6CE underline. Focus: 1.5px #021934 underline. No glowing halos.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="test-section">
+        <p class="test-section-title">Cards — 2px Radius, No Borders</p>
+        <div class="card-row">
+          <div class="card">
+            <h6>Clinical Safety First</h6>
+            <p style="margin-top: 0.75rem; font-size: var(--body-md); color: var(--on-surface-variant);">
+              Patient welfare is the non-negotiable foundation of every technical decision.
+            </p>
+          </div>
+          <div class="card-ghost">
+            <h6>Transparent Reasoning</h6>
+            <p style="margin-top: 0.75rem; font-size: var(--body-md); color: var(--on-surface-variant);">
+              Algorithmic decisions must be interpretable and explainable.
+            </p>
+          </div>
+          <div class="card">
+            <h6>Data Governance</h6>
+            <p style="margin-top: 0.75rem; font-size: var(--body-md); color: var(--on-surface-variant);">
+              Privacy and security are architecturally embedded, not bolted on.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Preview -->
+      <div class="test-section">
+        <p class="test-section-title">Navigation Links — All-Caps, Text-Only</p>
+        <nav style="display: flex; gap: 2rem; flex-wrap: wrap;">
+          <a href="#" class="nav-link active">Home</a>
+          <a href="#" class="nav-link">About</a>
+          <a href="#" class="nav-link">Cohort 1</a>
+          <a href="#" class="nav-link">AI Ethics</a>
+          <a href="#" class="nav-link">Contact</a>
+        </nav>
+      </div>
+
+      <!-- Hairline Accents -->
+      <div class="test-section">
+        <p class="test-section-title">Hairline Accents</p>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+          <div>
+            <div class="hairline"></div>
+            <p class="type-meta" style="margin-top: 0.5rem;">Primary hairline</p>
+          </div>
+          <div>
+            <div class="hairline-muted"></div>
+            <p class="type-meta" style="margin-top: 0.5rem;">Muted hairline</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top: 5rem; padding-top: 2rem; border-top: 0.5px solid var(--outline-variant);">
+        <p class="label-sm">Design Token Foundation · Phase 1, Step 1 · AesCode Co. Build System v1.0</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
