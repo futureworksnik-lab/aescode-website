@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Contact | AesCode Co.</title>
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Public+Sans:wght@100..900&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .dot-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #021934 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.03;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Atmospheric Dot Grid -->
+  <div class="dot-grid" aria-hidden="true"></div>
+  <!-- TopNavBar -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">AesCode Co.</a>
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="cohort1.html" class="nav-link">Cohort 1</a></li>
+        <li><a href="ai_ethics.html" class="nav-link">AI Ethics</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+      <button class="navbar__toggle" id="nav-toggle" 
+              aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+    </div>
+    <div class="navbar__mobile-menu" id="mobile-menu" role="menu">
+      <a href="index.html" class="nav-link" role="menuitem">Home</a>
+      <a href="about.html" class="nav-link" role="menuitem">About</a>
+      <a href="cohort1.html" class="nav-link" role="menuitem">Cohort 1</a>
+      <a href="ai_ethics.html" class="nav-link" role="menuitem">AI Ethics</a>
+      <a href="contact.html" class="nav-link active" role="menuitem">Contact</a>
+    </div>
+  </nav>
+  <!-- Main Content Canvas -->
+  <main style="
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  position: relative;
+  min-height: 70vh;
+">
+  <div style="max-width: 56rem; width: 100%; text-align: center; padding: 8rem 0;">
+
+    <section style="margin-bottom: 6rem;">
+      <h1 style="
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(3rem, 10vw, 6rem);
+        line-height: 1.05;
+        color: var(--primary);
+        margin-bottom: 2rem;
+      ">Get in Touch.</h1>
+      <div style="width: 4rem; height: 0.5px; background-color: var(--outline-variant); opacity: 0.4; margin: 0 auto;"></div>
+    </section>
+
+    <section>
+      <p style="
+        font-family: var(--font-sans);
+        font-size: 0.625rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+      ">General Inquiries</p>
+      <a href="mailto:aescode.nexus@gmail.com" style="
+        font-family: var(--font-sans);
+        font-size: clamp(1.25rem, 4vw, 1.75rem);
+        color: var(--primary);
+        text-decoration: none;
+        border-bottom: 0.5px solid transparent;
+        padding-bottom: 2px;
+        transition: opacity 0.4s ease, border-color 0.4s ease;
+        display: inline-block;
+      "
+      onmouseover="this.style.opacity='0.7'; this.style.borderBottomColor='var(--primary)'"
+      onmouseout="this.style.opacity='1'; this.style.borderBottomColor='transparent'">
+        aescode.nexus@gmail.com
+      </a>
+    </section>
+
+  </div>
+  <div style="position: absolute; left: 0; bottom: 0; width: 100%; height: 0.5px; background-color: var(--outline-variant); opacity: 0.2;"></div>
+</main>
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-obj">AESCODE CO.</div>
+        <p class="footer__tagline">MedTech Research. Clinically Grounded. 
+        Institutionally Anchored.</p>
+      </div>
+      <div class="footer__legal">
+        <h4 class="footer__label">LEGAL & DOCUMENTATION</h4>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">Privacy Policy</a></li>
+          <li><a href="#" class="footer__link">Terms of Service</a></li>
+          <li><a href="#" class="footer__link">Archive</a></li>
+          <li><a href="#" class="footer__link">RSS</a></li>
+        </ul>
+      </div>
+      <div class="footer__connect">
+        <h4 class="footer__label">CONNECT</h4>
+        <ul class="footer__links">
+          <li><a href="meet_the_team.html" class="footer__link">Meet the Team</a></li>
+          <li><a href="special_thanks.html" class="footer__link">Special Thanks</a></li>
+        </ul>
+        <div class="footer__meta">
+          <span>© 2026 AESCODE CO.</span>
+          <span>V1.1.0-RELEASE</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.classList.toggle('open');
+    });
+  </script>
+</body>
+
+</html>
