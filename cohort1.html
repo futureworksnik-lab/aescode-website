@@ -195,7 +195,7 @@
       }
 
       /* Timeline: single column — reset col-spans so span-3 does not open implicit tracks */
-      main.max-w-7xl .grid.grid-cols-4 > [class*="col-span"] {
+      main.max-w-7xl .grid.grid-cols-4>[class*="col-span"] {
         grid-column: 1 / -1 !important;
       }
 
@@ -210,7 +210,7 @@
         gap: 1.5rem !important;
       }
 
-      main.max-w-7xl .flex.gap-10.border-t-\[0\.5px\] > .shrink-0 {
+      main.max-w-7xl .flex.gap-10.border-t-\[0\.5px\]>.shrink-0 {
         width: 100% !important;
         max-width: 120px !important;
       }
@@ -250,8 +250,7 @@
         <li><a href="ai_ethics.html" class="nav-link">AI Ethics</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <button class="navbar__toggle" id="nav-toggle" 
-              aria-label="Toggle navigation menu" aria-expanded="false">
+      <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <span class="navbar__toggle-bar"></span>
         <span class="navbar__toggle-bar"></span>
         <span class="navbar__toggle-bar"></span>
@@ -265,8 +264,80 @@
       <a href="contact.html" class="nav-link" role="menuitem">Contact</a>
     </div>
   </nav>
+
+  <!-- Sticky anchor navigation -->
+  <nav id="page-anchors" aria-label="Page sections" style="
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: #FCF9F8;
+    border-bottom: 0.5px solid #C4C6CE;
+  ">
+    <div style="
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 2.5rem;
+      overflow-x: auto;
+    ">
+      <a href="#hero" style="
+        display: inline-block;
+        padding: 0.75rem 0;
+        font-family: 'Public Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #707785;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.15s;
+      " onmouseover="this.style.color='#021934'" onmouseout="this.style.color='#707785'">Overview</a>
+      <a href="#problems" style="
+        display: inline-block;
+        padding: 0.75rem 0;
+        font-family: 'Public Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #707785;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.15s;
+      " onmouseover="this.style.color='#021934'" onmouseout="this.style.color='#707785'">Problems</a>
+      <a href="#judges" style="
+        display: inline-block;
+        padding: 0.75rem 0;
+        font-family: 'Public Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #707785;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.15s;
+      " onmouseover="this.style.color='#021934'" onmouseout="this.style.color='#707785'">Judges</a>
+      <a href="#mentors" style="
+        display: inline-block;
+        padding: 0.75rem 0;
+        font-family: 'Public Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #707785;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.15s;
+      " onmouseover="this.style.color='#021934'" onmouseout="this.style.color='#707785'">Mentors</a>
+    </div>
+  </nav>
+
   <main class="relative z-10 max-w-7xl mx-auto px-8 py-20 lg:py-32">
-    <header class="grid grid-cols-12 gap-8 mb-32">
+    <header id="hero" class="grid grid-cols-12 gap-8 mb-32">
       <div class="col-span-12 lg:col-start-5 lg:col-span-8">
         <span class="font-label text-[10px] tracking-[0.2em] uppercase text-outline mb-4 block" style="">Archive
           001</span>
@@ -414,8 +485,33 @@
       </div>
     </section>
 
-    <!-- 05. Problem Statements -->
+    <!-- NEW: Cohort 1 Intelligence -->
     <section class="mb-48">
+      <div class="grid grid-cols-12 gap-8 items-start">
+        <div class="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
+          <h2 class="font-label font-medium text-[11px] tracking-[0.2em] uppercase text-[#021934] sticky top-32">COHORT
+            1 INTELLIGENCE</h2>
+        </div>
+        <div class="col-span-12 lg:col-span-8">
+          <h3 class="font-headline text-4xl md:text-5xl text-primary leading-tight mb-8">What 250 Engineers Told Us.
+          </h3>
+          <p class="font-body text-[15px] text-[#1C1B1B] leading-[1.75] mb-6 max-w-2xl">
+            Before any team competed, 250+ engineers from institutions across India submitted structured research
+            abstracts — their analysis of real, unresolved clinical problems. The submission pool revealed five dominant
+            clinical problem clusters, each independently confirmed by Bharati Hospital's clinical staff as a genuine
+            operational gap.
+          </p>
+          <p class="font-body text-[15px] text-[#707785] leading-[1.75] max-w-2xl">
+            The 250+ abstracts from Cohort 1 are not a participation metric. They are a dataset — structured evidence of
+            how India's engineering graduates understand and frame clinical challenges. A structured analysis of this
+            dataset is in preparation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. Problem Statements -->
+    <section id="problems" class="mb-48">
       <div class="grid grid-cols-12 gap-8 items-start">
         <div class="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
           <h2 class="font-label font-medium text-[11px] tracking-[0.2em] uppercase text-[#021934] sticky top-32">
@@ -589,7 +685,7 @@
     </section>
 
     <!-- 06. Judges -->
-    <section class="mb-48">
+    <section id="judges" class="mb-48">
       <div class="grid grid-cols-12 gap-8 items-start">
         <div class="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
           <h2 class="font-label font-medium text-[11px] tracking-[0.2em] uppercase text-[#021934] sticky top-32">
@@ -746,7 +842,7 @@
     </section>
 
     <!-- 07. Mentors -->
-    <section class="mb-48 py-16 bg-[#F6F3F2] -mx-8 px-8">
+    <section id="mentors" class="mb-48 py-16 bg-[#F6F3F2] -mx-8 px-8">
       <div class="grid grid-cols-12 gap-8 items-start">
         <div class="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
           <h2 class="font-label font-medium text-[11px] tracking-[0.2em] uppercase text-[#021934] sticky top-32">
@@ -841,27 +937,27 @@
       </div>
     </section>
 
-    <!-- 08. Testimonials -->
+    <!-- 08. Cohort 1 Outcomes -->
     <section class="mb-48 overflow-visible relative">
       <div class="grid grid-cols-12 gap-8 items-start">
         <div class="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
-          <h2 class="font-label font-medium text-[11px] tracking-[0.2em] uppercase text-[#021934] sticky top-32">FROM
-            THE COHORT
+          <h2 class="font-label font-medium text-[11px] tracking-[0.2em] uppercase text-[#021934] sticky top-32">COHORT
+            1 OUTCOMES
           </h2>
         </div>
         <div class="col-span-12 lg:col-span-8">
-          <h3 class="font-headline italic text-[40px] text-[#021934] mb-4">What They Built. What They Said.</h3>
-          <p class="font-body text-[14px] text-[#707785] italic mb-12">
-            "Testimonials, winner stories, and documentation from Cohort 1 participants will appear here."
+          <h3 class="font-headline text-4xl md:text-5xl text-primary leading-tight mb-8">Cohort 1 Outcomes.</h3>
+          <p class="font-body text-[15px] text-[#1C1B1B] leading-[1.75] mb-6 max-w-2xl">
+            Twenty finalist teams presented research frameworks and AI prototype architectures across five clinical
+            domains. Top teams produced documented solutions for: plantar pressure mapping in diabetic patients, early
+            warning systems for physiological deterioration, opportunistic osteoporosis screening from routine X-rays,
+            pose-based rehabilitation feedback, and ischemic volume estimation from CT imaging.
           </p>
-
-          <div
-            class="bg-[#FFFFFF] border-[0.5px] border-[#C4C6CE] rounded-[2px] p-12 h-[240px] flex flex-col justify-center items-center text-center"
-            style="min-height: 240px;">
-            <span class="font-headline text-[80px] text-[#C4C6CE] leading-none mb-4">"</span>
-            <span class="font-label text-[9px] uppercase tracking-[0.2em] text-[#C4C6CE]">WINNER TESTIMONIAL — COMING
-              SOON</span>
-          </div>
+          <p class="font-body text-[15px] text-[#707785] leading-[1.75] max-w-2xl">
+            Full winner documentation is being compiled for the Cohort 1 archive. For access or media inquiries, contact
+            <a href="mailto:partnerships@aescode.nexus"
+              style="color: #021934; text-decoration: underline; text-underline-offset: 3px;">partnerships@aescode.nexus</a>.
+          </p>
         </div>
       </div>
     </section>
@@ -908,8 +1004,8 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <div class="footer__brand-obj">AESCODE CO.</div>
-        <p class="footer__tagline">MedTech Research. Clinically Grounded. 
-        Institutionally Anchored.</p>
+        <p class="footer__tagline">MedTech Research. Clinically Grounded.
+          Institutionally Anchored.</p>
       </div>
       <div class="footer__legal">
         <h4 class="footer__label">LEGAL & DOCUMENTATION</h4>

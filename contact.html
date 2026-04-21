@@ -76,30 +76,83 @@
       <div style="width: 4rem; height: 0.5px; background-color: var(--outline-variant); opacity: 0.4; margin: 0 auto;"></div>
     </section>
 
-    <section>
-      <p style="
-        font-family: var(--font-sans);
-        font-size: 0.625rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--secondary);
-        margin-bottom: 1rem;
-      ">General Inquiries</p>
-      <a href="mailto:aescode.nexus@gmail.com" style="
-        font-family: var(--font-sans);
-        font-size: clamp(1.25rem, 4vw, 1.75rem);
-        color: var(--primary);
-        text-decoration: none;
-        border-bottom: 0.5px solid transparent;
-        padding-bottom: 2px;
-        transition: opacity 0.4s ease, border-color 0.4s ease;
-        display: inline-block;
-      "
-      onmouseover="this.style.opacity='0.7'; this.style.borderBottomColor='var(--primary)'"
-      onmouseout="this.style.opacity='1'; this.style.borderBottomColor='transparent'">
-        aescode.nexus@gmail.com
-      </a>
+    <!-- SECTION 1 — Contact types -->
+    <section style="margin-bottom: 6rem; width: 100%;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; text-align: left; max-width: 56rem; margin: 0 auto;">
+        <div>
+          <p style="font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.5rem;">General Inquiries</p>
+          <a href="mailto:hi@aescode.nexus" style="font-family: var(--font-sans); font-size: 1.125rem; color: var(--primary); text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">hi@aescode.nexus</a>
+        </div>
+        <div>
+          <p style="font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.5rem;">Partnership & Institutional</p>
+          <a href="mailto:partnerships@aescode.nexus" style="font-family: var(--font-sans); font-size: 1.125rem; color: var(--primary); text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">partnerships@aescode.nexus</a>
+        </div>
+        <div>
+          <p style="font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.5rem;">Press & Media</p>
+          <a href="mailto:press@aescode.nexus" style="font-family: var(--font-sans); font-size: 1.125rem; color: var(--primary); text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">press@aescode.nexus</a>
+        </div>
+      </div>
     </section>
+
+    <!-- SECTION 2 — Contact form -->
+    <section style="margin-bottom: 6rem; width: 100%; text-align: left;">
+      <div id="contact-form" style="display: flex; flex-direction: column; gap: 2rem; max-width: 32rem; margin: 0 auto;">
+        <input type="text" placeholder="Full name" class="input-underline" aria-label="Full Name">
+        <input type="text" placeholder="Organization" class="input-underline" aria-label="Organization">
+        <input type="text" placeholder="Your role" class="input-underline" aria-label="Your Role">
+        <select class="input-underline" aria-label="Inquiry Type" style="appearance: none; cursor: pointer; border-radius: 0; background: transparent;">
+          <option value="" disabled selected>Inquiry Type</option>
+          <option value="General">General</option>
+          <option value="Partnership">Partnership</option>
+          <option value="Press">Press</option>
+          <option value="Research">Research</option>
+          <option value="Other">Other</option>
+        </select>
+        <textarea placeholder="Your message" class="input-underline" aria-label="Message" style="min-height: 120px; resize: vertical; border-radius: 0; font-family: var(--font-sans);"></textarea>
+        <button id="submit-contact" class="btn-primary" style="align-self: flex-start; margin-top: 1rem;">SEND MESSAGE</button>
+      </div>
+    </section>
+
+    <!-- SECTION 3 — FAQ -->
+    <section style="width: 100%; text-align: left; max-width: 32rem; margin: 0 auto;">
+      <p style="font-family: var(--font-sans); font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--secondary); margin-bottom: 1.5rem;">Before You Write</p>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <p style="font-family: var(--font-sans); font-size: 1rem; color: var(--on-surface);"><strong style="color: var(--primary); font-weight: 500;">Q: When is Cohort 2?</strong> — Cohort 2 details are being finalized. Subscribe to our newsletter for the announcement.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-sans); font-size: 1rem; color: var(--on-surface);"><strong style="color: var(--primary); font-weight: 500;">Q: How do I apply to participate?</strong> — Applications open with each cohort announcement. Subscribe for updates.</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-sans); font-size: 1rem; color: var(--on-surface);"><strong style="color: var(--primary); font-weight: 500;">Q: How do I partner with Aescode?</strong> — Email partnerships@aescode.nexus with your organization name and area of interest.</p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById('submit-contact').addEventListener('click', function() {
+        const btn = this;
+        btn.innerText = 'SENDING...';
+        btn.disabled = true;
+        
+        // Mock fetch payload simulating backend request
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'contact_submit' })
+        }).then(response => {
+          if (response.ok) {
+            btn.innerText = 'SENT. THANK YOU.';
+            btn.style.backgroundColor = 'var(--outline)';
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        }).catch(error => {
+          btn.innerText = 'ERROR. TRY AGAIN.';
+          btn.disabled = false;
+        });
+      });
+    </script>
 
   </div>
   <div style="position: absolute; left: 0; bottom: 0; width: 100%; height: 0.5px; background-color: var(--outline-variant); opacity: 0.2;"></div>
