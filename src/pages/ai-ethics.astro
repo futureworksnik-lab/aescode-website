@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const pillars = [
+  { num: '01', title: 'Clinical Non-Maleficence', body: 'Safety is not a feature; it is the baseline. We prioritize rigorous validation against local clinical gold standards.' },
+  { num: '02', title: 'Glass-Box Interpretability', body: 'Black-box models have no place in medicine. Our systems provide clear, interpretable evidence for every clinical suggestion.' },
+  { num: '03', title: 'Privacy-Preserving Data Architecture', body: 'No live patient data leaves the hospital in any Aescode program. For model training, we use federated learning — the model trains at the hospital; only what it learned returns, never the data itself.' },
+  { num: '04', title: 'Augmented Human Oversight', body: 'AI is a tool for the clinician. We ensure final clinical authority remains strictly with certified medical professionals.' },
+  { num: '05', title: 'Staged Socio-Technical Rollouts', body: 'We evaluate deployments for their impact on existing hospital workflows and provider workloads.' },
+];
+---
+<BaseLayout title="AI Ethics & Integrity — AesCode Co." description="AesCode Co. builds the moral infrastructure required to move AI from the lab to the bedside.">
+  <Navbar activePage="/ai-ethics" />
+  <main id="main-content">
+    <section class="ethics-hero section-hero">
+      <div class="container">
+        <div style="max-width:64rem">
+          <p class="mono data-sm mb-xl reveal" style="color:var(--accent);letter-spacing:.12em">GOVERNANCE PROTOCOL</p>
+          <h1 class="display-hero serif italic text-primary mb-xl reveal reveal--delay-1">AI Ethics &amp; Integrity</h1>
+          <p class="body-xl mb-2xl reveal reveal--delay-2" style="max-width:48rem;color:var(--on-surface-variant)">In the Indian healthcare ecosystem, technical innovation is secondary to clinical trust. AesCode Co. builds the moral infrastructure required to move AI from the lab to the bedside.</p>
+          <div class="reveal reveal--delay-3">
+            <div class="hairline mb-md"></div>
+            <span class="mono data-sm" style="color:var(--secondary);letter-spacing:.12em">v2.4 / DPDP &amp; ICMR ALIGNMENT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-primary bg-surface-low">
+      <div class="container">
+        <div class="ethics-rigor">
+          <h2 class="display-md serif italic text-primary reveal">The Necessity of Rigor in Indian MedTech</h2>
+          <div class="reveal reveal--delay-1">
+            <p class="body-lg mb-2xl" style="color:var(--on-surface-variant);line-height:1.8">India's healthcare landscape is defined by extreme scale and diverse patient demographics. Here, an unmonitored algorithm doesn't just 'fail' — it risks codifying systemic biases and eroding patient autonomy. At AesCode, we recognize that while regulation is still evolving, the responsibility of the builder is absolute. We do not wait for policy to mandate safety; we architect for it.</p>
+            <div style="border-radius:var(--radius-md);overflow:hidden">
+              <img src="/images/medical_data_viz.png" alt="Medical data visualization" style="width:100%;aspect-ratio:16/7;object-fit:cover;filter:grayscale(100%);display:block" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-primary">
+      <div class="container">
+        <p class="label-sm mb-3xl reveal" style="color:var(--secondary)">OPERATIONAL PILLARS — NON-NEGOTIABLE STANDARDS</p>
+        <div class="ethics-pillars">
+          {pillars.map((p,i) => (
+            <div class={`ethics-pillar card card--ghost reveal reveal--delay-${(i%3)+1}`}>
+              <p class="ethics-pillar__num serif italic">{p.num}</p>
+              <h3 class="label-lg text-primary mb-md">{p.title}</h3>
+              <p class="body-sm" style="color:var(--on-surface-variant)">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-primary bg-surface-low">
+      <div class="container">
+        <div class="ethics-governance">
+          <div class="reveal">
+            <h3 class="display-sm serif italic text-primary mb-lg">Governance as Code</h3>
+            <div class="hairline hairline--short hairline--accent mb-xl"></div>
+            <p class="body-md" style="color:var(--on-surface-variant);line-height:1.8">At AesCode, ethics is a systems problem. We integrate ethical checkpoints directly into our CI/CD pipelines. If a code commit violates a safety constraint or fails a bias check, it does not pass to production.</p>
+          </div>
+          <div class="reveal reveal--delay-1">
+            <h3 class="display-sm serif italic text-primary mb-lg">Bridging Regulatory Gaps</h3>
+            <div class="hairline hairline--short hairline--accent mb-xl"></div>
+            <p class="body-md" style="color:var(--on-surface-variant);line-height:1.8">We align with three active regulatory frameworks: the Digital Personal Data Protection (DPDP) Act 2023, ICMR Ethical Guidelines for AI in Healthcare 2023, and the CDSCO SaMD regulatory pathway for AI diagnostic tools.</p>
+          </div>
+          <div class="reveal reveal--delay-2" style="grid-column:1/-1;max-width:56rem">
+            <h3 class="display-sm serif italic text-primary mb-lg">Ethics Is Part of Every Cohort Evaluation</h3>
+            <div class="hairline hairline--short hairline--accent mb-xl"></div>
+            <p class="body-md" style="color:var(--on-surface-variant);line-height:1.8">Every team that participates in an Aescode cohort is evaluated not only on technical performance but on the ethical architecture of their solution. Problem framing, data handling, model interpretability, and deployment assumptions are all assessed against a published rubric.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-primary" style="text-align:center">
+      <div class="container">
+        <div style="max-width:56rem;margin-inline:auto">
+          <blockquote class="display-sm serif italic text-primary mb-2xl reveal">&ldquo;We are building an ecosystem where responsible AI is the default, ensuring that innovation never comes at the cost of medical integrity.&rdquo;</blockquote>
+          <a href="/contact" class="btn btn--primary reveal reveal--delay-1" id="ethics-cta">Contact Us to Discuss Institutional Partnership →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .ethics-hero { padding-top:calc(68px + var(--space-6xl)); padding-bottom:var(--space-5xl); }
+  .ethics-rigor { display:grid; grid-template-columns:5fr 7fr; gap:var(--space-4xl); align-items:start; }
+  .ethics-pillars { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--space-lg); }
+  .ethics-pillar { padding:var(--space-xl); display:flex; flex-direction:column; gap:var(--space-md); }
+  .ethics-pillar__num { font-family:var(--font-serif); font-size:2.5rem; color:var(--outline-variant); line-height:1; margin-bottom:var(--space-sm); font-style:italic; }
+  .ethics-governance { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-4xl); }
+  @media(max-width:1024px){
+    .ethics-pillars{grid-template-columns:repeat(2,1fr)}
+    .ethics-rigor{grid-template-columns:1fr}
+    .ethics-governance{grid-template-columns:1fr}
+    .ethics-governance div[style*="grid-column"]{grid-column:auto!important;max-width:100%!important}
+  }
+  @media(max-width:640px){.ethics-pillars{grid-template-columns:1fr}}
+</style>

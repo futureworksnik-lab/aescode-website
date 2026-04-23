@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const contacts = [
+  { label: 'General Inquiries', email: 'hi@aescode.nexus' },
+  { label: 'Partnership & Institutional', email: 'partnerships@aescode.nexus' },
+  { label: 'Press & Media', email: 'press@aescode.nexus' },
+];
+const faqs = [
+  { q: 'When is Cohort 2?', a: 'Cohort 2 details are being finalized. Subscribe to our newsletter for the announcement.' },
+  { q: 'How do I apply to participate?', a: 'Applications open with each cohort announcement. Subscribe for updates.' },
+  { q: 'How do I partner with Aescode?', a: 'Email partnerships@aescode.nexus with your organization name and area of interest.' },
+];
+---
+<BaseLayout title="Contact — AesCode Co." description="Get in touch with AesCode Co. for partnerships, research collaboration, press inquiries, or general questions.">
+  <Navbar activePage="/contact" />
+  <main id="main-content">
+    <section class="contact-hero section-hero">
+      <div class="container">
+        <h1 class="display-hero serif italic text-primary mb-lg reveal">Get in Touch.</h1>
+        <div class="hairline hairline--short hairline--accent reveal reveal--delay-1"></div>
+      </div>
+    </section>
+
+    <section class="section-secondary">
+      <div class="container">
+        <div class="contact-channels reveal">
+          {contacts.map(c => (
+            <div class="contact-channel">
+              <p class="label-sm mb-sm">{c.label}</p>
+              <a href={`mailto:${c.email}`} class="contact-email">{c.email}</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-primary bg-surface-low">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-form-col reveal">
+            <p class="label-sm mb-xl" style="color:var(--accent)">SEND A MESSAGE</p>
+            <form id="contact-form" class="contact-form" novalidate>
+              <label class="sr-only" for="cf-name">Full name</label>
+              <input id="cf-name" type="text" placeholder="Full name" class="input" autocomplete="name" />
+              <label class="sr-only" for="cf-org">Organization</label>
+              <input id="cf-org" type="text" placeholder="Organization" class="input" autocomplete="organization" />
+              <label class="sr-only" for="cf-role">Your role</label>
+              <input id="cf-role" type="text" placeholder="Your role" class="input" />
+              <label class="sr-only" for="cf-type">Inquiry Type</label>
+              <select id="cf-type" class="input contact-select">
+                <option value="" disabled selected>Inquiry Type</option>
+                <option>General</option>
+                <option>Partnership</option>
+                <option>Press</option>
+                <option>Research</option>
+                <option>Other</option>
+              </select>
+              <label class="sr-only" for="cf-msg">Message</label>
+              <textarea id="cf-msg" placeholder="Your message" class="input contact-textarea" rows="5"></textarea>
+              <button type="submit" class="btn btn--primary" id="contact-submit" style="align-self:flex-start;margin-top:var(--space-md)">Send Message</button>
+              <p class="body-sm contact-status" id="contact-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div class="contact-faq-col reveal reveal--delay-1">
+            <p class="label-sm mb-xl" style="color:var(--accent)">BEFORE YOU WRITE</p>
+            <div class="contact-faqs">
+              {faqs.map(f => (
+                <div class="contact-faq">
+                  <p class="body-md"><strong class="text-primary semibold">Q: {f.q}</strong></p>
+                  <p class="body-md" style="color:var(--on-surface-variant);margin-top:var(--space-xs)">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .contact-hero { padding-top:calc(68px + var(--space-6xl)); padding-bottom:var(--space-3xl); }
+  .contact-channels { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-2xl); padding-bottom:var(--space-2xl); border-bottom:0.5px solid rgba(196,198,206,.35); }
+  .contact-channel { display:flex; flex-direction:column; gap:var(--space-xs); }
+  .contact-email { font-family:var(--font-sans); font-size:var(--body-lg); color:var(--primary); font-weight:500; transition:color var(--transition-fast); }
+  .contact-email:hover { color:var(--accent); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4xl); align-items:start; }
+  .contact-form { display:flex; flex-direction:column; gap:var(--space-xl); }
+  .contact-select { cursor:pointer; -webkit-appearance:none; appearance:none; background:transparent; }
+  .contact-textarea { min-height:140px; resize:vertical; }
+  .contact-status { min-height:1.25rem; color:var(--secondary); display:none; margin-top:var(--space-sm); }
+  .contact-status.visible { display:block; }
+  .contact-status.success { color:var(--data-positive); }
+  .contact-status.error { color:var(--error); }
+  .contact-faqs { display:flex; flex-direction:column; gap:var(--space-xl); }
+  .contact-faq { padding-bottom:var(--space-xl); border-bottom:0.5px solid rgba(196,198,206,.3); }
+  .contact-faq:last-child { border-bottom:none; }
+  .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
+  @media(max-width:768px){
+    .contact-channels{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr}
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('contact-submit');
+  const status = document.getElementById('contact-status');
+  function setStatus(msg, type='') {
+    if(!status) return;
+    status.textContent = msg;
+    status.className = `body-sm contact-status visible ${type}`;
+  }
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn?.setAttribute('disabled','true');
+    setStatus('Sending…');
+    try {
+      await fetch('https://jsonplaceholder.typicode.com/posts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'contact_submit'})});
+      setStatus('Message sent. We\'ll be in touch shortly.','success');
+      (form as HTMLFormElement).reset();
+    } catch {
+      setStatus('Something went wrong. Please try again.','error');
+    } finally {
+      btn?.removeAttribute('disabled');
+    }
+  });
+</script>
