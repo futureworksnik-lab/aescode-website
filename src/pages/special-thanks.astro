@@ -15,7 +15,7 @@ const honorees = [
     ],
   },
   {
-    role: 'SCIENTIFIC STRATEGY',
+    role: '',
     name: 'Dr. Raghavendran Lakshminarayan',
     img: '/images/special/Raghav.png',
     flip: true,
@@ -25,7 +25,7 @@ const honorees = [
     ],
   },
   {
-    role: 'CURRICULUM DESIGN',
+    role: '',
     name: 'Dr. Kshitij Jadhav',
     img: '/images/special/Kshitij.png',
     flip: false,
@@ -35,7 +35,7 @@ const honorees = [
     ],
   },
   {
-    role: 'ECOSYSTEM PARTNERSHIP',
+    role: '',
     name: 'Dr. Varsha Vaidya',
     img: '/images/special/Varsha.png',
     flip: true,
@@ -72,7 +72,7 @@ const honorees = [
         {honorees.map((h, i) => (
           <div class={`st-honoree ${h.flip ? 'st-honoree--flip' : ''} reveal`}>
             <div class="st-honoree__text">
-              <span class="label-sm mb-lg" style="display:block;color:var(--accent)">{h.role}</span>
+              {h.role && <span class="label-sm mb-lg" style="display:block;color:var(--accent)">{h.role}</span>}
               <h2 class="display-sm serif italic text-primary mb-xl">{h.name}</h2>
               <div class="hairline hairline--short mb-xl" style="opacity:.3"></div>
               {h.bios.map(p => (
@@ -83,7 +83,7 @@ const honorees = [
               <img
                 src={h.img}
                 alt={h.name}
-                class="st-portrait"
+                class={`st-portrait ${h.name === 'Dr. Varsha Vaidya' ? 'st-portrait--varsha' : ''}`}
                 loading="lazy"
               />
             </div>
@@ -149,6 +149,7 @@ const honorees = [
     display:block;
   }
   .st-portrait:hover { filter:grayscale(0%) contrast(1); }
+  .st-portrait--varsha { object-position:center 20%; object-fit:contain; background:var(--surface-container-low); }
 
   /* Institutional section */
   .st-institutions { padding-block:var(--space-5xl); }
