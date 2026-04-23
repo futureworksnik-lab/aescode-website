@@ -1,0 +1,39 @@
+---
+/**
+ * @component QuoteCTA
+ * @description Centered blockquote section with optional attribution and call-to-action link.
+ * @example
+ * <QuoteCTA quote="Our mission..." attribution="— AESCODE CO." />
+ */
+interface Props {
+  quote: string;
+  attribution?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  quoteColor?: string;
+}
+
+const {
+  quote,
+  attribution,
+  ctaText,
+  ctaHref,
+  quoteColor = 'var(--primary)',
+} = Astro.props;
+---
+
+<section style="padding: 10rem 0; text-align: center;">
+  <div class="container">
+    <div style="max-width: 56rem; margin: 0 auto;">
+      <h2 style={`font-style: italic; font-size: 2.5rem; line-height: 1.4; margin-bottom: 3rem; color: ${quoteColor};`}>
+        {quote}
+      </h2>
+      {attribution && (
+        <p class="label-sm" style="margin-top: 1.5rem;">{attribution}</p>
+      )}
+      {ctaText && ctaHref && (
+        <a href={ctaHref} class="btn-tertiary">{ctaText}</a>
+      )}
+    </div>
+  </div>
+</section>

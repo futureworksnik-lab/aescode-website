@@ -1,0 +1,23 @@
+{
+  "name": "aescode-website",
+  "version": "2.0.0",
+  "description": "AesCode Co. — MedTech Research Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futureworksnik-lab/aescode-website.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.104.0",
+    "astro": "^6.1.8"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

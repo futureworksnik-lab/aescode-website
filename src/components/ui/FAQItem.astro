@@ -1,0 +1,20 @@
+---
+/**
+ * @component FAQItem
+ * @description Renders a single FAQ question-answer pair with semantic markup.
+ * @example
+ * <FAQItem question="What is Aescode?" answer="A MedTech research platform." />
+ */
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div>
+  <p style="font-family: var(--font-sans); font-size: 1rem; color: var(--on-surface);">
+    <strong style="color: var(--primary); font-weight: 500;">Q: {question}</strong> — {answer}
+  </p>
+</div>

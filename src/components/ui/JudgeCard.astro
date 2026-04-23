@@ -1,0 +1,142 @@
+---
+/**
+ * @component JudgeCard
+ * @description Renders an evaluation committee member card with photo, quote, bio, and metadata.
+ * @example
+ * <JudgeCard index="01" role="Judge" name="Dr. X" title="Professor" quote="..." bio="..." photo="/img.jpg" focus="AI" affiliation="IIT" />
+ */
+interface Props {
+  index: string;
+  role: string;
+  name: string;
+  title: string;
+  quote: string;
+  bio: string;
+  photo: string;
+  focus: string;
+  affiliation: string;
+  reverse?: boolean;
+}
+const { index, role, name, title, quote, bio, photo, focus, affiliation, reverse = false } = Astro.props;
+---
+
+<div class:list={['judge-card', { 'judge-card--reverse': reverse }]}>
+  <div class="judge-card__photo-col">
+    <img src={photo} alt={name} class="judge-card__photo" loading="lazy" decoding="async">
+  </div>
+  <div class="judge-card__body-col">
+    <span class="judge-card__index">{index} / {role}</span>
+    <h4 class="judge-card__name">{name}</h4>
+    <span class="judge-card__title">{title}</span>
+    <p class="judge-card__quote">"{quote}"</p>
+    <p class="judge-card__bio">{bio}</p>
+    <div class="judge-card__meta">
+      <div>
+        <span class="judge-card__meta-label">FOCUS</span>
+        <span class="judge-card__meta-value">{focus}</span>
+      </div>
+      <div>
+        <span class="judge-card__meta-label">AFFILIATION</span>
+        <span class="judge-card__meta-value">{affiliation}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .judge-card {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 5rem;
+    margin-bottom: 5rem;
+    align-items: center;
+  }
+  .judge-card--reverse {
+    direction: rtl;
+  }
+  .judge-card--reverse > * {
+    direction: ltr;
+  }
+  .judge-card__photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(1) contrast(1.1);
+    transition: filter 0.5s ease;
+  }
+  .judge-card__photo:hover {
+    filter: grayscale(0) contrast(1);
+  }
+  .judge-card__index {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-micro);
+    text-transform: uppercase;
+    color: var(--outline-variant);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .judge-card__name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.75rem;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+  }
+  .judge-card__title {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-mini);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .judge-card__quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--on-surface);
+    max-width: 480px;
+    margin-bottom: 1.5rem;
+  }
+  .judge-card__bio {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body-sm-alt);
+    color: var(--secondary);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .judge-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .judge-card__meta-label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--outline-variant);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .judge-card__meta-value {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--on-surface);
+  }
+  @media (max-width: 768px) {
+    .judge-card {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .judge-card--reverse {
+      direction: ltr;
+    }
+    .judge-card__photo {
+      max-width: 300px;
+    }
+  }
+</style>

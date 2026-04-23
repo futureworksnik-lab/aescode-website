@@ -1,0 +1,72 @@
+---
+/**
+ * @component StickyLabelSection
+ * @description Two-column layout section with a sticky side label and a slotted content area.
+ * @example
+ * <StickyLabelSection label="TIMELINE"><div>Content</div></StickyLabelSection>
+ */
+interface Props {
+  label: string;
+  id?: string;
+  bgClass?: string;
+  fullBleed?: boolean;
+}
+const { label, id, bgClass = '', fullBleed = false } = Astro.props;
+---
+
+<section id={id} class:list={['sticky-section', bgClass, { 'sticky-section--bleed': fullBleed }]}>
+  <div class="sticky-section__grid">
+    <div class="sticky-section__side">
+      <h2 class="sticky-section__label">{label}</h2>
+    </div>
+    <div class="sticky-section__main">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .sticky-section {
+    margin-bottom: 12rem;
+  }
+  .sticky-section--bleed {
+    padding: 4rem 0;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .sticky-section__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .sticky-section__side {
+    grid-column: span 4;
+    margin-bottom: 3rem;
+  }
+  .sticky-section__label {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary);
+    position: sticky;
+    top: 8rem;
+  }
+  .sticky-section__main {
+    grid-column: span 8;
+  }
+  @media (max-width: 768px) {
+    .sticky-section__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .sticky-section__label {
+      position: static;
+    }
+  }
+</style>

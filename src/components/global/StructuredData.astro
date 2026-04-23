@@ -1,0 +1,19 @@
+---
+/**
+ * StructuredData.astro
+ * Outputs a JSON-LD structured data block for SEO.
+ *
+ * Props:
+ *   schema: Record<string, any> — A valid Schema.org object (Organization, Event, Article, etc.)
+ *
+ * Usage:
+ *   <StructuredData schema={{ "@context": "https://schema.org", "@type": "Organization", ... }} />
+ */
+interface Props {
+  schema: Record<string, any>;
+}
+
+const { schema } = Astro.props;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

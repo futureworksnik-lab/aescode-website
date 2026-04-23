@@ -1,0 +1,82 @@
+---
+/**
+ * @component ArchiveMarquee
+ * @description Two-row infinite-scrolling image marquee for event archive photography.
+ * @example
+ * <ArchiveMarquee images={["/img1.webp", "/img2.webp"]} />
+ */
+interface Props {
+  images: string[];
+}
+const { images } = Astro.props;
+const mid = Math.ceil(images.length / 2);
+const row1 = images.slice(0, mid);
+const row2 = images.slice(mid);
+---
+
+<div class="marquee-container">
+  <div class="marquee-track marquee-row-1">
+    {[...row1, ...row1].map((src) => (
+      <div class="marquee-card">
+        <img src={src} alt="AesCode Cohort 1 Archive" loading="lazy" decoding="async">
+      </div>
+    ))}
+  </div>
+  <div class="marquee-track marquee-row-2">
+    {[...row2, ...row2].map((src) => (
+      <div class="marquee-card">
+        <img src={src} alt="AesCode Cohort 1 Archive" loading="lazy" decoding="async">
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes marquee-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  .marquee-container {
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+    padding: 3rem 2rem;
+  }
+  .marquee-container:hover .marquee-row-1,
+  .marquee-container:hover .marquee-row-2 {
+    animation-play-state: paused;
+  }
+  .marquee-track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    align-items: stretch;
+  }
+  .marquee-track > div { flex-shrink: 0; }
+  .marquee-row-1 {
+    animation: marquee-left 40s linear infinite;
+  }
+  .marquee-row-2 {
+    animation: marquee-right 40s linear infinite;
+    margin-top: 1rem;
+  }
+  .marquee-card {
+    width: 280px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 1rem;
+  }
+  .marquee-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

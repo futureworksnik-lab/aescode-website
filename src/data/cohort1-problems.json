@@ -1,0 +1,62 @@
+[
+  {
+    "category": "DIABETIC CARE",
+    "title": "AI-Based Prediction of High-Risk Plantar Pressure Zones",
+    "summary": "Identifying high-pressure areas in diabetic patients to prevent ulceration through early biomechanical intervention.",
+    "mlTask": "Supervised ML — Classification / Risk Prediction",
+    "expectedOutput": "Pressure hotspot detection map · Ulcer risk score for foot regions",
+    "modal": {
+      "context": "Diabetic Foot Ulcers (DFUs) are one of the most severe complications of diabetes mellitus. Due to peripheral neuropathy, many diabetic patients lose sensation in their feet and cannot detect injuries or excessive pressure while walking. Chronic abnormal plantar pressure distribution leads to tissue breakdown and ulcer formation. Studies estimate that up to 80% of diabetes-related amputations originate from non-healing foot ulcers.",
+      "objective": "Develop a machine learning system that predicts high-pressure plantar regions and ulcer risk zones in diabetic patients using gait or plantar pressure data. The system should identify areas of abnormal pressure distribution that could lead to ulcer formation and provide insights that could guide personalized off-loading footwear design.",
+      "mlDefinition": "Primary Task: Supervised Machine Learning — Classification / Risk Prediction. Possible formulations: Pressure hotspot classification (predict high-risk regions), Ulcer risk prediction (predict probability), Plantar pressure map analysis (detect abnormal distributions). Data modalities: Pressure sensor matrices, Gait time-series, Foot images/scans, Biomechanical features."
+    }
+  },
+  {
+    "category": "PATIENT MONITORING",
+    "title": "AI-Based Early Warning System for Patient Physiological Deterioration",
+    "summary": "Detecting subtle patterns in vital signs that precede clinical decompensation in acute care settings.",
+    "mlTask": "Time-Series Prediction / Binary Classification",
+    "expectedOutput": "Real-time risk score with clinical reasoning flags",
+    "modal": {
+      "context": "Dependent elderly individuals and patients with neurological conditions are at high risk of silent physiological decline. Early warning signs—such as infection, dehydration, or systemic instability—often appear first through subtle changes in vital signs including heart rate, respiratory rate, temperature, blood pressure, and oxygen saturation. In many cases, these signals are missed or detected too late.",
+      "objective": "Develop a machine learning model that predicts the risk of patient physiological deterioration within a defined time window (e.g., next 6–12 hours) using historical vital sign measurements. The system should analyze time-series patient data and generate a risk score or classification indicating whether the patient is likely to deteriorate.",
+      "mlDefinition": "Primary ML Task: Time-Series Prediction / Binary Classification. Predict whether a patient will experience clinical deterioration within the next time window based on previous vital signs. Possible targets: ICU transfer, Sepsis onset, Clinical instability, Mortality risk. Approaches: XGBoost/LightGBM, LSTM/GRU, Temporal CNNs, Transformers."
+    }
+  },
+  {
+    "category": "BONE HEALTH",
+    "title": "AI-Based Osteoporosis Risk Screening from Routine X-Ray Radiographs",
+    "summary": "Analyzing opportunistic imaging data to screen for low bone density in asymptomatic populations.",
+    "mlTask": "Computer Vision — Image Classification",
+    "expectedOutput": "Probabilistic fracture risk index · Binary or multi-class classification",
+    "modal": {
+      "context": "Osteoporosis is a chronic skeletal disease characterized by low bone mineral density (BMD) and deterioration of bone structure. The gold standard DEXA scanning is expensive and often inaccessible in low-resource settings. X-ray imaging, however, is widely available. Analyzing routine radiographs (wrist, hip, spine) could enable large-scale early screening using existing infrastructure.",
+      "objective": "Develop a machine learning model that analyzes bone radiographs and predicts the risk of osteoporosis or low bone mineral density. The system should accept X-ray images, process them using computer vision models, and output a predicted osteoporosis risk score or classification.",
+      "mlDefinition": "Primary Task: Computer Vision — Image Classification. Possible formulations: Binary Classification (Normal/Osteoporosis risk), Multi-class Classification (Normal/Osteopenia/Osteoporosis), or Regression (predict estimated BMD)."
+    }
+  },
+  {
+    "category": "REHABILITATION",
+    "title": "AI-Based Detection of Incorrect Exercise Form Using Human Pose Estimation",
+    "summary": "Providing real-time feedback on kinetic alignment to ensure safe and effective home-based physical therapy.",
+    "mlTask": "Computer Vision + Classification / Pose Estimation",
+    "expectedOutput": "Correction vectors and form quality score",
+    "modal": {
+      "context": "Incorrect exercise form is a leading contributor to musculoskeletal injuries. Poor movement patterns such as joint misalignment or asymmetrical motion place abnormal stress on joints. Advances in computer vision and pose estimation now allow cameras to capture human motion and estimate skeletal joint positions, enabling automated biomechanical analysis without professional supervision.",
+      "objective": "Develop a machine learning system that analyzes human exercise movements using pose estimation and detects incorrect exercise form or biomechanical abnormalities. Extract pose keypoints from images/videos and analyze joint angles and trajectories.",
+      "mlDefinition": "Primary Task: Computer Vision + Classification. Pipeline: 1. Pose Estimation (Extract joint coordinates), 2. Feature Engineering (Joint angles, symmetry metrics), 3. ML Classification (Correct vs Incorrect form including error categories like knee valgus or insufficient depth)."
+    }
+  },
+  {
+    "category": "STROKE",
+    "title": "AI-Based Infarct Volume Estimation from Non-Contrast CT",
+    "summary": "Automating the precise measurement of ischemic core and penumbra to guide urgent thrombectomy decisions.",
+    "mlTask": "Medical Image Segmentation + Regression",
+    "expectedOutput": "Quantified volume in mL and vascular territory map · Segmentation overlay on CT slices",
+    "modal": {
+      "context": "Acute ischemic stroke is a leading cause of disability. Rapid identification of infarct size is critical for treatment decisions like mechanical thrombectomy. Non-contrast CT (NCCT) is widely available but changes can be extremely subtle. An AI system capable of estimating infarct volume from NCCT scans could support faster triage decisions in emergency settings.",
+      "objective": "Develop a machine learning system that analyzes non-contrast CT brain scans and estimates the ischemic stroke lesion volume in patients with anterior circulation acute ischemic stroke. The system should automatically detect and segment infarct regions.",
+      "mlDefinition": "Primary Task: Medical image segmentation (Pixel/voxel-level infarct mask from NCCT). Secondary Task: Regression/Volume estimation (Compute predicted volume in mL). Optional: Classify size (Small <30mL, Medium 30-70mL, Large >70mL)."
+    }
+  }
+]

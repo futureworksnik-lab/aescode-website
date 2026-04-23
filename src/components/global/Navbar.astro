@@ -1,0 +1,44 @@
+---
+/**
+ * @component Navbar
+ * @description Global site navigation bar with desktop links, mobile hamburger menu, and active page detection.
+ * @example
+ * <Navbar />
+ */
+import navData from '../../data/navigation.json';
+
+// Auto-detect active page from current URL
+const currentPath = Astro.url.pathname;
+const isActive = (match: string) => {
+  if (match === '/') return currentPath === '/' || currentPath === '/index.html';
+  return currentPath.startsWith(match);
+};
+---
+
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="navbar__inner">
+    <a href="/" class="navbar__brand">{navData.brand}</a>
+    <ul class="navbar__links" id="nav-links">
+      {navData.links.map((link) => (
+        <li>
+          <a href={link.href} class:list={['nav-link', { active: isActive(link.match) }]}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <button class="navbar__toggle" id="nav-toggle"
+            aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="navbar__toggle-bar"></span>
+      <span class="navbar__toggle-bar"></span>
+      <span class="navbar__toggle-bar"></span>
+    </button>
+  </div>
+  <div class="navbar__mobile-menu" id="mobile-menu" role="menu">
+    {navData.links.map((link) => (
+      <a href={link.href} class:list={['nav-link', { active: isActive(link.match) }]} role="menuitem">
+        {link.label}
+      </a>
+    ))}
+  </div>
+</nav>

@@ -1,0 +1,117 @@
+---
+/**
+ * @component ProblemAccordion
+ * @description Expandable accordion card for cohort problem statements with ML task metadata.
+ * @example
+ * <ProblemAccordion category="Radiology" title="Chest X-Ray" summary="..." mlTask="Classification" expectedOutput="Binary" index={0} />
+ */
+interface Props {
+  category: string;
+  title: string;
+  summary: string;
+  mlTask: string;
+  expectedOutput: string;
+  index: number;
+}
+const { category, title, summary, mlTask, expectedOutput, index } = Astro.props;
+---
+
+<button class="problem-card" data-index={index}>
+  <div class="problem-card__header">
+    <span class="problem-card__category">{category}</span>
+    <span class="problem-card__icon" aria-hidden="true">+</span>
+  </div>
+  <h3 class="problem-card__title">{title}</h3>
+  <div class="problem-card__content accordion-content" style="display: none;">
+    <p class="problem-card__summary">{summary}</p>
+    <div class="problem-card__meta">
+      <div>
+        <span class="problem-card__meta-label">ML TASK</span>
+        <span class="problem-card__meta-value">{mlTask}</span>
+      </div>
+      <div>
+        <span class="problem-card__meta-label">EXPECTED OUTPUT</span>
+        <span class="problem-card__meta-value">{expectedOutput}</span>
+      </div>
+    </div>
+  </div>
+</button>
+
+<style>
+  .problem-card {
+    text-align: left;
+    width: 100%;
+    background: var(--surface);
+    border-radius: 2px;
+    border-top: var(--border-hairline) solid var(--outline-variant);
+    padding: 2rem 0;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    font-family: inherit;
+  }
+  .problem-card:hover {
+    background: var(--surface-container-low);
+  }
+  .problem-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .problem-card__category {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-mini);
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+  .problem-card__icon {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    color: var(--secondary);
+    transition: transform 0.2s ease;
+    line-height: 1;
+  }
+  .problem-card.is-open .problem-card__icon {
+    transform: rotate(45deg);
+  }
+  .problem-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 400;
+  }
+  .problem-card__content {
+    margin-top: 1rem;
+  }
+  .problem-card__summary {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body-sm-alt);
+    color: var(--secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .problem-card__meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    text-align: left;
+  }
+  .problem-card__meta-label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--outline-variant);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .problem-card__meta-value {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    color: var(--on-surface);
+  }
+</style>

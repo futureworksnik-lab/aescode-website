@@ -1,0 +1,1374 @@
+/* ----- Google Fonts Import (must be first) ----- */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Public+Sans:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   AesCode Co. — Global Design Tokens & Foundation Styles
+   Version 2.0 | April 2026 — Astro Component Architecture
+   
+   DESIGN SYSTEM RULES — ENFORCED STRICTLY:
+   • Background: #FCF9F8 (warm white). NEVER pure white on page body.
+   • Primary color: #021934 (deep navy).
+   • Body text: #1C1B1B. Muted/label text: #707785.
+   • Headlines: Newsreader (Google Fonts), serif.
+   • Body + labels + nav: Public Sans (Google Fonts).
+   • Border-radius: maximum 4px. NEVER pill/rounded buttons.
+   • NO gradients. NO box-shadows above 4px blur. NO glassmorphism.
+   • Dot-grid overlay: opacity 0.03, pointer-events none, z-index 0.
+   • Input fields: underline-only (0.5px #C4C6CE).
+   ============================================================ */
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES — DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* ----- Color Palette ----- */
+  --surface:                    #FCF9F8;   /* Page background — warm white */
+  --primary:                    #021934;   /* Deep navy — buttons, active nav, headings */
+  --on-surface:                 #1C1B1B;   /* Body text */
+  --on-background:              #1C1B1B;   /* Alias for body text */
+  --secondary:                  #707785;   /* Labels, metadata, muted text */
+  --surface-container-lowest:   #FFFFFF;   /* Cards, interactive elements */
+  --surface-container-low:      #F6F3F2;   /* Secondary content blocks */
+  --surface-container:          #F0EDEC;   /* Mid-level container */
+  --surface-container-high:     #EBE7E7;   /* Elevated containers */
+  --surface-container-highest:  #E5E2E1;   /* Highest container tier */
+  --surface-dim:                #DCD9D9;   /* Subtle structural shifts */
+  --surface-bright:             #FCF9F8;   /* Same as surface */
+  --surface-tint:               #4C5F7E;   /* Tint overlays */
+  --surface-variant:            #E5E2E1;   /* Surface variant */
+  --on-surface-variant:         #44474D;   /* Text on surface-variant */
+  --outline:                    #74777E;   /* Standard outline */
+  --outline-variant:            #C4C6CE;   /* Hairlines (0.5px), input borders */
+  --on-primary:                 #FFFFFF;   /* Text on primary backgrounds */
+  --on-primary-container:       #8296B7;   /* Text on primary containers */
+  --on-primary-fixed:           #051C37;   /* Text on primary fixed */
+  --on-primary-fixed-variant:   #344765;   /* Text on primary fixed variant */
+  --primary-container:          #1A2E4A;   /* Primary container */
+  --primary-fixed:              #D5E3FF;   /* Primary fixed */
+  --primary-fixed-dim:          #B4C7EB;   /* Primary fixed dim */
+  --inverse-primary:            #B4C7EB;   /* Inverse primary */
+  --inverse-surface:            #313030;   /* Inverse surface */
+  --inverse-on-surface:         #F3F0EF;   /* Text on inverse surface */
+  --secondary-container:        #DCE2F3;   /* Secondary container */
+  --secondary-fixed:            #DCE2F3;   /* Secondary fixed */
+  --secondary-fixed-dim:        #C0C7D6;   /* Secondary fixed dim */
+  --on-secondary:               #FFFFFF;   /* Text on secondary */
+  --on-secondary-container:     #5E6572;   /* Text on secondary container */
+  --on-secondary-fixed:         #151C27;   /* Text on secondary fixed */
+  --on-secondary-fixed-variant: #404754;   /* Text on secondary fixed variant */
+  --tertiary:                   #241700;   /* Tertiary accent */
+  --tertiary-container:         #3E2A01;   /* Tertiary container */
+  --tertiary-fixed:             #FFDEA9;   /* Tertiary fixed */
+  --tertiary-fixed-dim:         #E4C28A;   /* Tertiary fixed dim */
+  --on-tertiary:                #FFFFFF;   /* Text on tertiary */
+  --on-tertiary-container:      #AF915D;   /* Text on tertiary container */
+  --on-tertiary-fixed:          #271900;   /* Text on tertiary fixed */
+  --on-tertiary-fixed-variant:  #5A4317;   /* Text on tertiary fixed variant */
+  --error:                      #BA1A1A;   /* Error state */
+  --error-container:            #FFDAD6;   /* Error container */
+  --on-error:                   #FFFFFF;   /* Text on error */
+  --on-error-container:         #93000A;   /* Text on error container */
+
+  /* ----- Typography ----- */
+  --font-serif:                 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans:                  'Public Sans', system-ui, -apple-system, sans-serif;
+
+  /* ----- Type Scale ----- */
+  --display-lg:                 3.5rem;    /* 56px — hero headlines */
+  --display-md:                 2.5rem;    /* 40px — section headlines */
+  --display-sm:                 2rem;      /* 32px — sub-headlines */
+  --headline-lg:                2rem;      /* 32px */
+  --headline-md:                1.75rem;   /* 28px */
+  --headline-sm:                1.5rem;    /* 24px */
+  --title-lg:                   1.375rem;  /* 22px */
+  --title-md:                   1rem;      /* 16px */
+  --title-sm:                   0.875rem;  /* 14px */
+  --body-lg:                    1rem;      /* 16px */
+  --body-md:                    0.875rem;  /* 14px */
+  --body-sm:                    0.75rem;   /* 12px */
+  --label-lg:                   0.875rem;  /* 14px */
+  --label-md:                   0.75rem;   /* 12px */
+  --label-sm:                   0.6875rem; /* 11px */
+
+  /* ----- Spacing ----- */
+  --space-xs:                   0.25rem;   /* 4px */
+  --space-sm:                   0.5rem;    /* 8px */
+  --space-md:                   1rem;      /* 16px */
+  --space-lg:                   1.5rem;    /* 24px */
+  --space-xl:                   2rem;      /* 32px */
+  --space-2xl:                  3rem;      /* 48px */
+  --space-3xl:                  4rem;      /* 64px */
+  --space-4xl:                  5rem;      /* 80px */
+
+  /* ----- Border Radius — max 4px ----- */
+  --radius-none:                0;
+  --radius-sm:                  2px;       /* Small cards */
+  --radius-md:                  4px;       /* Buttons, inputs — maximum */
+  /* NO radius-lg, radius-full, radius-pill — PROHIBITED */
+
+  /* ----- Elevation — minimal, no glassmorphism ----- */
+  --shadow-ambient:             0px 20px 40px rgba(15, 15, 15, 0.04);
+  /* Shadows are a LAST RESORT — felt, not seen */
+
+  /* ----- Layout ----- */
+  --max-width:                  80rem;     /* 1280px */
+  --grid-columns:               12;
+
+  /* ----- Transitions ----- */
+  --transition-fast:            150ms ease;
+  --transition-base:            300ms ease;
+
+  /* ----- Borders ----- */
+  --border-hairline:            0.5px;
+
+  /* ----- Additional Type Sizes ----- */
+  --font-size-micro:            9px;       /* Meta labels */
+  --font-size-mini:             10px;      /* Micro labels */
+  --font-size-body-sm-alt:      13px;      /* Small body alt */
+
+  /* ----- RGB Channels (for rgba() usage) ----- */
+  --primary-rgb:                2, 25, 52;
+  --on-primary-rgb:             255, 255, 255;
+  --outline-variant-rgb:        196, 198, 206;
+}
+
+/* ============================================================
+   2. RESET & BASE STYLES
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--body-lg);
+  line-height: 1.6;
+  color: var(--on-surface);
+  background-color: var(--surface);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Selection highlight */
+::selection {
+  background-color: var(--primary-fixed);
+  color: var(--on-primary-fixed);
+}
+
+/* ============================================================
+   3. DOT-GRID OVERLAY
+   CSS pseudo-element on body — opacity 0.03, pointer-events none,
+   z-index 0. Always present across the background.
+   ============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, var(--primary) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   4. TYPOGRAPHY
+   ============================================================ */
+
+/* ----- Headlines — Newsreader (serif) ----- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--primary);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+
+h1 {
+  font-size: var(--display-lg);
+  font-weight: 500;
+}
+
+h2 {
+  font-size: var(--display-md);
+  font-weight: 400;
+}
+
+h3 {
+  font-size: var(--headline-lg);
+  font-weight: 400;
+}
+
+h4 {
+  font-size: var(--headline-md);
+  font-weight: 400;
+}
+
+h5 {
+  font-size: var(--title-lg);
+  font-weight: 500;
+}
+
+h6 {
+  font-size: var(--title-md);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+}
+
+/* ----- Body text — Public Sans ----- */
+p {
+  font-family: var(--font-sans);
+  font-size: var(--body-lg);
+  line-height: 1.7;
+  color: var(--on-surface);
+}
+
+/* ----- Labels — Public Sans, all-caps ----- */
+.label,
+.label-sm,
+.label-md,
+.label-lg {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+}
+
+.label-sm {
+  font-size: var(--label-sm);
+  letter-spacing: 0.2em;
+}
+
+.label-md {
+  font-size: var(--label-md);
+  letter-spacing: 0.1em;
+}
+
+.label-lg {
+  font-size: var(--label-lg);
+  letter-spacing: 0.05em;
+}
+
+/* ----- Display sizes ----- */
+.display-lg {
+  font-family: var(--font-serif);
+  font-size: var(--display-lg);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  font-optical-sizing: auto;
+}
+
+.display-md {
+  font-family: var(--font-serif);
+  font-size: var(--display-md);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  font-optical-sizing: auto;
+}
+
+.display-sm {
+  font-family: var(--font-serif);
+  font-size: var(--display-sm);
+  line-height: 1.2;
+  color: var(--primary);
+  font-optical-sizing: auto;
+}
+
+/* ----- Pullquotes — Newsreader italic ----- */
+blockquote,
+.pullquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--headline-md);
+  line-height: 1.4;
+  color: var(--primary);
+}
+
+/* ----- Muted / metadata text ----- */
+.text-muted {
+  color: var(--secondary);
+}
+
+.text-body {
+  color: var(--on-surface);
+}
+
+/* ----- Links ----- */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary);
+  opacity: 0.88;
+}
+
+/* ----- Prose Link Underline Animation ----- */
+/* Underline grows from left on hover using background-size transition */
+:root {
+  --link-underline-transition: background-size 300ms ease;
+}
+
+p a,
+.prose a {
+  background-image: linear-gradient(var(--primary), var(--primary));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: var(--link-underline-transition), color var(--transition-fast);
+  padding-bottom: 1px;
+}
+
+p a:hover,
+.prose a:hover {
+  background-size: 100% 1px;
+  opacity: 1;
+}
+
+/* ============================================================
+   5. BUTTONS
+   ============================================================ */
+
+/* Primary button — navy bg, white text, 4px radius */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-primary);
+  background-color: var(--primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.875rem var(--space-xl);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn-primary:active {
+  opacity: 0.82;
+}
+
+.btn-primary:disabled,
+.btn-primary.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Secondary button — transparent with primary border (outline style) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Tertiary button — text-only, underline on hover */
+.btn-tertiary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--label-md);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-tertiary:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+/* ============================================================
+   6. INPUT FIELDS — Underline-only style
+   ============================================================ */
+.input-underline {
+  font-family: var(--font-sans);
+  font-size: var(--body-md);
+  color: var(--on-surface);
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid var(--outline-variant);
+  padding: 0.75rem 0;
+  width: 100%;
+  outline: none;
+  transition: border-color var(--transition-fast), border-width var(--transition-fast);
+}
+
+.input-underline::placeholder {
+  color: var(--secondary);
+}
+
+.input-underline:focus {
+  border-bottom: 1.5px solid var(--primary);
+}
+
+/* No glowing halos — explicitly remove */
+.input-underline:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ============================================================
+   7. CARDS — surface-container-lowest, 2px radius
+   ============================================================ */
+.card {
+  background-color: var(--surface-container-lowest);
+  border-radius: var(--radius-sm);
+  padding: var(--space-lg);
+}
+
+/* Ghost border — subtle guide for the eye */
+.card-ghost {
+  background-color: var(--surface-container-lowest);
+  border-radius: var(--radius-sm);
+  border: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.2); /* outline-variant at 20% */
+  padding: var(--space-lg);
+}
+
+/* ============================================================
+   8. NAVBAR COMPONENT
+   Spec: Build System §1.3, §2.4, §3.1
+   - Text labels only, ALL-CAPS, Public Sans
+   - Letter-spacing +0.05em
+   - Active state: 1px navy underline (#021934)
+   - No icons, no dropdowns
+   - Sticky top, z-index 50
+   - Tabs: HOME, ABOUT, COHORT 1, AI ETHICS, CONTACT
+   - PROBLEMS removed from nav
+   ============================================================ */
+
+/* --- Navbar container --- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--surface);
+}
+
+.navbar__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5rem 2rem;
+}
+
+/* --- Brand / Logo --- */
+.navbar__brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+  line-height: 1;
+  transition: opacity var(--transition-fast);
+}
+
+.navbar__brand:hover {
+  opacity: 0.82;
+}
+
+/* --- Desktop nav link row --- */
+.navbar__links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Individual nav link --- */
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  text-decoration: none;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+.nav-link.active {
+  color: var(--primary);
+  border-bottom: 1px solid var(--primary);
+}
+
+/* --- Mobile hamburger button --- */
+.navbar__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 60;
+}
+
+.navbar__toggle-bar {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--primary);
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* --- Mobile menu panel --- */
+.navbar__mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--surface);
+  padding: 0 2rem 1.5rem;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar__mobile-menu.open {
+  display: flex;
+}
+
+.navbar__mobile-menu .nav-link {
+  display: block;
+  padding: 1rem 0;
+  border-bottom: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.3);
+  font-size: var(--label-md);
+  letter-spacing: 0.1em;
+}
+
+.navbar__mobile-menu .nav-link:last-child {
+  border-bottom: none;
+}
+
+.navbar__mobile-menu .nav-link.active {
+  border-bottom-color: var(--primary);
+  border-bottom-width: 1px;
+}
+
+/* --- Responsive: show desktop nav at 768px+ --- */
+@media (min-width: 768px) {
+  .navbar__links {
+    display: flex;
+  }
+
+  .navbar__toggle {
+    display: none;
+  }
+
+  .navbar__mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   11. NEWSLETTER COMPONENT
+   Spec: Build System §1.6 & 1.11
+   - Two variants: .newsletter--section, .newsletter--footer
+   - Input: underline only
+   - Button: Primary #021934, 4px radius
+   ============================================================ */
+
+/* Shared base */
+.newsletter {
+  width: 100%;
+}
+
+.newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.newsletter__input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.newsletter__input {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--on-surface);
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid var(--outline-variant);
+  padding: 0.75rem 0;
+  transition: border-color var(--transition-fast), border-width var(--transition-fast);
+}
+
+.newsletter__input::placeholder {
+  color: var(--secondary);
+}
+
+.newsletter__input:focus {
+  outline: none;
+  border-bottom: 1.5px solid var(--primary);
+  margin-bottom: -1px; /* prevents layout shift */
+}
+
+
+
+/* Variant: --section */
+.newsletter--section {
+  padding: 6rem 0;
+  background-color: var(--surface);
+}
+
+.newsletter--section .newsletter__content {
+  max-width: 40rem;
+}
+
+.newsletter--section .newsletter__label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--label-md);
+  color: var(--secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.newsletter--section .newsletter__headline {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.newsletter--section .newsletter__subcopy {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  color: var(--on-surface-variant);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* Variant: --footer */
+.newsletter--footer {
+  width: 100%;
+}
+
+.newsletter--footer .newsletter__form {
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .newsletter--footer .newsletter__form,
+  .newsletter--section .newsletter__form {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start; /* Ensure left alignment */
+  }
+  
+  .newsletter--footer .newsletter__input-wrapper {
+    flex: 1;
+  }
+
+  .newsletter--section .newsletter__input-wrapper {
+    flex: none; /* Override flex: 1 */
+    width: 100%;
+    max-width: 360px; /* Fix 1: Desktop constraint */
+  }
+}
+
+/* Fix 2: Mobile input styling refinement */
+@media (max-width: 767px) {
+  .newsletter__input {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    padding: 0.75rem 0;
+  }
+}
+
+.newsletter--footer .newsletter__label {
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  color: var(--secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 1.5rem;
+  align-self: flex-start;
+}
+@media (min-width: 768px) {
+  .newsletter--footer .newsletter__label {
+     align-self: center;
+  }
+}
+
+/* Inline feedback messages swapping button */
+.btn-message {
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: none !important;
+  cursor: default !important;
+  opacity: 1 !important;
+  font-weight: 500;
+  padding-left: 0;
+  padding-right: 0;
+  justify-content: flex-start;
+}
+.btn-message.error {
+  color: var(--secondary) !important;
+}
+
+/* ============================================================
+   9. FOOTER COMPONENT
+   Spec: Build System §1.10
+   - 3 columns, 12-col grid
+   - Background: var(--surface)
+   - Padding top 80px
+   - All links: Public Sans, label-sm, all-caps, #707785
+   - Social: LinkedIn & X right aligned
+   ============================================================ */
+
+.footer {
+  background-color: var(--surface);
+  padding: 5rem 0 3rem; /* 80px top padding min */
+  margin-top: auto;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Col 1-4: Brand */
+.footer__brand {
+  grid-column: span 1;
+}
+
+.footer__brand-obj {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.footer__tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--secondary);
+}
+
+.footer__abdm-note {
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  margin-top: 0.75rem;
+  opacity: 0.7;
+}
+
+/* Col 5-8: Legal */
+.footer__legal {
+  grid-column: span 1;
+}
+
+/* Col 9-12: Connect */
+.footer__connect {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__label {
+  font-family: var(--font-sans);
+  font-size: var(--label-md);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface);
+  margin-bottom: 1rem;
+}
+
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer__link {
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer__link:hover {
+  color: var(--primary);
+}
+
+.footer__meta {
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer__social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer__social-link {
+  color: var(--secondary);
+  transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__social-link:hover {
+  color: var(--primary);
+}
+
+.footer__social-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+
+/* Media query for tablet + desktop grid */
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+  }
+
+  .footer__brand {
+    grid-column: span 4;
+  }
+
+  .footer__legal {
+    grid-column: span 4;
+  }
+
+  .footer__connect {
+    grid-column: span 4;
+  }
+}
+
+/* ============================================================
+   10. LAYOUT UTILITIES
+   ============================================================ */
+
+/* Content container — max-width with horizontal padding */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Content wrapper — above dot-grid overlay */
+main,
+nav,
+footer,
+section,
+header {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- Section backgrounds ----- */
+.surface {
+  background-color: var(--surface);
+}
+
+.surface-low {
+  background-color: var(--surface-container-low);
+}
+
+.surface-high {
+  background-color: var(--surface-container-high);
+}
+
+/* ----- Hairline accents ----- */
+.hairline {
+  width: 3rem;
+  height: 0.5px;
+  background-color: var(--primary);
+}
+
+.hairline-muted {
+  width: 3rem;
+  height: 0.5px;
+  background-color: var(--outline-variant);
+}
+
+/* ============================================================
+   10. RESPONSIVE BREAKPOINTS
+   Mobile-first: 375px, 768px, 1280px, 1440px
+   ============================================================ */
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 5vw, var(--display-lg));
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Wide desktop */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 90rem;
+  }
+}
+
+/* ============================================================
+   10.5 SCROLL ENTRY ANIMATIONS
+   ============================================================ */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skip animation entirely if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   11. ACCESSIBILITY
+   ============================================================ */
+
+/* Respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible ring for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Skip focus ring for mouse clicks */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================================
+   12. IMAGE DEFAULTS
+   ============================================================ */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Grayscale partner logos — full color on hover */
+.img-grayscale {
+  filter: grayscale(100%);
+  opacity: 0.75;
+  transition: filter var(--transition-base), opacity var(--transition-base);
+}
+
+.img-grayscale:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ============================================================
+   13. STATS BAR COMPONENT
+   Spec: Build System (Responsive Marquee variant)
+   ============================================================ */
+
+.stats-section {
+  padding: 4rem 0;
+  border-top: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.3);
+}
+
+.stats-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-item__value {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--display-md);
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.stats-item__label {
+  font-family: var(--font-sans);
+  font-size: var(--label-sm);
+  color: var(--secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Desktop: Static 6-column grid */
+@media (min-width: 769px) {
+  .stats-marquee__track {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+  }
+  .stats-item--clone {
+    display: none;
+  }
+}
+
+/* Mobile: Infinite scrolling marquee */
+@media (max-width: 768px) {
+  .stats-section {
+    border-top: none; /* Remove horizontal divider per spec violation */
+  }
+
+  .stats-marquee {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .stats-marquee__track {
+    display: flex;
+    width: max-content;
+    gap: 48px;
+    animation: marquee-scroll 28s linear infinite;
+  }
+
+  .stats-marquee:hover .stats-marquee__track {
+    animation-play-state: paused;
+  }
+
+  .stats-item {
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── MOBILE RESPONSIVENESS — AesCode Co. ─── */
+
+@media (max-width: 768px) {
+
+  /* ── 1. NAVBAR ── */
+  .navbar__links {
+    display: none;
+  }
+  .navbar__toggle {
+    display: flex;
+  }
+  .navbar__inner {
+    padding: 0 1.25rem;
+  }
+
+  /* ── 2. HERO HEADINGS ── */
+  h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+    line-height: 1.1 !important;
+  }
+  h2 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+  }
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 2rem) !important;
+  }
+
+  /* ── 3. UNIVERSAL 12-COLUMN GRID COLLAPSE ── */
+  /* Any element using grid-template-columns: repeat(12, 1fr) */
+  [style*="grid-template-columns: repeat(12, 1fr)"],
+  .grid-layout,
+  .leadership-grid,
+  .rigor-grid,
+  .governance-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  /* Reset all inline grid-column spans on mobile */
+  [style*="grid-column"] {
+    grid-column: auto !important;
+  }
+
+  /* ── 4. MULTI-COLUMN CONTENT GRIDS ── */
+  /* Pillars (5-col), Secretariat (4-col), Dept Heads grids */
+  [style*="grid-template-columns: repeat(5, 1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"],
+  .pillars-grid,
+  .secretariat-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* 2-column grids → single column */
+  [style*="grid-template-columns: repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+
+  /* ── 5. SECTION PADDING REDUCTION ── */
+  section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  /* ── 6. PORTRAIT / IMAGE CONTAINERS ── */
+  .portrait-container {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+
+  /* ── 7. COHORT 1 — INTERNAL ANCHOR NAV ── */
+  .anchor-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1rem;
+  }
+
+  /* ── 8. STATS BAR ── */
+  .stats-bar,
+  [style*="grid-template-columns: repeat(5, 1fr)"].stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* ── 9. FOOTER GRID ── */
+  .footer__grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+
+  /* ── 10. NEWSLETTER BLOCK ── */
+  .newsletter-form,
+  [class*="newsletter"] form,
+  [class*="newsletter"] > div {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  /* ── 11. PARTNER LOGOS ROW ── */
+  .partners-row,
+  [class*="partners"] {
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+  }
+
+  /* ── 12. CLOSING QUOTE TEXT ── */
+  blockquote {
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* ── 13. PREVENT OVERFLOW FROM LARGE PADDING/MARGIN ── */
+  [style*="padding: 10rem"],
+  [style*="padding: 8rem"] {
+    padding: 4rem 0 !important;
+  }
+
+  /* Contact page email — prevent overflow on very small screens */
+  a[href^="mailto"] {
+    word-break: break-all !important;
+    font-size: clamp(1rem, 4vw, 1.5rem) !important;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  /* Pillars and Secretariat → full single column on very small screens */
+  [style*="grid-template-columns: repeat(5, 1fr)"],
+  [style*="grid-template-columns: repeat(4, 1fr)"],
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .container {
+    padding: 0 1rem !important;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+  }
+
+}
+
+/* ─── END MOBILE RESPONSIVENESS ─── */

@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import QuoteCTA from '../components/sections/QuoteCTA.astro';
+import teamData from '../data/team-members.json';
+---
+
+<BaseLayout
+  title="Meet the Team — Aescode Co. Leadership & Secretariat"
+  description="Meet the people who built Aescode Cohort 1.0 — the founders, department heads, and organising secretariat driving India's clinical AI infrastructure."
+  keywords="Aescode team, MedTech founders India, clinical AI leadership, Cohort 1 organizers"
+>
+  <!-- Hero -->
+  <HeroSection
+    label="OUR FOUNDATION"
+    title="Meet the Team."
+    padding="6rem 0 2rem"
+  >
+    <p class="label-sm team-hero__ref">DOCUMENT REF: AES-C1-ORG</p>
+    <p class="team-hero__subtitle">
+      The people who built AesCode Cohort 1.0 from the ground up.
+    </p>
+    <div class="hairline team-hero__hairline"></div>
+  </HeroSection>
+
+  <!-- Leadership -->
+  <section class="team-leadership">
+    <div class="container">
+      <!-- Founder -->
+      <div class="leadership-grid">
+        <div class="portrait-container team-leadership__portrait-left">
+          <img src={teamData.leadership[0].photo} alt={teamData.leadership[0].name} class="team-portrait">
+        </div>
+        <div class="team-leadership__bio-right">
+          <p class="label-sm role-tag">{teamData.leadership[0].role}</p>
+          <h2 class="team-leadership__name">{teamData.leadership[0].name}</h2>
+          <p class="team-leadership__bio-text">{teamData.leadership[0].bio}</p>
+        </div>
+      </div>
+
+      <!-- Co-Lead -->
+      <div class="leadership-grid">
+        <div class="team-leadership__bio-left">
+          <p class="label-sm role-tag">{teamData.leadership[1].role}</p>
+          <h2 class="team-leadership__name">{teamData.leadership[1].name}</h2>
+          <p class="team-leadership__bio-text">{teamData.leadership[1].bio}</p>
+        </div>
+        <div class="portrait-container team-leadership__portrait-right">
+          <img src={teamData.leadership[1].photo} alt={teamData.leadership[1].name} class="team-portrait">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Department Heads -->
+  <section class="surface-low team-dept">
+    <div class="container">
+      <div class="dept-grid">
+        {teamData.departmentHeads.map((head) => (
+          <div class="team-dept__card">
+            <div class="portrait-container team-dept__portrait">
+              <img src={head.photo} alt={head.name} class="team-portrait">
+            </div>
+            <div>
+              <p class="label-sm role-tag">{head.role}</p>
+              <h2 class="team-dept__name">{head.name}</h2>
+              <p class="team-dept__bio">
+                {head.bio}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Organising Secretariat -->
+  <section class="team-secretariat">
+    <div class="container">
+      <div class="team-secretariat__header">
+        <p class="label-sm">ORGANISING SECRETARIAT</p>
+        <div class="hairline team-secretariat__hairline"></div>
+      </div>
+      <div class="secretariat-grid">
+        {teamData.secretariat.map((member) => (
+          <div class="team-secretariat__card">
+            <div class="portrait-container team-secretariat__portrait">
+              <img src={member.photo} alt={member.name} class="team-portrait">
+            </div>
+            <div>
+              <h4 class="team-secretariat__name">{member.name}</h4>
+              <p class="label-sm team-secretariat__role">{member.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing Quote -->
+  <QuoteCTA
+    quote={`"We are architecting the systems where clinical precision meets technical rigor, ensuring the next generation of medical technology is built on a foundation of human intelligence and institutional integrity."`}
+    attribution="— THE COLLECTIVE MISSION OF AESCODE CO."
+  />
+</BaseLayout>
+
+<style>
+  /* Hero extras */
+  .team-hero__ref {
+    font-size: var(--font-size-mini);
+    margin-top: var(--space-sm);
+    color: var(--secondary);
+  }
+  .team-hero__subtitle {
+    color: var(--on-surface-variant);
+    font-size: 1.25rem;
+    margin-top: var(--space-lg);
+    max-width: 32rem;
+    line-height: 1.7;
+  }
+  .team-hero__hairline {
+    margin-top: 3rem;
+    opacity: 0.1;
+  }
+
+  /* Portraits */
+  .team-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.1);
+    transition: filter 0.4s ease;
+  }
+  .team-portrait:hover {
+    filter: grayscale(0) contrast(1);
+  }
+  .portrait-container {
+    background-color: var(--surface-container-low);
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+  .role-tag {
+    color: var(--primary) !important;
+    border-bottom: var(--border-hairline) solid var(--primary);
+    padding-bottom: 4px;
+    display: inline-block;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Leadership */
+  .team-leadership {
+    padding: 4rem 0 8rem;
+  }
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-xl);
+    align-items: center;
+    margin-bottom: 8rem;
+  }
+  .team-leadership__portrait-left {
+    grid-column: 1 / 6;
+    aspect-ratio: 4/5;
+  }
+  .team-leadership__bio-right {
+    grid-column: 7 / 13;
+  }
+  .team-leadership__bio-left {
+    grid-column: 1 / 7;
+    text-align: right;
+  }
+  .team-leadership__portrait-right {
+    grid-column: 8 / 13;
+    aspect-ratio: 4/5;
+  }
+  .team-leadership__name {
+    font-style: italic;
+    margin-bottom: var(--space-lg);
+  }
+  .team-leadership__bio-text {
+    color: var(--on-surface-variant);
+    line-height: 1.8;
+  }
+
+  /* Department Heads */
+  .team-dept {
+    padding: 8rem 0;
+  }
+  .team-dept__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    text-align: center;
+  }
+  .team-dept__portrait {
+    aspect-ratio: 4/5;
+  }
+  .team-dept__name {
+    font-style: italic;
+    margin-bottom: var(--space-md);
+  }
+  .team-dept__bio {
+    color: var(--on-surface-variant);
+    line-height: 1.7;
+    font-size: 0.875rem;
+    margin: 0 auto;
+    max-width: 20rem;
+  }
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 640px;
+    margin: 60px auto 0;
+  }
+
+  /* Secretariat */
+  .team-secretariat {
+    padding: 10rem 0;
+  }
+  .team-secretariat__header {
+    margin-bottom: 4rem;
+  }
+  .team-secretariat__hairline {
+    opacity: 0.1;
+    margin-top: var(--space-md);
+  }
+  .team-secretariat__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .team-secretariat__portrait {
+    aspect-ratio: 3/4;
+  }
+  .team-secretariat__name {
+    font-style: italic;
+  }
+  .team-secretariat__role {
+    margin-top: var(--space-sm);
+    font-size: var(--font-size-mini);
+  }
+  .secretariat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .leadership-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 3rem !important;
+    }
+    .dept-grid {
+      grid-template-columns: 1fr !important;
+      max-width: 400px;
+    }
+    .secretariat-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: var(--space-xl) !important;
+    }
+    .portrait-container {
+      width: 100% !important;
+      max-width: 320px !important;
+      margin: 0 auto !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .secretariat-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

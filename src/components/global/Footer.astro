@@ -1,0 +1,41 @@
+---
+/**
+ * @component Footer
+ * @description Global site footer with brand info, legal links, social links, and ABDM compliance note.
+ * @example
+ * <Footer />
+ */
+import footerData from '../../data/footer.json';
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <div class="footer__brand-obj">{footerData.brand}</div>
+      <p class="footer__tagline">{footerData.tagline}</p>
+      {footerData.abdmNote && (
+        <p class="footer__abdm-note">{footerData.abdmNote}</p>
+      )}
+    </div>
+    <div class="footer__legal">
+      <h4 class="footer__label">{footerData.legal.label}</h4>
+      <ul class="footer__links">
+        {footerData.legal.links.map((link) => (
+          <li><a href={link.href} class="footer__link">{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div class="footer__connect">
+      <h4 class="footer__label">{footerData.connect.label}</h4>
+      <ul class="footer__links">
+        {footerData.connect.links.map((link) => (
+          <li><a href={link.href} class="footer__link">{link.label}</a></li>
+        ))}
+      </ul>
+      <div class="footer__meta">
+        <span>{footerData.copyright}</span>
+        <span>{footerData.version}</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,10 @@
+{
+  "brand": "AesCode Co.",
+  "links": [
+    { "label": "Home", "href": "/", "match": "/" },
+    { "label": "About", "href": "/about.html", "match": "/about" },
+    { "label": "Cohort 1", "href": "/cohort1.html", "match": "/cohort1" },
+    { "label": "AI Ethics", "href": "/ai_ethics.html", "match": "/ai_ethics" },
+    { "label": "Contact", "href": "/contact.html", "match": "/contact" }
+  ]
+}

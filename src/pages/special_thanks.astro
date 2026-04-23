@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import HonoreeRow from '../components/ui/HonoreeRow.astro';
+import honoreesData from '../data/honorees.json';
+---
+
+<BaseLayout
+  title="Special Thanks — Aescode Co. Institutional Partners"
+  description="Expressing gratitude to the clinical leadership and institutional partners who guided the evolution of Aescode Co. — Bharati Vidyapeeth and KCDH IIT Bombay."
+  keywords="Aescode partners, Bharati Vidyapeeth, KCDH IIT Bombay, MedTech institutional support, clinical research India"
+>
+  <!-- Hero -->
+  <HeroSection
+    label="Our Foundation"
+    title="Special Thanks."
+    subtitle="AesCode Co. stands on the foundations of clinical excellence and rigorous research. We extend our gratitude to the leadership whose mentorship and institutional support have guided our technical evolution."
+    padding="5rem 0 4rem"
+  />
+
+  <!-- Honorees -->
+  <section>
+    <div class="container">
+      {honoreesData.map((honoree, index) => (
+        <HonoreeRow
+          name={honoree.name}
+          role={honoree.role}
+          photo={honoree.photo}
+          bio={honoree.bio}
+          reverse={index % 2 !== 0}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Institutional Support -->
+  <section class="thanks-institutional">
+    <div class="container">
+      <span class="thanks-institutional__label">INSTITUTIONAL SUPPORT</span>
+      <h2 class="thanks-institutional__headline">We extend our sincere gratitude to</h2>
+      <div class="thanks-institutional__name">
+        Bharati Vidyapeeth (Deemed to be University) Medical College
+      </div>
+      <div class="thanks-institutional__divider">X</div>
+      <div class="thanks-institutional__name">
+        Koita Center for Digital Health (KCDH), IIT Bombay
+      </div>
+      <p class="thanks-institutional__mission">
+        For their invaluable institutional support and partnership in advancing our research mission.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks-institutional {
+    text-align: center;
+    padding: 120px 0;
+  }
+  .thanks-institutional__label {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: var(--space-xl);
+  }
+  .thanks-institutional__headline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--primary);
+    font-size: 1.875rem;
+    margin-bottom: 3rem;
+  }
+  .thanks-institutional__name {
+    font-family: var(--font-serif);
+    color: var(--primary);
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+  .thanks-institutional__divider {
+    font-family: var(--font-sans);
+    color: var(--primary);
+    font-size: 1.25rem;
+    padding: var(--space-xl) 0;
+    display: block;
+  }
+  .thanks-institutional__mission {
+    font-family: var(--font-sans);
+    color: var(--secondary);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 3rem auto 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .thanks-institutional__name {
+      font-size: 2rem;
+    }
+  }
+</style>

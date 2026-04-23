@@ -1,0 +1,55 @@
+---
+/**
+ * @component StickyAnchorNav
+ * @description Sticky horizontal navigation bar for in-page section anchors on long-form pages.
+ * @example
+ * <StickyAnchorNav links={[{ label: "Hero", href: "#hero" }]} />
+ */
+interface Props {
+  links: { label: string; href: string }[];
+}
+const { links } = Astro.props;
+---
+
+<nav class="anchor-nav" aria-label="Page sections">
+  <div class="anchor-nav__inner">
+    {links.map((link) => (
+      <a href={link.href} class="anchor-nav__link">{link.label}</a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .anchor-nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--surface);
+    border-bottom: 0.5px solid var(--outline-variant);
+  }
+  .anchor-nav__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 2.5rem;
+    overflow-x: auto;
+  }
+  .anchor-nav__link {
+    display: inline-block;
+    padding: 0.75rem 0;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+  }
+  .anchor-nav__link:hover {
+    color: var(--primary);
+    opacity: 1;
+  }
+</style>

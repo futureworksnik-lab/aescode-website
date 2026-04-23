@@ -1,0 +1,118 @@
+---
+import Navbar from '../components/global/Navbar.astro';
+import Footer from '../components/global/Footer.astro';
+import '../styles/global.css';
+
+/**
+ * BaseLayout.astro — Global page shell with dynamic SEO meta tags.
+ *
+ * Props:
+ *   title:        string   — Page title (default: "Aescode Co. — India's Clinical AI Validation Infrastructure")
+ *   description:  string   — Meta description (default: company description)
+ *   canonicalURL: string   — Canonical URL (auto-derived from Astro.url.href)
+ *   ogImage:      string   — Open Graph image path (default: "/images/og-default.png")
+ *   ogType:       string   — "website" | "article" (default: "website")
+ *   noIndex:      boolean  — If true, adds noindex robots meta (default: false)
+ *   keywords:     string   — Meta keywords (default: "")
+ *   bodyClass:    string   — Additional body class (default: "")
+ */
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noIndex?: boolean;
+  keywords?: string;
+  bodyClass?: string;
+}
+
+const {
+  title = "Aescode Co. — India's Clinical AI Validation Infrastructure",
+  description = "Aescode connects engineering teams to real clinical problems, trains AI on hospital data without moving it, and certifies tools hospitals can trust.",
+  canonicalURL = Astro.url.href,
+  ogImage = '/images/og-default.png',
+  ogType = 'website',
+  noIndex = false,
+  keywords = '',
+  bodyClass = '',
+} = Astro.props;
+
+const siteUrl = 'https://aescode.nexus';
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Core -->
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="author" content="Aescode Co.">
+  {keywords && <meta name="keywords" content={keywords} />}
+  {noIndex && <meta name="robots" content="noindex" />}
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={absoluteOgImage}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:type" content={ogType}>
+  <meta property="og:site_name" content="Aescode Co.">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={absoluteOgImage}>
+
+  <!-- Google Fonts Preconnect + Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Public+Sans:wght@300;400;500;600;700&display=swap">
+
+  <slot name="head" />
+</head>
+<body class={bodyClass}>
+  <Navbar />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    // Mobile menu toggle — shared across all pages
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (toggle && mobileMenu) {
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        mobileMenu.classList.toggle('open');
+      });
+    }
+
+    // Section entry animation — IntersectionObserver for .animate-on-scroll
+    // Respects prefers-reduced-motion: if reduced motion is preferred, skip animation entirely
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const animatedEls = document.querySelectorAll('.animate-on-scroll');
+      if (animatedEls.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        animatedEls.forEach((el) => observer.observe(el));
+      }
+    }
+  </script>
+
+  <slot name="scripts" />
+</body>
+</html>

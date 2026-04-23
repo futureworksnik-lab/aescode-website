@@ -1,0 +1,136 @@
+---
+/**
+ * @component ProblemModal
+ * @description Full-screen modal overlay for displaying detailed problem statement context, objective, and ML task definition.
+ * @example
+ * <ProblemModal />
+ */
+// No props — populated via client-side JS
+---
+
+<div id="problem-modal" class="modal-overlay" aria-hidden="true">
+  <div id="problem-modal-content" class="modal-content">
+    <button id="modal-close" class="modal-close" aria-label="Close modal">×</button>
+    <span id="modal-category" class="modal-category">CATEGORY</span>
+    <h2 id="modal-title" class="modal-title">Title</h2>
+
+    <div class="modal-section">
+      <span class="modal-section__label">PROBLEM CONTEXT</span>
+      <p id="modal-context" class="modal-section__body"></p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section__label">OBJECTIVE</span>
+      <p id="modal-objective" class="modal-section__body"></p>
+    </div>
+
+    <div class="modal-section modal-section--last">
+      <span class="modal-section__label">ML TASK DEFINITION</span>
+      <p id="modal-mltask" class="modal-section__body"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--primary-rgb), 0.6);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-content {
+    background: var(--surface-container-lowest);
+    border-radius: 4px;
+    padding: 3rem;
+    max-width: 680px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(24px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+    box-shadow: 0 24px 64px rgba(var(--primary-rgb), 0.18);
+  }
+  .modal-overlay.is-open .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  .modal-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    color: var(--secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+  .modal-close:hover {
+    color: var(--primary);
+  }
+  .modal-category {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-mini);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--secondary);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .modal-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--primary);
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  .modal-section {
+    border-top: var(--border-hairline) solid var(--outline-variant);
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  .modal-section--last {
+    margin-bottom: 0;
+  }
+  .modal-section__label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--outline-variant);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .modal-section__body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--on-surface);
+    line-height: 1.75;
+  }
+  @media (max-width: 768px) {
+    .modal-content {
+      width: min(680px, calc(100vw - 2rem));
+      max-width: calc(100vw - 2rem);
+      padding: 1.5rem;
+    }
+    .modal-close {
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+</style>

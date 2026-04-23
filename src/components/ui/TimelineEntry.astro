@@ -1,0 +1,58 @@
+---
+/**
+ * @component TimelineEntry
+ * @description Renders a single timeline entry with date, title, and description.
+ * @example
+ * <TimelineEntry date="Mar 21" title="Kickoff" description="Program begins" />
+ */
+interface Props {
+  date: string;
+  title: string;
+  description: string;
+}
+const { date, title, description } = Astro.props;
+---
+
+<div class="timeline-entry">
+  <span class="timeline-entry__date">{date}</span>
+  <div class="timeline-entry__body">
+    <h3 class="timeline-entry__title">{title}</h3>
+    <p class="timeline-entry__desc">{description}</p>
+  </div>
+</div>
+
+<style>
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .timeline-entry__date {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--label-sm);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+  .timeline-entry__title {
+    font-family: var(--font-serif);
+    font-size: 1.875rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-entry__desc {
+    color: var(--on-surface-variant);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 32rem;
+  }
+  @media (max-width: 768px) {
+    .timeline-entry {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

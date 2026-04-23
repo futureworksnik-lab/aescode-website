@@ -1,0 +1,111 @@
+---
+/**
+ * @component NumberedCardGrid
+ * @description Renders a grid of numbered content cards with a serif index, uppercase heading, and body text.
+ * Used for platform pillars, "Why Now" cards, and ethics operational pillars.
+ * @example
+ * <NumberedCardGrid items={[{ index: '01', heading: 'Title', body: 'Description' }]} />
+ */
+interface Props {
+  items: { index: string; heading: string; body: string; bold?: string }[];
+  columns?: number;
+  sectionLabel?: string;
+  showCardBg?: boolean;
+}
+
+const {
+  items,
+  columns = 3,
+  sectionLabel,
+  showCardBg = false,
+} = Astro.props;
+---
+
+<div class="numbered-grid">
+  {sectionLabel && (
+    <p class="numbered-grid__label">{sectionLabel}</p>
+  )}
+  <div class="numbered-grid__cards" style={`--grid-cols: ${columns};`}>
+    {items.map((card) => (
+      <div class:list={['numbered-grid__card', 'animate-on-scroll', { 'numbered-grid__card--bg': showCardBg }]}>
+        <span class="numbered-grid__index">{card.index}</span>
+        <h3 class="numbered-grid__heading">{card.heading}</h3>
+        <p class="numbered-grid__body">
+          {card.body}{card.bold && <span class="numbered-grid__bold"> {card.bold}</span>}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .numbered-grid__label {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .numbered-grid__cards {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    gap: var(--space-xl);
+  }
+
+  .numbered-grid__card {
+    padding: 0;
+  }
+
+  .numbered-grid__card--bg {
+    background-color: var(--surface-container-lowest);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xl);
+  }
+
+  .numbered-grid__index {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--outline-variant);
+    line-height: 1;
+    margin-bottom: var(--space-lg);
+  }
+
+  .numbered-grid__heading {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .numbered-grid__body {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--on-surface);
+    margin: 0;
+  }
+
+  .numbered-grid__bold {
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .numbered-grid__cards {
+      grid-template-columns: 1fr 1fr !important;
+      gap: var(--space-xl) !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .numbered-grid__cards {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

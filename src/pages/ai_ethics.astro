@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StructuredData from '../components/global/StructuredData.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import NumberedCardGrid from '../components/ui/NumberedCardGrid.astro';
+import QuoteCTA from '../components/sections/QuoteCTA.astro';
+import PartnerCTA from '../components/sections/PartnerCTA.astro';
+import partnerCtaData from '../data/partner-cta.json';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Ethics & Integrity — Aescode Co. Governance Protocol",
+  "description": "Aescode Co. builds the moral infrastructure required to move AI from the lab to the bedside. Review our governance protocol for healthcare AI.",
+  "author": {
+    "@type": "Organization",
+    "name": "Aescode Co.",
+    "url": "https://aescode.nexus"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aescode Co."
+  },
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-22",
+  "mainEntityOfPage": "https://aescode.nexus/ai_ethics.html"
+};
+
+const operationalPillars = [
+  { index: '01', heading: 'Clinical Non-Maleficence', body: 'Safety is not a feature; it is the baseline. We prioritize rigorous validation against local clinical gold standards.' },
+  { index: '02', heading: 'Glass-Box Interpretability', body: 'Black-box models have no place in medicine. Our systems provide clear, interpretable evidence for every clinical suggestion.' },
+  { index: '03', heading: 'Privacy-Preserving Data Architecture', body: 'No live patient data leaves the hospital in any Aescode program. For prototype validation, we utilize high-fidelity synthetic datasets. For model training, we use federated learning — the model trains at the hospital; only what it learned returns, never the data itself.' },
+  { index: '04', heading: 'Augmented Human Oversight', body: 'AI is a tool for the clinician. We ensure final clinical authority remains strictly with certified medical professionals.' },
+  { index: '05', heading: 'Staged Socio-Technical Rollouts', body: 'We evaluate deployments for their impact on existing hospital workflows and provider workloads.' },
+];
+---
+
+<BaseLayout
+  title="AI Ethics & Integrity — Aescode Co. Governance Protocol"
+  description="Aescode Co. builds the moral infrastructure required to move AI from the lab to the bedside. Review our governance protocol for healthcare AI in India."
+  keywords="AI ethics healthcare, clinical AI governance, DPDP Act, ICMR AI guidelines, CDSCO SaMD, federated learning privacy, medical AI India"
+  ogType="article"
+>
+  <Fragment slot="head">
+    <StructuredData schema={articleSchema} />
+  </Fragment>
+
+  <!-- Hero -->
+  <HeroSection
+    label="GOVERNANCE PROTOCOL"
+    title="AI Ethics & Integrity"
+    subtitle="In the Indian healthcare ecosystem, technical innovation is secondary to clinical trust. AesCode Co. builds the moral infrastructure required to move AI from the lab to the bedside."
+    versionTag="v2.4 / DPDP & ICMR ALIGNMENT"
+  />
+
+  <!-- Necessity of Rigor -->
+  <section class="ethics-rigor">
+    <div class="container">
+      <div class="ethics-rigor__grid">
+        <div class="ethics-rigor__title-col">
+          <h2 class="ethics-rigor__title">The Necessity of Rigor in Indian MedTech</h2>
+        </div>
+        <div class="ethics-rigor__body-col">
+          <p class="ethics-rigor__body">
+            India's healthcare landscape is defined by extreme scale and diverse patient demographics.
+            Here, an unmonitored algorithm doesn't just 'fail'—it risks codifying systemic biases
+            and eroding patient autonomy. At AesCode, we recognize that while regulation is still
+            evolving, the responsibility of the builder is absolute. We do not wait for policy
+            to mandate safety; we architect for it.
+          </p>
+          <div class="ethics-rigor__image-wrap">
+            <img src="/images/medical_data_viz.webp"
+              alt="Grayscale medical data visualization showing abstract waveforms and clinical charts"
+              width="1120" height="490"
+              class="ethics-rigor__image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operational Pillars -->
+  <section class="ethics-pillars">
+    <div class="container">
+      <p class="label-md ethics-pillars__label">OPERATIONAL PILLARS — NON-NEGOTIABLE STANDARDS</p>
+      <NumberedCardGrid items={operationalPillars} columns={5} />
+    </div>
+  </section>
+
+  <!-- Deep Governance -->
+  <section class="ethics-governance">
+    <div class="container">
+      <div class="ethics-governance__grid">
+        <div>
+          <h3 class="ethics-governance__heading">Governance as Code</h3>
+          <p class="ethics-governance__text">
+            At AesCode, ethics is a systems problem. We integrate ethical checkpoints directly into our CI/CD pipelines.
+            If a code commit violates a safety constraint or fails a bias check, it does not pass to production.
+          </p>
+        </div>
+        <div>
+          <h3 class="ethics-governance__heading">Bridging Regulatory Gaps</h3>
+          <p class="ethics-governance__text">
+            We align with three active regulatory frameworks: the Digital Personal Data Protection (DPDP) Act 2023,
+            ICMR Ethical Guidelines for AI in Healthcare 2023, and the CDSCO SaMD regulatory pathway for AI diagnostic
+            tools. We additionally align with ABDM's consent-first architecture to ensure Aescode-certified tools are
+            positioned for regulatory recognition, not just academic validation.
+          </p>
+        </div>
+        <div>
+          <h3 class="ethics-governance__heading">Ethics Is Part of Every Cohort Evaluation</h3>
+          <p class="ethics-governance__text">
+            Every team that participates in an Aescode cohort is evaluated not only on technical performance but on the
+            ethical architecture of their solution. Problem framing, data handling, model interpretability, and
+            deployment assumptions are all assessed against a published rubric. This is what distinguishes Aescode
+            evaluation from a standard hackathon jury process.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner CTA -->
+  <PartnerCTA
+    headline={partnerCtaData.headline}
+    subtext={partnerCtaData.subtext}
+    primaryCta={partnerCtaData.primaryCta}
+    secondaryCta={partnerCtaData.secondaryCta}
+  />
+
+  <!-- Closing CTA -->
+  <QuoteCTA
+    quote={`"We are building an ecosystem where responsible AI is the default, ensuring that innovation never comes at the cost of medical integrity."`}
+    ctaText="CONTACT US TO DISCUSS INSTITUTIONAL PARTNERSHIP →"
+    ctaHref="/contact.html"
+  />
+</BaseLayout>
+
+<style>
+  /* Rigor Section */
+  .ethics-rigor {
+    padding: 6rem 0;
+    background-color: var(--surface-container-low);
+  }
+  .ethics-rigor__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  .ethics-rigor__title-col {
+    grid-column: span 4;
+  }
+  .ethics-rigor__title {
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+  .ethics-rigor__body-col {
+    grid-column: 6 / span 7;
+  }
+  .ethics-rigor__body {
+    margin-bottom: 4rem;
+    line-height: 1.8;
+  }
+  .ethics-rigor__image-wrap {
+    aspect-ratio: 16/7;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    opacity: 0.9;
+    background-color: var(--on-surface);
+  }
+  .ethics-rigor__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    display: block;
+  }
+
+  /* Pillars */
+  .ethics-pillars {
+    padding: 8rem 0;
+  }
+  .ethics-pillars__label {
+    margin-bottom: 4rem;
+    color: var(--secondary);
+  }
+
+  /* Governance */
+  .ethics-governance {
+    padding: 8rem 0;
+    background-color: var(--surface-container-low);
+  }
+  .ethics-governance__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8rem;
+  }
+  .ethics-governance__heading {
+    font-style: italic;
+    font-size: 2rem;
+    margin-bottom: var(--space-lg);
+  }
+  .ethics-governance__text {
+    color: var(--on-surface-variant);
+    line-height: 1.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ethics-rigor__grid,
+    .ethics-governance__grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 3rem !important;
+    }
+  }
+</style>

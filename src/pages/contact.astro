@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StructuredData from '../components/global/StructuredData.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FAQItem from '../components/ui/FAQItem.astro';
+import faqData from '../data/faq.json';
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Aescode Co.",
+  "description": "Get in touch with Aescode Co. for clinical partnerships, research collaborations, engineering applications, or investor inquiries.",
+  "url": "https://aescode.nexus/contact.html",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Aescode Co.",
+    "email": "hi@aescode.nexus",
+    "url": "https://aescode.nexus"
+  }
+};
+---
+
+<BaseLayout
+  title="Contact Aescode Co. — Partnerships, Research & Inquiries"
+  description="Get in touch with Aescode Co. for clinical partnerships, research collaborations, engineering applications, or investor inquiries. We respond within 48 hours."
+  keywords="contact Aescode, clinical AI partnership, MedTech collaboration India, healthcare AI inquiry, research partnership"
+>
+  <Fragment slot="head">
+    <StructuredData schema={contactPageSchema} />
+  </Fragment>
+
+  <!-- Hero -->
+  <HeroSection
+    title="Get in Touch."
+    titleSize="clamp(3rem, 10vw, 6rem)"
+    padding="8rem 0 2rem"
+  >
+    <div class="contact-hero__divider"></div>
+  </HeroSection>
+
+  <!-- Contact types -->
+  <section class="contact-types">
+    <div class="container">
+      <div class="contact-types__grid">
+        <div>
+          <p class="contact-types__label">General Inquiries</p>
+          <a href="mailto:hi@aescode.nexus" class="contact-types__email">hi@aescode.nexus</a>
+        </div>
+        <div>
+          <p class="contact-types__label">Partnership & Institutional</p>
+          <a href="mailto:partnerships@aescode.nexus" class="contact-types__email">partnerships@aescode.nexus</a>
+        </div>
+        <div>
+          <p class="contact-types__label">Press & Media</p>
+          <a href="mailto:press@aescode.nexus" class="contact-types__email">press@aescode.nexus</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="contact-proof">
+    <div class="container">
+      <div class="contact-proof__inner">
+        <blockquote class="contact-testimonial">
+          "The structured problem statements from Aescode's Cohort 1 represent exactly the kind of disciplined, clinically-grounded approach that MedTech innovation in India needs."
+        </blockquote>
+        <p class="contact-testimonial__attribution">— Cohort 1 Evaluation Committee</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Type Selector + Contact Form -->
+  <section class="contact-form-section">
+    <div class="container">
+      <div id="contact-form" class="contact-form">
+        <!-- Inquiry Type Selector -->
+        <fieldset class="inquiry-type-fieldset">
+          <legend class="inquiry-type-legend">I am reaching out as a…</legend>
+          <div class="inquiry-type-group">
+            <label class="inquiry-type-option">
+              <input type="radio" name="inquiry_type" value="Clinical Partner" checked>
+              <span class="inquiry-type-label">Clinical Partner</span>
+            </label>
+            <label class="inquiry-type-option">
+              <input type="radio" name="inquiry_type" value="Research Collaboration">
+              <span class="inquiry-type-label">Research Collaboration</span>
+            </label>
+            <label class="inquiry-type-option">
+              <input type="radio" name="inquiry_type" value="Engineering Applicant">
+              <span class="inquiry-type-label">Engineering Applicant</span>
+            </label>
+            <label class="inquiry-type-option">
+              <input type="radio" name="inquiry_type" value="Investor / Funder">
+              <span class="inquiry-type-label">Investor / Funder</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <input type="text" placeholder="Full name" class="input-underline" aria-label="Full Name" id="contact-name">
+        <input type="text" placeholder="Organization" class="input-underline" aria-label="Organization" id="contact-org">
+        <input type="text" placeholder="Your role" class="input-underline" aria-label="Your Role" id="contact-role">
+        <input type="email" placeholder="Email address" class="input-underline" aria-label="Email" id="contact-email">
+        <textarea placeholder="Your message" class="input-underline contact-form__textarea" aria-label="Message" id="contact-message"></textarea>
+        <button id="submit-contact" class="btn-primary contact-form__submit">SEND MESSAGE</button>
+
+        <!-- Response Time -->
+        <p class="contact-response-time">We respond to all partnership inquiries within 48 hours.</p>
+
+        <!-- Secondary Contact -->
+        <p class="contact-fallback">Prefer email? Reach us directly at <a href="mailto:partnerships@aescode.nexus">partnerships@aescode.nexus</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="contact-faq">
+    <div class="container">
+      <div class="contact-faq__inner">
+        <p class="contact-faq__label">Before You Write</p>
+        <div class="contact-faq__list">
+          {faqData.map((item) => (
+            <FAQItem question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="scripts">
+    <script>
+      document.getElementById('submit-contact')?.addEventListener('click', async function() {
+        const btn = this as HTMLButtonElement;
+        const nameEl = document.getElementById('contact-name') as HTMLInputElement;
+        const emailEl = document.getElementById('contact-email') as HTMLInputElement;
+        const messageEl = document.getElementById('contact-message') as HTMLTextAreaElement;
+
+        btn.innerText = 'SENDING...';
+        btn.disabled = true;
+
+        try {
+          const { createClient } = await import('@supabase/supabase-js');
+          const supabase = createClient(
+            import.meta.env.PUBLIC_SUPABASE_URL,
+            import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+          );
+
+          const { error } = await supabase
+            .from('contact_submissions')
+            .insert([{
+              name: nameEl?.value || '',
+              email: emailEl?.value || '',
+              message: messageEl?.value || '',
+              submitted_at: new Date().toISOString(),
+            }]);
+
+          if (error) throw error;
+
+          btn.innerText = 'SENT. THANK YOU.';
+          btn.style.backgroundColor = 'var(--outline)';
+        } catch {
+          btn.innerText = 'ERROR. TRY AGAIN.';
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </Fragment>
+</BaseLayout>
+
+<style>
+  /* Hero divider */
+  .contact-hero__divider {
+    width: 4rem;
+    height: var(--border-hairline);
+    background-color: var(--outline-variant);
+    opacity: 0.4;
+    margin: var(--space-xl) 0 0;
+  }
+
+  /* Contact Types */
+  .contact-types {
+    margin-bottom: 6rem;
+  }
+  .contact-types__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: left;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .contact-types__label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: var(--space-sm);
+  }
+  .contact-types__email {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  /* Social Proof */
+  .contact-proof {
+    margin-bottom: 4rem;
+  }
+  .contact-proof__inner {
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+  .contact-testimonial {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--headline-sm);
+    color: var(--primary);
+    line-height: 1.4;
+    padding: var(--space-xl) 0;
+    border-top: var(--border-hairline) solid var(--outline-variant);
+    border-bottom: var(--border-hairline) solid var(--outline-variant);
+  }
+  .contact-testimonial__attribution {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+    margin-top: var(--space-md);
+  }
+
+  /* Form */
+  .contact-form-section {
+    margin-bottom: 6rem;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+  .contact-form__textarea {
+    min-height: 120px;
+    resize: vertical;
+    border-radius: 0;
+    font-family: var(--font-sans);
+  }
+  .contact-form__submit {
+    align-self: flex-start;
+    margin-top: var(--space-md);
+  }
+
+  /* Inquiry Type */
+  .inquiry-type-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .inquiry-type-legend {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--secondary);
+    margin-bottom: var(--space-md);
+    display: block;
+  }
+  .inquiry-type-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .inquiry-type-option {
+    cursor: pointer;
+    display: inline-flex;
+  }
+  .inquiry-type-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .inquiry-type-label {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.625rem var(--space-md);
+    border: var(--border-hairline) solid var(--outline-variant);
+    border-radius: var(--radius-md);
+    color: var(--secondary);
+    transition: all var(--transition-fast);
+  }
+  .inquiry-type-option input[type="radio"]:checked + .inquiry-type-label {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--primary);
+  }
+  .inquiry-type-option input[type="radio"]:focus-visible + .inquiry-type-label {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  /* Response time & fallback */
+  .contact-response-time {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+  }
+  .contact-fallback {
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
+    color: var(--on-surface-variant);
+  }
+  .contact-fallback a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* FAQ */
+  .contact-faq {
+    margin-bottom: 6rem;
+  }
+  .contact-faq__inner {
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+  .contact-faq__label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: var(--space-lg);
+  }
+  .contact-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+</style>

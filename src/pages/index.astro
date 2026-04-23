@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StructuredData from '../components/global/StructuredData.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import TrustStrip from '../components/sections/TrustStrip.astro';
+import StatsBar from '../components/sections/StatsBar.astro';
+import NumberedCardGrid from '../components/ui/NumberedCardGrid.astro';
+import PartnerCTA from '../components/sections/PartnerCTA.astro';
+import Newsletter from '../components/sections/Newsletter.astro';
+import trustStripData from '../data/trust-strip.json';
+import partnerCtaData from '../data/partner-cta.json';
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Aescode Co.",
+  "url": "https://aescode.nexus",
+  "logo": "https://aescode.nexus/images/og-default.png",
+  "description": "Aescode connects engineering teams to real clinical problems, trains AI on hospital data without moving it, and certifies tools hospitals can trust.",
+  "foundingDate": "2025",
+  "areaServed": "India",
+  "sameAs": []
+};
+
+const whyNowCards = [
+  { index: '01', heading: 'Infrastructure is ready.', body: "ABDM reached 834 million citizens in 2025. India's National Federated Learning Platform MoU was signed in October 2024. The rails exist. The application layer is missing." },
+  { index: '02', heading: 'Regulation is hardening.', body: 'CDSCO is drafting SaMD regulations. ICMR published AI ethics guidelines in 2023. Draft DPDP rules were released January 2025. Every clinical AI tool will eventually require validation.' },
+  { index: '03', heading: 'Hospitals are ready — but only for certified tools.', body: 'Apollo deployed 20 certified AI tools in 2024. The Indian hospital market is not waiting for AI. It is waiting for trusted AI. That is the bottleneck Aescode resolves.' },
+];
+---
+
+<BaseLayout
+  title="Aescode Co. — India's Clinical AI Validation Infrastructure"
+  description="Aescode connects engineering teams to real clinical problems, trains AI on hospital data without moving it, and certifies tools hospitals can trust."
+  keywords="clinical AI, healthcare AI India, MedTech research, AI validation, federated learning, hospital AI, ABDM, medical technology India"
+  ogType="website"
+>
+  <Fragment slot="head">
+    <StructuredData schema={organizationSchema} />
+  </Fragment>
+
+  <!-- Hero Section -->
+  <HeroSection
+    label="MEDTECH RESEARCH PLATFORM · FOUNDED 2026"
+    title="India's Clinical AI Validation Infrastructure."
+    subtitle="Aescode Co. connects engineering teams to real clinical problems, trains AI on hospital data without moving it, and certifies the tools hospitals can trust."
+    padding="6rem 0 8rem"
+  >
+    <div class="index-hero__actions">
+      <a href="/contact.html" class="btn-primary">Partner With Us</a>
+      <a href="/cohort1.html" class="btn-secondary">Explore Cohort 1</a>
+    </div>
+  </HeroSection>
+
+  <!-- Trust Signal Strip -->
+  <TrustStrip items={trustStripData} />
+
+  <!-- Gap Section -->
+  <section class="surface-low index-gap">
+    <div class="container">
+      <div class="index-gap__grid">
+        <div class="index-gap__title">
+          <h2 class="index-gap__heading">The Gap</h2>
+          <div class="hairline index-gap__hairline"></div>
+        </div>
+        <div class="index-gap__body">
+          <p class="index-gap__lead">
+            India has 834 million ABHA digital health IDs and 438,000 registered health facilities. The data infrastructure exists. The engineering talent exists. Clinical AI adoption is blocked by one thing: trust.
+          </p>
+          <p class="index-gap__text">
+            Hospital procurement teams will not deploy software that has not been independently validated against Indian patient populations. And there is no Indian institution that benchmarks and certifies clinical AI tools. Aescode builds that institution.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary Mission -->
+  <section class="index-mission">
+    <div class="container">
+      <div class="index-mission__inner">
+        <div>
+          <h3>Primary Mission</h3>
+          <div class="hairline index-mission__hairline"></div>
+          <h5 class="index-mission__subtitle">MedTech Research Acceleration</h5>
+          <p class="index-mission__text">
+            We identify clinically significant problems, assemble interdisciplinary research
+            teams, and facilitate structured programs that produce validated, deployable outcomes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <StatsBar />
+
+  <!-- Why Now Section -->
+  <section class="index-why-now">
+    <div class="container">
+      <NumberedCardGrid
+        sectionLabel="THE TIMING"
+        items={whyNowCards}
+        columns={3}
+        showCardBg={true}
+      />
+      <h2 class="index-why-now__headline">Three things converged at once.</h2>
+    </div>
+  </section>
+
+  <!-- Partner CTA -->
+  <PartnerCTA
+    headline={partnerCtaData.headline}
+    subtext={partnerCtaData.subtext}
+    primaryCta={partnerCtaData.primaryCta}
+    secondaryCta={partnerCtaData.secondaryCta}
+  />
+
+  <!-- Newsletter Section -->
+  <Newsletter />
+
+</BaseLayout>
+
+<style>
+  /* Hero actions */
+  .index-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  /* Gap Section */
+  .index-gap {
+    padding: 6rem 0;
+  }
+  .index-gap__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-xl);
+  }
+  .index-gap__title {
+    grid-column: span 4;
+  }
+  .index-gap__heading {
+    font-style: italic;
+    font-size: var(--display-md);
+  }
+  .index-gap__hairline {
+    margin-top: var(--space-lg);
+  }
+  .index-gap__body {
+    grid-column: span 8;
+  }
+  .index-gap__lead {
+    font-family: var(--font-serif);
+    font-size: var(--headline-sm);
+    color: var(--primary);
+    line-height: 1.5;
+    margin-bottom: var(--space-xl);
+  }
+  .index-gap__text {
+    color: var(--on-surface-variant);
+    line-height: 1.8;
+  }
+
+  /* Primary Mission */
+  .index-mission {
+    padding: 6rem 0;
+  }
+  .index-mission__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 48rem;
+    gap: 4rem;
+  }
+  .index-mission__hairline {
+    margin: var(--space-lg) 0 var(--space-xl);
+  }
+  .index-mission__subtitle {
+    color: var(--primary);
+    margin-bottom: var(--space-md);
+  }
+  .index-mission__text {
+    color: var(--on-surface-variant);
+  }
+
+  /* Why Now */
+  .index-why-now {
+    padding: 6rem 0;
+  }
+  .index-why-now__headline {
+    font-family: var(--font-serif);
+    color: var(--primary);
+    margin-bottom: var(--space-2xl);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .index-gap__grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: var(--space-xl) !important;
+    }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+/**
+ * PartnerCTA.astro
+ * Full-width conversion section with --primary background, used above footers.
+ * Drives clinical partner inquiries — the #1 conversion goal.
+ *
+ * Props:
+ *   headline:     string — Main headline (rendered in --font-serif)
+ *   subtext:      string — Supporting copy
+ *   primaryCta:   { text: string; href: string } — Primary action button
+ *   secondaryCta: { text: string; href: string } — Secondary action button
+ */
+interface Props {
+  headline: string;
+  subtext: string;
+  primaryCta: { text: string; href: string };
+  secondaryCta: { text: string; href: string };
+}
+
+const { headline, subtext, primaryCta, secondaryCta } = Astro.props;
+---
+
+<section class="partner-cta animate-on-scroll">
+  <div class="container">
+    <div class="partner-cta__content">
+      <h2 class="partner-cta__headline">{headline}</h2>
+      <p class="partner-cta__subtext">{subtext}</p>
+      <div class="partner-cta__actions">
+        <a href={primaryCta.href} class="partner-cta__btn partner-cta__btn--primary">{primaryCta.text}</a>
+        <a href={secondaryCta.href} class="partner-cta__btn partner-cta__btn--secondary">{secondaryCta.text}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .partner-cta {
+    background-color: var(--primary);
+    padding: 6rem 0;
+  }
+
+  .partner-cta__content {
+    max-width: 48rem;
+  }
+
+  .partner-cta__headline {
+    font-family: var(--font-serif);
+    font-size: var(--display-md);
+    color: var(--on-primary);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .partner-cta__subtext {
+    font-family: var(--font-sans);
+    font-size: var(--body-lg);
+    color: var(--on-primary);
+    opacity: 0.7;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 40rem;
+  }
+
+  .partner-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .partner-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-md);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: opacity var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .partner-cta__btn:hover {
+    opacity: 0.88;
+  }
+
+  .partner-cta__btn--primary {
+    background-color: var(--on-primary);
+    color: var(--primary);
+    border: none;
+  }
+
+  .partner-cta__btn--secondary {
+    background-color: transparent;
+    color: var(--on-primary);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .partner-cta__actions {
+      flex-direction: column;
+    }
+    .partner-cta__btn {
+      text-align: center;
+    }
+  }
+</style>

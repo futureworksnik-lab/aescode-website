@@ -1,0 +1,32 @@
+---
+/**
+ * coming-soon.astro
+ * Stub page for Privacy Policy, Terms of Service, and other forthcoming pages.
+ * Linked from Footer.astro legal section.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+---
+
+<BaseLayout
+  title="Coming Soon — Aescode Co."
+  description="This page is under development. Aescode Co. is preparing this content for publication."
+  noIndex={true}
+>
+  <HeroSection
+    label="UNDER DEVELOPMENT"
+    title="Coming Soon."
+    subtitle="This page is currently being prepared. We are committed to transparency and will publish our full legal documentation shortly."
+    padding="10rem 0 4rem"
+  >
+    <div class="coming-soon__cta">
+      <a href="/" class="btn-primary">Return Home</a>
+    </div>
+  </HeroSection>
+</BaseLayout>
+
+<style>
+  .coming-soon__cta {
+    margin-top: 3rem;
+  }
+</style>

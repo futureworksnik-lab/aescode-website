@@ -1,0 +1,105 @@
+---
+/**
+ * @component StatsBar
+ * @description Responsive stats marquee — static 6-column grid on desktop, infinite scrolling marquee on mobile.
+ * @example
+ * <StatsBar />
+ */
+import statsData from '../../data/stats.json';
+---
+
+<section class="stats-section">
+  <div class="container" style="overflow: hidden;">
+    <div class="stats-marquee">
+      <div class="stats-marquee__track">
+        {statsData.map((stat) => (
+          <div class="stats-item">
+            <span class="stats-item__value">{stat.value}</span>
+            <span class="stats-item__label">{stat.label}</span>
+          </div>
+        ))}
+        {/* Duplicated for seamless marquee loop */}
+        {statsData.map((stat) => (
+          <div class="stats-item stats-item--clone">
+            <span class="stats-item__value">{stat.value}</span>
+            <span class="stats-item__label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-section {
+    padding: 4rem 0;
+    border-top: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.3);
+  }
+
+  .stats-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stats-item__value {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: var(--display-md);
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .stats-item__label {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    color: var(--secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Desktop: Static 6-column grid */
+  @media (min-width: 769px) {
+    .stats-marquee__track {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-xl);
+    }
+    .stats-item--clone {
+      display: none;
+    }
+  }
+
+  /* Mobile: Infinite scrolling marquee */
+  @media (max-width: 768px) {
+    .stats-section {
+      border-top: none;
+    }
+
+    .stats-marquee {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .stats-marquee__track {
+      display: flex;
+      width: max-content;
+      gap: 48px;
+      animation: marquee-scroll 28s linear infinite;
+    }
+
+    .stats-marquee:hover .stats-marquee__track {
+      animation-play-state: paused;
+    }
+
+    .stats-item {
+      min-width: 120px;
+      flex-shrink: 0;
+    }
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>

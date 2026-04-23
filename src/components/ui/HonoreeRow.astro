@@ -1,0 +1,64 @@
+---
+/**
+ * @component HonoreeRow
+ * @description Renders an honoree row with photo, name, role, and multi-paragraph bio.
+ * @example
+ * <HonoreeRow name="Dr. X" role="Dean" photo="/img.jpg" bio={["Paragraph 1", "Paragraph 2"]} />
+ */
+interface Props {
+  name: string;
+  role: string;
+  photo: string;
+  bio: string[];
+  reverse?: boolean;
+}
+
+const { name, role, photo, bio, reverse = false } = Astro.props;
+---
+
+<div class:list={['honoree-row', reverse ? 'honoree-row--reverse' : 'honoree-row--normal']}
+     style="border-top: 0.5px solid var(--outline-variant); padding: 5rem 0;">
+  <div class="honoree-text-col">
+    <span class="label-sm" style="display: block; margin-bottom: 1rem;">{role}</span>
+    <h2 style="font-style: italic; margin-bottom: 2rem;">{name}</h2>
+    {bio.map((paragraph) => (
+      <p style="color: var(--on-surface-variant); margin-bottom: 1.5rem;">{paragraph}</p>
+    ))}
+  </div>
+  <div class="honoree-image-col">
+    <img src={photo} alt={name} class="honoree-image">
+  </div>
+</div>
+
+<style>
+  .honoree-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+  .honoree-text-col { grid-column: span 12; }
+  .honoree-image-col {
+    grid-column: span 12;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  .honoree-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.1);
+    transition: filter 0.3s ease;
+  }
+  .honoree-image:hover {
+    filter: grayscale(0) contrast(1);
+  }
+  @media (min-width: 768px) {
+    .honoree-text-col { grid-column: span 7; }
+    .honoree-image-col { grid-column: span 4; }
+    .honoree-row--reverse .honoree-text-col { grid-column: 5 / span 7; grid-row: 1; }
+    .honoree-row--reverse .honoree-image-col { grid-column: 1 / span 4; grid-row: 1; }
+    .honoree-row--normal .honoree-text-col { grid-column: 1 / span 7; }
+    .honoree-row--normal .honoree-image-col { grid-column: 9 / span 4; }
+  }
+</style>

@@ -1,0 +1,23 @@
+{
+  "brand": "AESCODE CO.",
+  "tagline": "India's clinical AI validation infrastructure. Institutionally anchored. Privacy-first by design.",
+  "abdmNote": "ABDM-aligned architecture",
+  "legal": {
+    "label": "LEGAL & DOCUMENTATION",
+    "links": [
+      { "label": "Privacy Policy", "href": "/coming-soon.html" },
+      { "label": "Terms of Service", "href": "/coming-soon.html" },
+      { "label": "Archive", "href": "#" },
+      { "label": "RSS", "href": "#" }
+    ]
+  },
+  "connect": {
+    "label": "CONNECT",
+    "links": [
+      { "label": "Meet the Team", "href": "/meet_the_team.html" },
+      { "label": "Special Thanks", "href": "/special_thanks.html" }
+    ]
+  },
+  "copyright": "© 2026 AESCODE CO.",
+  "version": "V2.0.0-RELEASE"
+}

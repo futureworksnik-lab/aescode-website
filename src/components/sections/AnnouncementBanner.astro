@@ -1,0 +1,36 @@
+---
+/**
+ * @component AnnouncementBanner
+ * @description Full-width banner for upcoming cohort or feature announcements.
+ * @example
+ * <AnnouncementBanner label="COHORT 2" title="Coming Soon." />
+ */
+interface Props {
+  label?: string;
+  title?: string;
+  bgColor?: string;
+}
+
+const { label, title, bgColor = 'var(--primary)' } = Astro.props;
+---
+
+<section style={`padding: 8rem 0; background-color: ${bgColor}; color: #FFFFFF; text-align: center;`}>
+  <div class="container">
+    {label && (
+      <span class="label-sm" style="display: block; letter-spacing: 0.3em; margin-bottom: 1.5rem; color: rgba(255,255,255,0.6);">
+        {title ? label : ''}
+      </span>
+    )}
+    {label && (
+      <span class="label-sm" style="display: block; letter-spacing: 0.3em; margin-bottom: 1.5rem; color: rgba(255,255,255,0.6);">
+        {label}
+      </span>
+    )}
+    {title && (
+      <h2 style="font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 4rem); font-style: italic; color: #FFFFFF;">
+        {title}
+      </h2>
+    )}
+    <slot />
+  </div>
+</section>

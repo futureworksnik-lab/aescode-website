@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import AnnouncementBanner from '../components/sections/AnnouncementBanner.astro';
+import NumberedCardGrid from '../components/ui/NumberedCardGrid.astro';
+import QuoteCTA from '../components/sections/QuoteCTA.astro';
+import PartnerCTA from '../components/sections/PartnerCTA.astro';
+import partnerCtaData from '../data/partner-cta.json';
+
+const platformPillars = [
+  { index: '01.', heading: 'PRIMARY MISSION', body: 'AesCode is a MedTech research platform. We identify clinically significant, unsolved problems and support rigorous, interdisciplinary programs that produce validated, deployment-ready outcomes.', bold: 'Research is the work. Everything else follows from it.' },
+  { index: '02.', heading: 'RESEARCH METHODOLOGY', body: 'Every program begins with clinical observation. Proposed solutions are held against research standards — reproducibility, clinical relevance, and deployment feasibility — before any development begins.', bold: 'We do not accelerate ideas that have not been tested.' },
+  { index: '03.', heading: 'SECONDARY FUNCTION', body: 'Where research outcomes demonstrate commercial viability, AesCode provides structured pathways toward startup formation and institutional support.', bold: 'Incubation follows validation — not the inverse. That ordering is deliberate.' },
+  { index: '04.', heading: 'INSTITUTIONAL GROUNDING', body: "Our programs operate within the academic frameworks of KCDH IIT Bombay and Bharati Vidyapeeth Medical College. Every initiative is held to the standards of peer-reviewed research and clinical practice.", bold: 'We do not lower that bar.' },
+  { index: '05.', heading: 'FEDERATED LEARNING INFRASTRUCTURE', body: "Selected teams train AI models on real hospital data without that data leaving the hospital. The model goes to the data — not the other way around. Model weights, not patient records, are the only thing that moves. This is privacy-preserving by architecture, not by policy.", bold: '' },
+];
+---
+
+<BaseLayout
+  title="About Aescode Co. — Origin, Mission & Research Methodology"
+  description="Aescode Co. is a MedTech research platform. We identify clinically significant, unsolved problems and support rigorous, interdisciplinary programs that produce validated, deployment-ready outcomes."
+  keywords="MedTech research platform, clinical AI India, IIT Bombay KCDH, Bharati Hospital, healthcare research, medical technology"
+  ogType="website"
+>
+  <!-- Hero -->
+  <HeroSection
+    label="ABOUT · 01"
+    title="The Origin."
+    titleSize="clamp(4rem, 8vw, 6rem)"
+    padding="10rem 0 8rem"
+  >
+    <p class="label-sm about-hero__tag">AESCODE CO. · RESEARCH PLATFORM · FOUNDED 2026</p>
+  </HeroSection>
+
+  <!-- Origin Story -->
+  <section class="about-origin surface-low">
+    <div class="container">
+      <div class="about-origin__top">
+        <div class="about-origin__top-inner">
+          <h2 class="about-origin__title">Origin Story</h2>
+          <div class="hairline about-origin__hairline"></div>
+        </div>
+      </div>
+      <div class="about-origin__content">
+        <div class="about-origin__partners">
+          <p class="label-sm about-origin__partners-label">Key Partners</p>
+          <ul class="about-origin__partners-list">
+            <li>Koita Centre for Digital Health (KCDH), IIT Bombay (Research partner, Cohort 1)</li>
+            <li>Bharati Vidyapeeth Medical College & Bharati Hospital, Pune (Founding clinical anchor)</li>
+          </ul>
+        </div>
+        <div class="about-origin__body">
+          <p>AesCode Co. emerged from Nexus 3.0 — the annual undergraduate research conference at Bharati Vidyapeeth Medical College, Pune — co-hosted for its inaugural cohort in partnership with the Koita Centre for Digital Health at IIT Bombay.</p>
+          <p>The founding premise was straightforward: meaningful progress at the intersection of medicine and technology does not happen by accident. It requires structure — clinical rigour on one side, engineering capability on the other, and a shared problem to hold them together.</p>
+          <p>We recognised that the existing landscape of MedTech innovation in India was fragmented. Events were isolated. Prototypes were built without clinical grounding. Research findings rarely translated into deployable solutions. The gap was not one of ambition — it was one of infrastructure.</p>
+          <p>AesCode was built to close that gap.</p>
+          <p>Our programs are designed around a single constraint: every problem we work on must be both medically significant and technically tractable. We do not begin with technology and search for applications. We begin with clinical need, and work backward toward the most rigorous technical response.</p>
+          <p class="about-origin__body-last">Bharati Hospital, Pune provides the clinical foundation — a continuous source of real, documented clinical problems and a deployment context for validated tools. KCDH IIT Bombay's researchers served as research mentors and evaluation committee members for Cohort 1, contributing the computational standards the program demanded.</p>
+          <img class="about-origin__image"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoQUqh_lp_pVWUkN54jNZTck5cXV6s3iMitifamErxjlil4qt0D2Y2dRea43VFzdQBHmyCJCUajaF7R1F6a09od3h9710oLacd-X6GjySb5QDFnEq81aYL5eoByNwLg4-Ds-uQxj6-yYEATIPMxg2nDERQo4gPE8QLvfRb4IjtmdAq06TpHx9ybk19cjEzx0YRoZoEP2o1VZWnMZLxkSIqEcZbzt9t85ycYWl7zpcX5hAVBw8IO3c6bBZY4kHRIqwm16Jo1RdW-Q_y"
+            alt="Monochrome close-up of vintage typewriter keys and complex mathematical formulas scribbled on aged archival paper in soft lighting"
+            width="800" height="1000">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Section -->
+  <section class="about-platform">
+    <div class="container">
+      <div class="about-platform__header">
+        <p class="about-platform__label">THE PLATFORM</p>
+        <h2 class="about-platform__headline">A MedTech Research Ecosystem.</h2>
+      </div>
+      <NumberedCardGrid items={platformPillars} columns={5} />
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <QuoteCTA
+    quote={`"The most consequential medical technologies are not born from speed or ambition alone. They emerge from the disciplined convergence of clinical truth and engineering precision — built slowly, validated rigorously, and deployed only when the evidence demands it."`}
+    attribution="AESCODE CO. · RESEARCH PLATFORM · FOUNDED 2026"
+  />
+
+  <!-- Closing text block -->
+  <section class="about-closing">
+    <div class="container">
+      <div class="about-closing__inner">
+        <p class="about-closing__body">At the foundation of AesCode's methodology is a single conviction: medical technology must meet the same evidentiary standards as the clinical science it serves. We do not move fast. We build the conditions under which rigorous, deployable research becomes possible.</p>
+        <p class="about-closing__body about-closing__body--last">Our partnership with KCDH IIT Bombay and Nexus 3.0 represents a deliberate choice — to ground our programs within institutions that hold research to the highest standards, and to operate at the intersection of disciplines that have too long remained separate.</p>
+        <div>
+          <p class="about-closing__brand">AesCode Co.</p>
+          <p class="label-sm about-closing__tag">RESEARCH PLATFORM · FOUNDED 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner CTA -->
+  <PartnerCTA
+    headline={partnerCtaData.headline}
+    subtext={partnerCtaData.subtext}
+    primaryCta={partnerCtaData.primaryCta}
+    secondaryCta={partnerCtaData.secondaryCta}
+  />
+
+  <!-- Cohort 2 Banner -->
+  <AnnouncementBanner label="COHORT 2" title="Coming Soon." />
+</BaseLayout>
+
+<style>
+  /* Hero tag */
+  .about-hero__tag {
+    margin-top: var(--space-xl);
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+  }
+
+  /* Origin Story */
+  .about-origin {
+    padding: 8rem 0;
+  }
+  .about-origin__top-inner {
+    margin-bottom: var(--space-xl);
+  }
+  .about-origin__title {
+    font-style: italic;
+    color: var(--primary);
+    font-size: var(--display-sm);
+  }
+  .about-origin__hairline {
+    margin-top: var(--space-md);
+    width: 3rem;
+  }
+  .about-origin__content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 3rem;
+  }
+  .about-origin__partners {
+    grid-column: span 4;
+  }
+  .about-origin__partners-label {
+    margin-bottom: var(--space-md);
+  }
+  .about-origin__partners-list {
+    list-style: none;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: var(--body-sm);
+    line-height: 2;
+  }
+  .about-origin__body {
+    grid-column: span 8;
+    column-count: 2;
+    column-gap: 3rem;
+    color: var(--on-surface);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .about-origin__body p {
+    margin-bottom: var(--space-lg);
+  }
+  .about-origin__body-last {
+    margin-bottom: var(--space-xl) !important;
+  }
+  .about-origin__image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.25);
+    opacity: 0.8;
+    display: block;
+  }
+
+  /* Platform */
+  .about-platform {
+    padding: 120px 0;
+    background-color: var(--surface);
+  }
+  .about-platform__header {
+    margin-bottom: 64px;
+    text-align: left;
+  }
+  .about-platform__label {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .about-platform__headline {
+    font-family: var(--font-serif);
+    font-size: var(--display-md);
+    color: var(--primary);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  /* Closing */
+  .about-closing {
+    padding: 0 0 6rem;
+    border-top: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.3);
+    background-color: var(--surface-container-lowest);
+    text-align: center;
+  }
+  .about-closing__inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--on-surface);
+    line-height: 1.75;
+  }
+  .about-closing__body {
+    margin-bottom: 1.75rem;
+  }
+  .about-closing__body--last {
+    margin-bottom: 4rem;
+  }
+  .about-closing__brand {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--headline-sm);
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+  }
+  .about-closing__tag {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-origin__content {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: var(--space-xl) !important;
+    }
+    .about-origin__body {
+      column-count: 1;
+    }
+  }
+</style>

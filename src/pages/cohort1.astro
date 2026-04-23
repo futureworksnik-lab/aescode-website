@@ -1,0 +1,418 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StructuredData from '../components/global/StructuredData.astro';
+import StickyAnchorNav from '../components/sections/StickyAnchorNav.astro';
+import StickyLabelSection from '../components/sections/StickyLabelSection.astro';
+import ArchiveMarquee from '../components/sections/ArchiveMarquee.astro';
+import AnnouncementBanner from '../components/sections/AnnouncementBanner.astro';
+import TimelineEntry from '../components/ui/TimelineEntry.astro';
+import PrizeCard from '../components/ui/PrizeCard.astro';
+import ProblemAccordion from '../components/ui/ProblemAccordion.astro';
+import ProblemModal from '../components/ui/ProblemModal.astro';
+import JudgeCard from '../components/ui/JudgeCard.astro';
+import MentorRow from '../components/ui/MentorRow.astro';
+
+import data from '../data/cohort1.json';
+import problems from '../data/cohort1-problems.json';
+import judges from '../data/cohort1-judges.json';
+import mentors from '../data/cohort1-mentors.json';
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Aescode Cohort 1 — The Inaugural MedTech Research Hackathon",
+  "description": "A two-week MedTech research hackathon structured around 5 clinically sourced problem statements, 250+ research abstracts, and 20 finalist teams.",
+  "startDate": "2026-03-21",
+  "endDate": "2026-04-04",
+  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Bharati Vidyapeeth Medical College",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Aescode Co.",
+    "url": "https://aescode.nexus"
+  }
+};
+---
+
+<BaseLayout
+  title="Cohort 1 — India's First IIT-Anchored MedTech Research Hackathon | Aescode Co."
+  description="250+ research abstracts. 5 jury-selected clinical problems. 20 finalist teams. India's first structured clinical AI hackathon, co-hosted with KCDH IIT Bombay."
+  keywords="MedTech hackathon India, clinical AI hackathon, IIT Bombay KCDH, research hackathon, medical AI competition, Bharati Hospital"
+>
+  <Fragment slot="head">
+    <StructuredData schema={eventSchema} />
+  </Fragment>
+
+  <StickyAnchorNav links={data.anchorLinks} />
+
+  <main class="cohort-main">
+
+    <!-- 01. Hero -->
+    <header id="hero" class="cohort-hero">
+      <span class="label-sm cohort-hero__archive">Archive {data.meta.archiveId}</span>
+      <h1 class="cohort-hero__title">
+        {data.meta.title} <br><span class="cohort-hero__italic">{data.meta.titleItalic}</span>
+      </h1>
+      <p class="cohort-hero__subtitle">
+        {data.meta.subtitle}
+      </p>
+      <span class="label-sm cohort-hero__venue">
+        {data.meta.venue}
+      </span>
+    </header>
+
+    <!-- 02. Philosophy -->
+    <StickyLabelSection label="Philosophy">
+      <h3 class="cohort-philosophy">
+        {data.philosophy.headline} <br>
+        <span class="cohort-philosophy__sub">{data.philosophy.subline}</span>
+      </h3>
+    </StickyLabelSection>
+
+    <!-- 03. Timeline -->
+    <StickyLabelSection label="Timeline">
+      <div class="timeline-list">
+        {data.timeline.map((entry) => (
+          <TimelineEntry date={entry.date} title={entry.title} description={entry.description} />
+        ))}
+      </div>
+    </StickyLabelSection>
+
+    <!-- 04. Prizes -->
+    <section class="cohort-prizes surface-low">
+      <div class="cohort-prizes__grid">
+        <div class="cohort-prizes__side">
+          <h2 class="sticky-label">Prizes</h2>
+        </div>
+        <div class="cohort-prizes__main">
+          <div class="cohort-prizes__cards">
+            {data.prizes.map((prize) => (
+              <PrizeCard tier={prize.tier} amount={prize.amount} title={prize.title} note={prize.note} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. Cohort 1 Intelligence -->
+    <StickyLabelSection label="COHORT 1 INTELLIGENCE">
+      <h3 class="cohort-section__heading">
+        {data.intelligence.headline}
+      </h3>
+      <p class="cohort-section__body">
+        {data.intelligence.body}
+      </p>
+      <p class="cohort-section__footnote">
+        {data.intelligence.footnote}
+      </p>
+    </StickyLabelSection>
+
+    <!-- 06. Problem Statements -->
+    <StickyLabelSection label="PROBLEMS" id="problems">
+      <div class="accordion-container">
+        {problems.map((p, i) => (
+          <ProblemAccordion
+            category={p.category}
+            title={p.title}
+            summary={p.summary}
+            mlTask={p.mlTask}
+            expectedOutput={p.expectedOutput}
+            index={i}
+          />
+        ))}
+      </div>
+    </StickyLabelSection>
+
+    <!-- 07. Judges -->
+    <StickyLabelSection label="EVALUATION COMMITTEE" id="judges">
+      <h3 class="cohort-judges__heading">
+        The Cohort Judges.
+      </h3>
+      {judges.map((judge, i) => (
+        <JudgeCard
+          index={judge.index}
+          role={judge.role}
+          name={judge.name}
+          title={judge.title}
+          quote={judge.quote}
+          bio={judge.bio}
+          photo={judge.photo}
+          focus={judge.focus}
+          affiliation={judge.affiliation}
+          reverse={i % 2 !== 0}
+        />
+      ))}
+    </StickyLabelSection>
+
+    <!-- 08. Mentors -->
+    <StickyLabelSection label="RESEARCH MENTORS" id="mentors" bgClass="surface-low" fullBleed>
+      <h3 class="cohort-mentors__heading">
+        The Mentors.
+      </h3>
+      {mentors.map((mentor) => (
+        <MentorRow
+          index={mentor.index}
+          role={mentor.role}
+          name={mentor.name}
+          title={mentor.title}
+          specialty={mentor.specialty}
+          bio={mentor.bio}
+          photo={mentor.photo}
+        />
+      ))}
+    </StickyLabelSection>
+
+    <!-- 09. Outcomes -->
+    <StickyLabelSection label="COHORT 1 OUTCOMES">
+      <h3 class="cohort-section__heading">
+        {data.outcomes.headline}
+      </h3>
+      <p class="cohort-section__body">
+        {data.outcomes.body}
+      </p>
+      <p class="cohort-section__footnote">
+        {data.outcomes.footnote}{' '}
+        <a href={`mailto:${data.outcomes.contactEmail}`} class="cohort-outcomes__link">
+          {data.outcomes.contactEmail}
+        </a>.
+      </p>
+    </StickyLabelSection>
+
+    <!-- 10. Archive Marquee -->
+    <StickyLabelSection label="COHORT 1 ARCHIVE">
+      <h3 class="cohort-archive__heading">
+        The Event. Documented.
+      </h3>
+    </StickyLabelSection>
+
+    <ArchiveMarquee images={data.archiveImages} />
+
+    <!-- 11. Cohort 2 CTA -->
+    <AnnouncementBanner label="COHORT 2" title="Coming Soon." />
+
+  </main>
+
+  <!-- Problem Modal -->
+  <ProblemModal />
+
+  <Fragment slot="scripts">
+    <script define:vars={{ problemDetails: problems }}>
+      // Accordion toggle
+      let activeIndex = null;
+      const cards = document.querySelectorAll('.problem-card');
+      const modal = document.getElementById('problem-modal');
+
+      cards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+          const content = card.querySelector('.accordion-content');
+          const icon = card.querySelector('.problem-card__icon');
+
+          if (activeIndex === index) {
+            content.style.display = 'none';
+            card.classList.remove('is-open');
+            activeIndex = null;
+          } else {
+            if (activeIndex !== null) {
+              const prev = cards[activeIndex];
+              prev.querySelector('.accordion-content').style.display = 'none';
+              prev.classList.remove('is-open');
+            }
+            content.style.display = 'block';
+            card.classList.add('is-open');
+            activeIndex = index;
+          }
+
+          // Open Modal
+          const d = problemDetails[index];
+          document.getElementById('modal-category').textContent = d.category;
+          document.getElementById('modal-title').textContent = d.title;
+          document.getElementById('modal-context').textContent = d.modal.context;
+          document.getElementById('modal-objective').textContent = d.modal.objective;
+          document.getElementById('modal-mltask').textContent = d.modal.mlDefinition;
+
+          modal.classList.add('is-open');
+        });
+      });
+
+      // Close modal
+      const closeModal = () => {
+        modal.classList.remove('is-open');
+      };
+
+      document.getElementById('modal-close')?.addEventListener('click', closeModal);
+      modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
+      });
+    </script>
+  </Fragment>
+
+</BaseLayout>
+
+<style>
+  .cohort-main {
+    position: relative;
+    z-index: 10;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 5rem 2rem 8rem;
+  }
+  .cohort-hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    margin-bottom: 8rem;
+  }
+  .cohort-hero > * {
+    grid-column: 5 / -1;
+  }
+  .cohort-hero__title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+  .cohort-hero__italic {
+    font-style: italic;
+  }
+  .cohort-hero__subtitle {
+    font-family: var(--font-serif);
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-style: italic;
+    color: var(--on-surface-variant);
+    max-width: 42rem;
+    line-height: 1.5;
+  }
+  .cohort-philosophy {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    color: var(--primary);
+    line-height: 1.15;
+  }
+  .timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+  }
+  .cohort-prizes {
+    margin-bottom: 12rem;
+    padding: 6rem 0;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .cohort-prizes__grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+  }
+  .cohort-prizes__side { grid-column: span 4; }
+  .cohort-prizes__main { grid-column: span 8; }
+  .cohort-prizes__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+  .sticky-label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-mini);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+  .accordion-container {
+    border-bottom: var(--border-hairline) solid var(--outline-variant);
+  }
+
+  /* Extracted from inline styles */
+  .cohort-hero__archive {
+    margin-bottom: var(--space-md);
+    display: block;
+  }
+  .cohort-hero__venue {
+    font-size: var(--font-size-mini);
+    letter-spacing: 0.1em;
+    color: var(--outline);
+    display: block;
+    margin-top: var(--space-sm);
+  }
+  .cohort-philosophy__sub {
+    font-style: italic;
+    color: var(--on-surface-variant);
+  }
+  .cohort-section__heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--primary);
+    line-height: 1.15;
+    margin-bottom: var(--space-xl);
+  }
+  .cohort-section__body {
+    font-size: 15px;
+    color: var(--on-surface);
+    line-height: 1.75;
+    margin-bottom: var(--space-lg);
+    max-width: 42rem;
+  }
+  .cohort-section__footnote {
+    font-size: 15px;
+    color: var(--secondary);
+    line-height: 1.75;
+    max-width: 42rem;
+  }
+  .cohort-judges__heading {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 5rem;
+  }
+  .cohort-mentors__heading {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 3rem;
+  }
+  .cohort-archive__heading {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: var(--space-xl);
+  }
+  .cohort-outcomes__link {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 768px) {
+    .cohort-hero {
+      display: flex;
+      flex-direction: column;
+    }
+    .cohort-prizes__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .cohort-prizes__cards {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+/**
+ * @component PrizeCard
+ * @description Renders a prize tier card with amount, title, and note.
+ * @example
+ * <PrizeCard tier="1ST PLACE" amount="₹50,000" title="Grand Prize" note="Cash award" />
+ */
+interface Props {
+  tier: string;
+  amount: string;
+  title: string;
+  note: string;
+}
+const { tier, amount, title, note } = Astro.props;
+---
+
+<div class="prize-card">
+  <span class="prize-card__tier">{tier}</span>
+  <div class="prize-card__amount">{amount}</div>
+  <p class="prize-card__title">{title}</p>
+  <p class="prize-card__note">{note}</p>
+</div>
+
+<style>
+  .prize-card {
+    border-left: 1px solid var(--outline-variant);
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .prize-card__tier {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-mini);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--outline-variant);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .prize-card__amount {
+    font-family: var(--font-serif);
+    font-size: 3.75rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+  .prize-card__title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--on-surface-variant);
+  }
+  .prize-card__note {
+    font-size: var(--font-size-mini);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--outline);
+    margin-top: 1.5rem;
+  }
+</style>
