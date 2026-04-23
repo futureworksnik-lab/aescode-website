@@ -1,0 +1,76 @@
+---
+// StatsBar.astro — AesCode Co. v2.0
+// Static 6-column grid (replaces marquee) — monospace numbers + captions
+const stats = [
+  { value: '250', suffix: '+', label: 'Research Abstracts', caption: 'Problem statements submitted by medical students nationwide' },
+  { value: '100', suffix: '+', label: 'Competing Teams',    caption: 'Interdisciplinary teams across disciplines' },
+  { value: '20',  suffix: '',  label: 'Finalists',          caption: 'Selected through jury review against research criteria' },
+  { value: '5',   suffix: '',  label: 'Clinical Problems',  caption: 'Selected directly from Bharati Hospital clinicians' },
+  { value: '14',  suffix: '',  label: 'Program Days',       caption: 'Structured competition and research window' },
+  { value: '1.5', suffix: 'L+', label: 'Prize Pool (₹)',   caption: 'Awarded to top validated research outcomes' },
+];
+---
+
+<section class="stats-bar section-dense" id="stats" aria-label="Cohort 1 statistics">
+  <div class="container">
+    <div class="stats-bar__grid">
+      {stats.map((stat, i) => (
+        <div class={`stats-bar__item reveal reveal--delay-${(i % 3) + 1}`}>
+          <div class="stats-bar__number-row">
+            <span
+              class="data-lg mono text-primary stats-bar__number"
+              data-counter
+              data-target={stat.value}
+              data-suffix={stat.suffix}
+            >
+              {stat.value}{stat.suffix}
+            </span>
+          </div>
+          <p class="label-sm stats-bar__label">{stat.label}</p>
+          <p class="body-sm stats-bar__caption">{stat.caption}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-bar {
+    border-top: 0.5px solid rgba(196, 198, 206, 0.35);
+    border-bottom: 0.5px solid rgba(196, 198, 206, 0.35);
+    background: var(--surface-container-lowest);
+  }
+
+  .stats-bar__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+
+  .stats-bar__item {
+    padding: var(--space-xl);
+    border-right: 0.5px solid rgba(196, 198, 206, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .stats-bar__item:last-child { border-right: none; }
+
+  .stats-bar__number-row { margin-bottom: var(--space-sm); }
+  .stats-bar__number { display: block; }
+  .stats-bar__label { margin-bottom: var(--space-xs); }
+  .stats-bar__caption {
+    color: var(--outline);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1024px) {
+    .stats-bar__grid { grid-template-columns: repeat(3, 1fr); }
+    .stats-bar__item:nth-child(3) { border-right: none; }
+  }
+  @media (max-width: 640px) {
+    .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-bar__item:nth-child(2n) { border-right: none; }
+    .stats-bar__item:nth-child(3) { border-right: 0.5px solid rgba(196, 198, 206, 0.35); }
+  }
+</style>

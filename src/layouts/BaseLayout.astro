@@ -1,0 +1,66 @@
+---
+// BaseLayout.astro — AesCode Co. v2.0
+export interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'AesCode Co. — India\'s Clinical AI Validation Infrastructure. Connecting engineering teams to real clinical problems, training AI on hospital data without moving it.',
+  canonical,
+  ogImage = '/images/og-default.jpg'
+} = Astro.props;
+
+const siteUrl = 'https://www.aescode.nexus';
+const resolvedCanonical = canonical || siteUrl + Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={resolvedCanonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={resolvedCanonical} />
+  <meta property="og:image" content={siteUrl + ogImage} />
+  <meta property="og:site_name" content="AesCode Co." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={siteUrl + ogImage} />
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/utilities.css" />
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Supabase -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <slot />
+  <script src="/scripts/scroll-reveal.js" is:inline></script>
+</body>
+</html>
