@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const honorees = [
+  {
+    role: 'CLINICAL LEADERSHIP',
+    name: 'Dr. (Brig) S.P. Gorthi',
+    img: '/images/special/Gorthi.png',
+    flip: false,
+    bios: [
+      'Dr. (Brig) Sankar Prasad Gorthi is a distinguished neurologist with over four decades of experience in medicine. A graduate of the All India Institute of Medical Sciences (AIIMS), he commissioned into the Army Medical Corps in 1984, serving with distinction before retiring in 2016 as a Brigadier and Professor & Head of the Department of Neurology at Army Hospital R&R, Delhi.',
+      'Following his retirement, he served as Professor and Head of Neurology at Kasturba Medical College, Manipal, and since January 2020 has been leading the Department of Neurology at Bharati Vidyapeeth Hospital, Pune. His accolades include the ML Soni Award for Best Resident in Neurology at AIIMS and the prestigious Sardar Patel Award for Excellence in Neurosciences Research in 2014.',
+    ],
+  },
+  {
+    role: 'SCIENTIFIC STRATEGY',
+    name: 'Dr. Raghavendran Lakshminarayan',
+    img: '/images/special/Raghav.png',
+    flip: true,
+    bios: [
+      'Dr. Raghavendran Lakshminarayan is an experienced Data Analyst and Bioinformatics Subject Matter Expert currently serving as Operations Lead and Senior Program Officer at the Koita Centre for Digital Health (KCDH), IIT Bombay, with prior affiliations at the Max Planck Institute for Biophysical Chemistry and George-August University Göttingen.',
+      'With over a decade of cross-functional research experience, he specialises in applying AI/ML and advanced data science methods to complex healthcare challenges, spanning cancer and infectious disease biology, protein/DNA sequence analysis, NGS data analytics, and multi-omics data.',
+    ],
+  },
+  {
+    role: 'CURRICULUM DESIGN',
+    name: 'Dr. Kshitij Jadhav',
+    img: '/images/special/Kshitij.png',
+    flip: false,
+    bios: [
+      'Dr. Kshitij Jadhav is an Assistant Professor at KCDH, IIT Bombay, and a trained neuroscientist with a unique interdisciplinary profile spanning clinical medicine, neuroscience, and AI/ML. He holds an MBBS and MD from Mumbai\'s KEM and Sion Hospital, a Ph.D. in Neuroscience from the University of Lausanne, and a postdoctoral fellowship from the University of Cambridge.',
+      'His research is centred on bringing practical AI/ML solutions to Indian healthcare, with a focus on multimodal data integration, high-dimensional data analysis, and data efficiency. Bridging the gap between clinicians and data scientists at KCDH, Dr. Jadhav plays a pivotal role in addressing complex healthcare challenges through interdisciplinary collaboration.',
+    ],
+  },
+  {
+    role: 'ECOSYSTEM PARTNERSHIP',
+    name: 'Dr. Varsha Vaidya',
+    img: '/images/special/Varsha.png',
+    flip: true,
+    bios: [
+      'Dr. Varsha Vaidya is a Professor in the Department of Medicine at Bharati Vidyapeeth, Pune, where she has been serving since 1990. She holds an MBBS and DPH from Grant Medical College, Mumbai, a DNB from the National Board of Examinations (1996), and an MD from Bharati Vidyapeeth Medical College (2013).',
+      'With a research focus in Healthcare Sciences and Services, Dr. Vaidya has accumulated 150 total citations. Her projects include serving as Principal Investigator for a study on healthcare access via telemedicine, and as Co-Investigator on a UNFPA-funded study on post-partum maternal morbidity.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Special Thanks — AesCode Co."
+  description="AesCode Co. stands on the foundations of clinical excellence and rigorous research. We extend our gratitude to the leadership whose mentorship has guided our evolution."
+>
+  <Navbar activePage="/special-thanks" />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="st-hero section-hero">
+      <div class="container">
+        <div style="max-width:56rem">
+          <p class="label-sm mb-lg reveal" style="color:var(--accent)">Our Foundation</p>
+          <h1 class="display-hero serif italic text-primary mb-lg reveal reveal--delay-1">Special Thanks.</h1>
+          <div class="hairline hairline--short hairline--accent mb-xl reveal reveal--delay-1"></div>
+          <p class="body-xl reveal reveal--delay-2" style="color:var(--on-surface-variant);max-width:48rem;line-height:1.7">AesCode Co. stands on the foundations of clinical excellence and rigorous research. We extend our gratitude to the leadership whose mentorship and institutional support have guided our technical evolution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honorees -->
+    <section class="section-primary">
+      <div class="container">
+        {honorees.map((h, i) => (
+          <div class={`st-honoree ${h.flip ? 'st-honoree--flip' : ''} reveal`}>
+            <div class="st-honoree__text">
+              <span class="label-sm mb-lg" style="display:block;color:var(--accent)">{h.role}</span>
+              <h2 class="display-sm serif italic text-primary mb-xl">{h.name}</h2>
+              <div class="hairline hairline--short mb-xl" style="opacity:.3"></div>
+              {h.bios.map(p => (
+                <p class="body-md mb-lg" style="color:var(--on-surface-variant);line-height:1.8">{p}</p>
+              ))}
+            </div>
+            <div class="st-honoree__photo">
+              <img
+                src={h.img}
+                alt={h.name}
+                class="st-portrait"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Institutional Support -->
+    <section class="st-institutions section-primary bg-surface-low" style="text-align:center">
+      <div class="container">
+        <p class="label-sm mb-2xl reveal" style="color:var(--accent)">INSTITUTIONAL SUPPORT</p>
+        <h2 class="display-sm serif italic text-primary mb-3xl reveal reveal--delay-1">We extend our sincere gratitude to</h2>
+
+        <div class="st-inst-names reveal reveal--delay-2">
+          <p class="display-md serif text-primary st-inst-name">Bharati Vidyapeeth (Deemed to be University) Medical College</p>
+          <span class="st-inst-divider mono data-sm" aria-hidden="true">×</span>
+          <p class="display-md serif text-primary st-inst-name">Koita Center for Digital Health (KCDH), IIT Bombay</p>
+        </div>
+
+        <p class="body-md mt-3xl reveal reveal--delay-3" style="color:var(--on-surface-variant);max-width:44rem;margin-inline:auto">For their invaluable institutional support and partnership in advancing our research mission.</p>
+
+        <!-- Partner Logos -->
+        <div class="st-logos reveal reveal--delay-3">
+          <img src="/images/BV(DU)MC logo.png" alt="Bharati Vidyapeeth Medical College" class="st-logo" />
+          <span class="st-logos__sep" aria-hidden="true"></span>
+          <img src="/images/KCDH - IITB.jpeg" alt="Koita Centre for Digital Health, IIT Bombay" class="st-logo st-logo--kcdh" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .st-hero { padding-top:calc(68px + var(--space-6xl)); padding-bottom:var(--space-4xl); }
+
+  /* Honoree alternating rows */
+  .st-honoree {
+    display:grid;
+    grid-template-columns:7fr 4fr;
+    gap:var(--space-4xl);
+    align-items:center;
+    padding-block:var(--space-4xl);
+    border-top:0.5px solid var(--outline-variant);
+  }
+  .st-honoree:last-child { border-bottom:0.5px solid var(--outline-variant); }
+  .st-honoree--flip { grid-template-columns:4fr 7fr; }
+  .st-honoree--flip .st-honoree__text { order:2; }
+  .st-honoree--flip .st-honoree__photo { order:1; }
+
+  .st-honoree__photo {
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    aspect-ratio:4/5;
+  }
+  .st-portrait {
+    width:100%; height:100%;
+    object-fit:cover; object-position:top;
+    filter:grayscale(100%) contrast(1.1);
+    transition:filter .5s ease;
+    display:block;
+  }
+  .st-portrait:hover { filter:grayscale(0%) contrast(1); }
+
+  /* Institutional section */
+  .st-institutions { padding-block:var(--space-5xl); }
+  .st-inst-names { display:flex; flex-direction:column; align-items:center; gap:var(--space-lg); }
+  .st-inst-name { font-size:clamp(1.5rem, 3vw, 2.5rem); line-height:1.15; max-width:48rem; }
+  .st-inst-divider { color:var(--outline-variant); font-size:1.25rem; padding-block:var(--space-md); display:block; }
+
+  .st-logos {
+    display:flex; align-items:center; justify-content:center;
+    gap:var(--space-3xl); margin-top:var(--space-3xl);
+    padding-top:var(--space-2xl);
+    border-top:0.5px solid rgba(196,198,206,.35);
+  }
+  .st-logo { height:48px; width:auto; object-fit:contain; filter:grayscale(20%) opacity(.8); }
+  .st-logo--kcdh { height:36px; filter:grayscale(20%) opacity(.7); border-radius:2px; }
+  .st-logos__sep { width:0.5px; height:48px; background:var(--outline-variant); display:block; opacity:.4; }
+
+  @media(max-width:1024px){
+    .st-honoree { grid-template-columns:1fr; gap:var(--space-2xl); }
+    .st-honoree--flip .st-honoree__text { order:0; }
+    .st-honoree--flip .st-honoree__photo { order:0; }
+    .st-honoree__photo { max-width:320px; }
+  }
+  @media(max-width:640px){
+    .st-logos { flex-direction:column; gap:var(--space-xl); }
+    .st-logos__sep { width:48px; height:0.5px; }
+  }
+</style>
