@@ -1,0 +1,331 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const timeline = [
+  { date: '15 FEB — 2 MAR', title: 'Research Abstract Submissions', desc: 'Open call for medical students across India to submit research abstracts detailing real, unresolved clinical and research bottlenecks. The submission window generated 250+ problem statements from institutions nationwide.' },
+  { date: '20 MAR', title: 'Jury Shortlist Release', desc: 'An expert jury reviewed all submitted abstracts and shortlisted the Top 5 problem statements based on clinical significance, research depth, and technical tractability.' },
+  { date: '21 MAR', title: 'Cohort 1 Begins — Round 1 Opens', desc: 'Teams registered and began working on their assigned problem statements. Round 1 ran from 21 to 27 March 2026, with teams developing initial research frameworks and solution architectures.' },
+  { date: '31 MAR — 4 APR', title: 'Round 2 — Finalist Development Phase', desc: 'Shortlisted teams advanced to Round 2. Daily mentorship sessions were conducted by researchers from the Koita Centre for Digital Health, IIT Bombay.' },
+  { date: '4 APR', title: 'Final Day — Hybrid Presentations', desc: 'The final day was conducted in hybrid mode, with teams participating from across India. Finalists presented their research outcomes and prototypes to a panel of judges.' },
+  { date: '4 APR', title: 'Felicitation & Closing', desc: 'Presentation of awards to the top research teams. Recognition of outstanding problem formulation, research methodology, and deployment potential.' },
+];
+
+const problems = [
+  { cat: 'DIABETIC CARE', title: 'AI-Based Prediction of High-Risk Plantar Pressure Zones', desc: 'Identifying high-pressure areas in diabetic patients to prevent ulceration through early biomechanical intervention.', ml: 'Supervised ML — Classification / Risk Prediction', output: 'Pressure hotspot detection map · Ulcer risk score for foot regions' },
+  { cat: 'PATIENT MONITORING', title: 'AI-Based Early Warning System for Patient Physiological Deterioration', desc: 'Detecting subtle patterns in vital signs that precede clinical decompensation in acute care settings.', ml: 'Time-Series Prediction / Binary Classification', output: 'Real-time risk score with clinical reasoning flags' },
+  { cat: 'BONE HEALTH', title: 'AI-Based Osteoporosis Risk Screening from Routine X-Ray Radiographs', desc: 'Analyzing opportunistic imaging data to screen for low bone density in asymptomatic populations.', ml: 'Computer Vision — Image Classification', output: 'Probabilistic fracture risk index · Binary or multi-class classification' },
+  { cat: 'REHABILITATION', title: 'AI-Based Detection of Incorrect Exercise Form Using Human Pose Estimation', desc: 'Providing real-time feedback on kinetic alignment to ensure safe and effective home-based physical therapy.', ml: 'Computer Vision + Classification / Pose Estimation', output: 'Correction vectors and form quality score' },
+  { cat: 'STROKE', title: 'AI-Based Infarct Volume Estimation from Non-Contrast CT', desc: 'Automating the precise measurement of ischemic core and penumbra to guide urgent thrombectomy decisions.', ml: 'Medical Image Segmentation + Regression', output: 'Quantified volume in mL and vascular territory map' },
+];
+
+const judges = [
+  { num: '01', role: 'SENIOR EVALUATOR', name: 'Dr. Dheeraj Dhane', title: 'SENIOR MEMBER, IEEE', quote: 'A distinguished scholar in signal processing and computational systems, Dr. Dhane brings rigorous academic standards to the technical evaluation process.', bio: 'Dr. Dhane holds a Ph.D. from the prestigious IIT Kharagpur, and has over 15 years of teaching experience. He is a Senior Member of IEEE and serves as a Distinguished Reviewer for some of the most reputed journals in the field.', focus: 'Signal Processing & Systems', affiliation: 'IEEE Senior Member', img: '/images/judges/dhane.png', flip: false },
+  { num: '02', role: 'TECHNICAL LEAD', name: 'Mr. Bhavik Kanekar', title: 'SYSTEMS SPECIALIST, KCDH', quote: 'Expert in large-scale data systems and clinical data hygiene, Bhavik Kanekar focuses on the scalability and structural integrity of healthcare informatics.', bio: 'Bhavik Kanekar holds a B.E. and MTech from Mumbai University and is currently pursuing a PhD at KCDH, IIT Bombay. His work focuses on computer vision and AI/ML in the healthcare domain.', focus: 'Data Engineering', affiliation: 'KCDH Research Lab', img: '/images/judges/kanekar.png', flip: true },
+  { num: '03', role: 'IMPLEMENTATION LEAD', name: 'Mr. Buddhadev Goswami', title: 'SENIOR ENGINEER, KCDH', quote: 'Focusing on the intersection of healthcare technology and rapid prototyping, Buddhadev Goswami ensures that digital solutions are both innovative and deployable.', bio: 'Buddhadev Goswami is a 4th-year Ph.D. scholar at KCDH, IIT Bombay. His research lies in computer vision, with emphasis on RGB image-based analysis for healthcare and medical imaging applications.', focus: 'Healthcare Deployment', affiliation: 'KCDH Engineering', img: '/images/judges/goswami.png', flip: false },
+  { num: '04', role: 'CLINICAL PRINCIPAL', name: 'Dr. Dulari Gupta', title: 'NEUROLOGIST', quote: 'As a leading neurologist, Dr. Gupta provides critical insight into the cognitive impact and neuro-ethical dimensions of human-computer interaction.', bio: 'Dr. Dulari Gupta is a well-known Neurologist associated with Deenanath Mangeshkar Hospital. She has 17 years of experience with specialties in Stroke Thrombolysis, Parkinson\'s Disease, and Epilepsy Surgeries.', focus: 'Neuro-UX & Cognitive Ethics', affiliation: 'Medical Board', img: '/images/judges/gupta.png', flip: true },
+];
+
+const mentors = [
+  { num: '01', name: 'Mr. Viraj Gaur', title: 'PHD SCHOLAR, KCDH IIT BOMBAY', specialty: 'IMAGE PROCESSING', bio: 'Mr. Viraj Gaur holds degrees from Queen\'s University Belfast and Eindhoven University. He currently works at the intersection of neurology and technology, specialising in image processing and deep learning.', img: '/images/mentors/gaur.png' },
+  { num: '02', name: 'Dr. Subham Ghosh', title: 'POSTDOCTORAL FELLOW, KCDH IIT BOMBAY', specialty: 'WEARABLE SYSTEMS', bio: 'Dr. Subham Ghosh brings together wearable electronics, advanced signal processing, and shallow deep-learning models optimized for edge computing in healthcare monitoring.', img: '/images/mentors/ghosh.png' },
+  { num: '03', name: 'Mr. Shayantan Banerjee', title: 'PHD SCHOLAR, KCDH IIT BOMBAY', specialty: 'TRANSLATIONAL RESEARCH', bio: 'Mr. Shayantan Banerjee\'s research focuses on developing machine learning models using clinical data, with emphasis on interpretability and generalizability in medtech.', img: '/images/mentors/banerjee.png' },
+];
+
+const archiveImages = Array.from({length: 10}, (_, i) => `/images/archive/event_${String(i+1).padStart(2,'0')}.jpeg`);
+---
+<BaseLayout title="Cohort 1 — AesCode Co." description="A two-week MedTech research hackathon structured around clinically sourced problem statements and interdisciplinary research teams.">
+  <Navbar activePage="/cohort1" />
+
+  <!-- Sticky Section Nav -->
+  <nav class="c1-anchors" id="page-anchors" aria-label="Page sections">
+    <div class="container c1-anchors__inner">
+      <a href="#hero" class="c1-anchors__link">Overview</a>
+      <a href="#problems" class="c1-anchors__link">Problems</a>
+      <a href="#judges" class="c1-anchors__link">Judges</a>
+      <a href="#mentors" class="c1-anchors__link">Mentors</a>
+      <a href="#outcomes" class="c1-anchors__link">Outcomes</a>
+      <a href="#archive" class="c1-anchors__link">Archive</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- 01. Hero -->
+    <section id="hero" class="c1-hero section-hero">
+      <div class="container">
+        <div class="c1-hero__grid">
+          <div class="c1-hero__content">
+            <span class="mono data-sm mb-lg reveal" style="display:block;color:var(--accent);letter-spacing:.18em">ARCHIVE 001</span>
+            <h1 class="display-hero serif text-primary mb-xl reveal reveal--delay-1">The Inaugural <br/><em>Cohort 1</em></h1>
+            <p class="body-xl serif italic reveal reveal--delay-2" style="color:var(--on-surface-variant);max-width:36rem;line-height:1.55">A two-week MedTech research hackathon structured around clinically sourced problem statements and interdisciplinary research teams.</p>
+            <p class="mono data-sm mt-xl reveal reveal--delay-3" style="color:var(--secondary);letter-spacing:.12em">VENUE: BHARATI VIDYAPEETH MEDICAL COLLEGE, PUNE</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. Philosophy -->
+    <section class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Philosophy</p></div>
+        <div class="c1-asym__body reveal reveal--delay-1">
+          <h2 class="display-md serif text-primary" style="line-height:1.15">We didn't write the problem statements. <br/><span class="italic" style="color:var(--on-surface-variant)">We collected them from the field.</span></h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Timeline -->
+    <section class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Timeline</p></div>
+        <div class="c1-asym__body">
+          {timeline.map((t, i) => (
+            <div class={`c1-timeline-entry reveal reveal--delay-${(i % 3) + 1}`}>
+              <span class="c1-timeline-date mono data-sm">{t.date}</span>
+              <div>
+                <h3 class="headline-sm serif text-primary mb-sm">{t.title}</h3>
+                <p class="body-sm" style="color:var(--on-surface-variant)">{t.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. Prizes -->
+    <section class="c1-section bg-surface-low">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Prizes</p></div>
+        <div class="c1-asym__body">
+          <div class="c1-prizes">
+            <div class="c1-prize reveal">
+              <span class="mono data-sm mb-md" style="display:block;color:var(--outline-variant)">FIRST PRIZE</span>
+              <p class="display-lg serif text-primary">₹1,00,000</p>
+              <p class="body-lg serif italic" style="color:var(--on-surface-variant)">Cohort 1 Grand Award</p>
+              <span class="mono data-sm mt-lg" style="display:block;color:var(--outline-variant)">+ IMPLEMENTATION SUPPORT</span>
+            </div>
+            <div class="c1-prize reveal reveal--delay-1">
+              <span class="mono data-sm mb-md" style="display:block;color:var(--outline-variant)">CATEGORY PRIZE</span>
+              <p class="display-lg serif text-primary">₹10,000</p>
+              <p class="body-lg serif italic" style="color:var(--on-surface-variant)">The Innovation Grant</p>
+              <span class="mono data-sm mt-lg" style="display:block;color:var(--outline-variant)">×5 CATEGORY AWARDS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. Intelligence -->
+    <section class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Cohort 1 Intelligence</p></div>
+        <div class="c1-asym__body reveal reveal--delay-1">
+          <h3 class="display-sm serif text-primary mb-xl">What 250 Engineers Told Us.</h3>
+          <p class="body-md mb-lg" style="color:var(--on-surface)">Before any team competed, 250+ engineers from institutions across India submitted structured research abstracts — their analysis of real, unresolved clinical problems. The submission pool revealed five dominant clinical problem clusters, each independently confirmed by Bharati Hospital's clinical staff as a genuine operational gap.</p>
+          <p class="body-md" style="color:var(--on-surface-variant)">The 250+ abstracts from Cohort 1 are not a participation metric. They are a dataset — structured evidence of how India's engineering graduates understand and frame clinical challenges.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. Problems -->
+    <section id="problems" class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Problems</p></div>
+        <div class="c1-asym__body">
+          <div class="c1-problems">
+            {problems.map((p, i) => (
+              <details class={`c1-problem reveal reveal--delay-${(i % 3) + 1}`}>
+                <summary class="c1-problem__header">
+                  <span class="mono data-sm" style="color:var(--secondary)">{p.cat}</span>
+                  <h3 class="headline-sm serif text-primary mt-sm">{p.title}</h3>
+                  <span class="c1-problem__icon" aria-hidden="true">+</span>
+                </summary>
+                <div class="c1-problem__body">
+                  <p class="body-sm mb-xl" style="color:var(--on-surface-variant)">{p.desc}</p>
+                  <div class="c1-problem__meta">
+                    <div><span class="mono data-sm" style="color:var(--outline-variant)">ML TASK</span><p class="body-sm mt-xs">{p.ml}</p></div>
+                    <div><span class="mono data-sm" style="color:var(--outline-variant)">EXPECTED OUTPUT</span><p class="body-sm mt-xs">{p.output}</p></div>
+                  </div>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. Judges -->
+    <section id="judges" class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Evaluation Committee</p></div>
+        <div class="c1-asym__body">
+          <h3 class="display-md serif italic text-primary mb-3xl reveal">The Cohort Judges.</h3>
+          {judges.map(j => (
+            <div class={`c1-judge ${j.flip ? 'c1-judge--flip' : ''} reveal`}>
+              <div class="c1-judge__photo"><img src={j.img} alt={j.name} loading="lazy" /></div>
+              <div class="c1-judge__info">
+                <span class="mono data-sm" style="color:var(--outline-variant)">{j.num} / {j.role}</span>
+                <h4 class="display-sm serif italic text-primary mt-sm mb-xs">{j.name}</h4>
+                <span class="label-sm" style="color:var(--secondary);letter-spacing:.12em">{j.title}</span>
+                <p class="body-md serif italic mt-lg mb-lg" style="color:var(--on-surface)">&ldquo;{j.quote}&rdquo;</p>
+                <p class="body-sm mb-lg" style="color:var(--on-surface-variant)">{j.bio}</p>
+                <div class="c1-judge__tags">
+                  <div><span class="mono data-sm" style="color:var(--outline-variant)">FOCUS</span><p class="body-sm mt-xs">{j.focus}</p></div>
+                  <div><span class="mono data-sm" style="color:var(--outline-variant)">AFFILIATION</span><p class="body-sm mt-xs">{j.affiliation}</p></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. Mentors -->
+    <section id="mentors" class="c1-section bg-surface-low">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Research Mentors</p></div>
+        <div class="c1-asym__body">
+          <h3 class="display-md serif italic text-primary mb-2xl reveal">The Mentors.</h3>
+          {mentors.map(m => (
+            <div class="c1-mentor reveal">
+              <div class="c1-mentor__photo"><img src={m.img} alt={m.name} loading="lazy" /></div>
+              <div class="c1-mentor__info">
+                <span class="mono data-sm" style="color:var(--outline-variant)">{m.num} / KCDH MENTOR</span>
+                <div class="c1-mentor__header">
+                  <h4 class="headline-sm serif text-primary">{m.name}</h4>
+                  <span class="mono data-sm" style="color:var(--outline-variant)">{m.specialty}</span>
+                </div>
+                <span class="label-sm" style="color:var(--secondary);letter-spacing:.12em">{m.title}</span>
+                <p class="body-sm mt-md" style="color:var(--on-surface-variant)">{m.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. Outcomes -->
+    <section id="outcomes" class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Cohort 1 Outcomes</p></div>
+        <div class="c1-asym__body reveal reveal--delay-1">
+          <h3 class="display-sm serif text-primary mb-xl">Cohort 1 Outcomes.</h3>
+          <p class="body-md mb-lg" style="color:var(--on-surface)">Twenty finalist teams presented research frameworks and AI prototype architectures across five clinical domains. Top teams produced documented solutions for: plantar pressure mapping, early warning systems, opportunistic osteoporosis screening, pose-based rehabilitation feedback, and ischemic volume estimation from CT imaging.</p>
+          <p class="body-md" style="color:var(--on-surface-variant)">Full winner documentation is being compiled for the Cohort 1 archive. For access or media inquiries, contact <a href="mailto:partnerships@aescode.nexus" style="color:var(--primary);text-decoration:underline;text-underline-offset:3px">partnerships@aescode.nexus</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Archive Photo Grid -->
+    <section id="archive" class="c1-section">
+      <div class="container c1-asym">
+        <div class="c1-asym__label reveal"><p class="label-sm c1-sticky-label">Cohort 1 Archive</p></div>
+        <div class="c1-asym__body reveal reveal--delay-1">
+          <h3 class="display-md serif italic text-primary mb-2xl">The Event. Documented.</h3>
+        </div>
+      </div>
+      <div class="c1-archive-grid">
+        {archiveImages.map((src, i) => (
+          <div class={`c1-archive-item reveal reveal--delay-${(i % 3) + 1}`}>
+            <img src={src} alt={`AesCode Cohort 1 Archive — Photo ${i + 1}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Cohort 2 Banner -->
+    <section class="c1-cohort2">
+      <div class="container" style="text-align:center">
+        <span class="mono data-sm reveal" style="display:block;letter-spacing:.3em;margin-bottom:var(--space-lg);color:rgba(255,255,255,.5)">COHORT 2</span>
+        <h2 class="display-lg serif italic reveal reveal--delay-1" style="color:#fff">Coming Soon.</h2>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Anchor nav */
+  .c1-anchors { position:sticky; top:68px; z-index:30; background:var(--surface); border-bottom:0.5px solid var(--outline-variant); }
+  .c1-anchors__inner { display:flex; gap:var(--space-2xl); overflow-x:auto; }
+  .c1-anchors__link { display:inline-block; padding-block:var(--space-sm); font-family:var(--font-sans); font-size:10px; font-weight:500; letter-spacing:.05em; text-transform:uppercase; color:var(--secondary); white-space:nowrap; transition:color var(--transition-fast); }
+  .c1-anchors__link:hover { color:var(--primary); }
+
+  /* Hero */
+  .c1-hero { padding-top:calc(68px + 36px + var(--space-4xl)); padding-bottom:var(--space-4xl); }
+  .c1-hero__grid { max-width:56rem; }
+
+  /* Asymmetric layout */
+  .c1-asym { display:grid; grid-template-columns:1fr 2fr; gap:var(--space-3xl); align-items:start; }
+  .c1-asym__label {}
+  .c1-sticky-label { position:sticky; top:calc(68px + 36px + var(--space-xl)); color:var(--primary); font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+  .c1-section { padding-block:var(--space-4xl); }
+
+  /* Timeline */
+  .c1-timeline-entry { display:grid; grid-template-columns:1fr 3fr; gap:var(--space-xl); align-items:baseline; padding-bottom:var(--space-2xl); }
+  .c1-timeline-date { color:var(--primary); font-weight:600; letter-spacing:.08em; }
+
+  /* Prizes */
+  .c1-prizes { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-3xl); }
+  .c1-prize { border-left:1px solid var(--outline-variant); padding-left:var(--space-xl); }
+
+  /* Problems */
+  .c1-problems { display:flex; flex-direction:column; border-bottom:0.5px solid var(--outline-variant); }
+  .c1-problem { border-top:0.5px solid var(--outline-variant); }
+  .c1-problem__header { list-style:none; cursor:pointer; padding-block:var(--space-xl); position:relative; transition:background var(--transition-fast); }
+  .c1-problem__header:hover { background:var(--surface-container-low); }
+  .c1-problem__header::-webkit-details-marker { display:none; }
+  .c1-problem__icon { position:absolute; right:0; top:var(--space-xl); font-family:var(--font-sans); font-size:1.5rem; color:var(--secondary); transition:transform .2s ease; }
+  .c1-problem[open] .c1-problem__icon { transform:rotate(45deg); }
+  .c1-problem__body { padding-bottom:var(--space-xl); }
+  .c1-problem__meta { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-xl); }
+
+  /* Judges */
+  .c1-judge { display:grid; grid-template-columns:5fr 7fr; gap:var(--space-3xl); align-items:center; margin-bottom:var(--space-4xl); }
+  .c1-judge--flip { direction:rtl; }
+  .c1-judge--flip > * { direction:ltr; }
+  .c1-judge__photo { border-radius:var(--radius-md); overflow:hidden; }
+  .c1-judge__photo img { width:100%; aspect-ratio:4/5; object-fit:cover; filter:grayscale(100%); transition:filter .5s ease; display:block; }
+  .c1-judge__photo img:hover { filter:grayscale(0%); }
+  .c1-judge__tags { display:flex; flex-wrap:wrap; gap:var(--space-xl); }
+
+  /* Mentors */
+  .c1-mentor { display:flex; gap:var(--space-xl); border-top:0.5px solid var(--outline-variant); padding-block:var(--space-2xl); }
+  .c1-mentor__photo { flex-shrink:0; width:120px; height:150px; border-radius:var(--radius-md); overflow:hidden; }
+  .c1-mentor__photo img { width:100%; height:100%; object-fit:cover; filter:grayscale(100%); transition:filter .5s ease; }
+  .c1-mentor__photo img:hover { filter:grayscale(0%); }
+  .c1-mentor__header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-xs); }
+
+  /* Archive */
+  .c1-archive-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:var(--space-md); padding-inline:var(--space-xl); }
+  .c1-archive-item { border-radius:var(--radius-md); overflow:hidden; }
+  .c1-archive-item img { width:100%; aspect-ratio:14/10; object-fit:cover; display:block; transition:transform .4s ease; }
+  .c1-archive-item:hover img { transform:scale(1.03); }
+
+  /* Cohort 2 */
+  .c1-cohort2 { padding-block:var(--space-4xl); background:var(--primary); }
+
+  /* Responsive */
+  @media(max-width:1024px){
+    .c1-asym{grid-template-columns:1fr}
+    .c1-sticky-label{position:static}
+    .c1-judge{grid-template-columns:1fr}
+    .c1-judge--flip{direction:ltr}
+    .c1-timeline-entry{grid-template-columns:1fr}
+    .c1-prizes{grid-template-columns:1fr}
+    .c1-archive-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(max-width:768px){
+    .c1-mentor{flex-direction:column}
+    .c1-mentor__header{flex-direction:column;gap:var(--space-xs)}
+    .c1-problem__meta{grid-template-columns:1fr}
+    .c1-archive-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:480px){
+    .c1-archive-grid{grid-template-columns:1fr}
+    .c1-anchors__inner{gap:var(--space-xl)}
+  }
+</style>
