@@ -11,7 +11,7 @@ interface Props {
   name: string;
   title: string;
   specialty: string;
-  bio: string;
+  bio: string[];
   photo: string;
 }
 const { index, role, name, title, specialty, bio, photo } = Astro.props;
@@ -28,7 +28,7 @@ const { index, role, name, title, specialty, bio, photo } = Astro.props;
       <span class="mentor-row__specialty">{specialty}</span>
     </div>
     <span class="mentor-row__title">{title}</span>
-    <p class="mentor-row__bio">{bio}</p>
+    {bio.map((p) => <p class="mentor-row__bio">{p}</p>)}
   </div>
 </div>
 

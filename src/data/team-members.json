@@ -1,15 +1,16 @@
+// DEPRECATED: migrated to src/content/ — safe to delete after verifying all pages build
 {
   "leadership": [
     {
       "name": "Nikhil Gour",
       "role": "FOUNDER & CEO",
-      "bio": "Leading the technical strategy and operational execution of AesCode Co., with a focus on institutional scaling and rigorous, evidence-based learning frameworks.",
+      "bio": ["Leading the technical strategy and operational execution of AesCode Co., with a focus on institutional scaling and rigorous, evidence-based learning frameworks."],
       "photo": "/images/team/Nikhil.webp"
     },
     {
       "name": "Janushi Bhatia",
       "role": "CO-LEAD",
-      "bio": "Orchestrating the synergy between technical excellence and student experience, leveraging a clinical medical background to bridge the gap between healthcare practice and technology.",
+      "bio": ["Orchestrating the synergy between technical excellence and student experience, leveraging a clinical medical background to bridge the gap between healthcare practice and technology."],
       "photo": "/images/team/Janushi.webp"
     }
   ],
@@ -17,13 +18,13 @@
     {
       "name": "Shruti Deshpande",
       "role": "Operations Head",
-      "bio": "Ensuring the seamless execution of daily workflows and cohort management with surgical precision.",
+      "bio": ["Ensuring the seamless execution of daily workflows and cohort management with surgical precision."],
       "photo": "/images/team/Shruti.webp"
     },
     {
       "name": "Sahil Kankariya",
       "role": "Finance Head",
-      "bio": "Managing the economic substrate of the organization with transparency and strategic foresight.",
+      "bio": ["Managing the economic substrate of the organization with transparency and strategic foresight."],
       "photo": "/images/team/Sahil.webp"
     }
   ],

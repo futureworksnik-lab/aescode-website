@@ -2,7 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import QuoteCTA from '../components/sections/QuoteCTA.astro';
-import teamData from '../data/team-members.json';
+import { getCollection } from 'astro:content';
+
+// Content Collections query — shape-preserving transform
+const allTeam = await getCollection('team');
+const teamData = {
+  leadership: allTeam.filter(m => m.data.group === 'leadership').map(m => m.data),
+  departmentHeads: allTeam.filter(m => m.data.group === 'departmentHeads').map(m => m.data),
+  secretariat: allTeam.filter(m => m.data.group === 'secretariat').map(m => m.data),
+};
 ---
 
 <BaseLayout
@@ -34,7 +42,7 @@ import teamData from '../data/team-members.json';
         <div class="team-leadership__bio-right">
           <p class="label-sm role-tag">{teamData.leadership[0].role}</p>
           <h2 class="team-leadership__name">{teamData.leadership[0].name}</h2>
-          <p class="team-leadership__bio-text">{teamData.leadership[0].bio}</p>
+          {teamData.leadership[0].bio.map((p) => <p class="team-leadership__bio-text">{p}</p>)}
         </div>
       </div>
 
@@ -43,7 +51,7 @@ import teamData from '../data/team-members.json';
         <div class="team-leadership__bio-left">
           <p class="label-sm role-tag">{teamData.leadership[1].role}</p>
           <h2 class="team-leadership__name">{teamData.leadership[1].name}</h2>
-          <p class="team-leadership__bio-text">{teamData.leadership[1].bio}</p>
+          {teamData.leadership[1].bio.map((p) => <p class="team-leadership__bio-text">{p}</p>)}
         </div>
         <div class="portrait-container team-leadership__portrait-right">
           <img src={teamData.leadership[1].photo} alt={teamData.leadership[1].name} class="team-portrait">
@@ -64,9 +72,7 @@ import teamData from '../data/team-members.json';
             <div>
               <p class="label-sm role-tag">{head.role}</p>
               <h2 class="team-dept__name">{head.name}</h2>
-              <p class="team-dept__bio">
-                {head.bio}
-              </p>
+              {head.bio.map((p) => <p class="team-dept__bio">{p}</p>)}
             </div>
           </div>
         ))}

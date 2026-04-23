@@ -5,7 +5,7 @@
     "name": "Dr. Dheeraj Dhane",
     "title": "SENIOR MEMBER, IEEE",
     "quote": "A distinguished scholar in signal processing and computational systems, Dr. Dhane brings rigorous academic standards to the technical evaluation process.",
-    "bio": "Dr. Dhane holds a Ph.D. from the prestigious IIT Kharagpur, and has over 15 years of teaching experience. He is a Senior Member of IEEE, a distinction held by only a select few, and serves as a Distinguished Reviewer for some of the most reputed journals in the field, including Pattern Recognition Letters, IEEE Transactions on Industrial Informatics, Multimedia Tools and Applications, Computers in Biology and Medicine, and IEEE Access.",
+    "bio": ["Dr. Dhane holds a Ph.D. from the prestigious IIT Kharagpur, and has over 15 years of teaching experience. He is a Senior Member of IEEE, a distinction held by only a select few, and serves as a Distinguished Reviewer for some of the most reputed journals in the field, including Pattern Recognition Letters, IEEE Transactions on Industrial Informatics, Multimedia Tools and Applications, Computers in Biology and Medicine, and IEEE Access."],
     "photo": "/images/judges/dhane.webp",
     "focus": "Signal Processing & Systems",
     "affiliation": "IEEE Senior Member"
@@ -16,7 +16,7 @@
     "name": "Mr. Bhavik Kanekar",
     "title": "SYSTEMS SPECIALIST, KCDH",
     "quote": "Expert in large-scale data systems and clinical data hygiene, Bhavik Kanekar focuses on the scalability and structural integrity of healthcare informatics.",
-    "bio": "Bhavik Kanekar holds a B.E. and MTech from Mumbai University and is currently pursuing a PhD at the Koita Centre for Digital Health (KCDH), IIT Bombay. His work focuses on the application of computer vision and AI/ML in the healthcare domain, with a particular emphasis on accelerating diagnostics and treatment planning.",
+    "bio": ["Bhavik Kanekar holds a B.E. and MTech from Mumbai University and is currently pursuing a PhD at the Koita Centre for Digital Health (KCDH), IIT Bombay. His work focuses on the application of computer vision and AI/ML in the healthcare domain, with a particular emphasis on accelerating diagnostics and treatment planning."],
     "photo": "/images/judges/kanekar.webp",
     "focus": "Data Engineering",
     "affiliation": "KCDH Research Lab"
@@ -27,7 +27,7 @@
     "name": "Mr. Buddhadev Goswami",
     "title": "SENIOR ENGINEER, KCDH",
     "quote": "Focusing on the intersection of healthcare technology and rapid prototyping, Buddhadev Goswami ensures that digital solutions are both innovative and deployable.",
-    "bio": "Buddhadev Goswami is a 4th-year Ph.D. scholar at the Koita Centre for Digital Health (KCDH), IIT Bombay. His research lies in the field of computer vision, with a strong emphasis on RGB image-based analysis for healthcare and medical imaging applications. His technical expertise and domain-focused research make him exceptionally well-equipped to guide teams working on imaging-driven diagnostic challenges.",
+    "bio": ["Buddhadev Goswami is a 4th-year Ph.D. scholar at the Koita Centre for Digital Health (KCDH), IIT Bombay. His research lies in the field of computer vision, with a strong emphasis on RGB image-based analysis for healthcare and medical imaging applications. His technical expertise and domain-focused research make him exceptionally well-equipped to guide teams working on imaging-driven diagnostic challenges."],
     "photo": "/images/judges/goswami.webp",
     "focus": "Healthcare Deployment",
     "affiliation": "KCDH Engineering"
@@ -38,7 +38,7 @@
     "name": "Dr. Dulari Gupta",
     "title": "NEUROLOGIST",
     "quote": "As a leading neurologist, Dr. Gupta provides critical insight into the cognitive impact and neuro-ethical dimensions of human-computer interaction.",
-    "bio": "Dr. Dulari Gupta is a well-known Neurologist associated with Deenanath Mangeshkar Hospital and Research Centre. She has 17 years of experience in Neurology and has worked as an expert in different cities in India. Dr. Dulari Gupta has contributed to handling numerous complex medical cases in several hospitals. She is known for her attention to accurate diagnosis and treating patients empathetically. The specialty interests of Dr. Dulari Gupta are Stroke Thrombolysis, Parkinson's Disease, Epilepsy Surgeries and Neurocritical Care.",
+    "bio": ["Dr. Dulari Gupta is a well-known Neurologist associated with Deenanath Mangeshkar Hospital and Research Centre. She has 17 years of experience in Neurology and has worked as an expert in different cities in India. Dr. Dulari Gupta has contributed to handling numerous complex medical cases in several hospitals. She is known for her attention to accurate diagnosis and treating patients empathetically. The specialty interests of Dr. Dulari Gupta are Stroke Thrombolysis, Parkinson's Disease, Epilepsy Surgeries and Neurocritical Care."],
     "photo": "/images/judges/gupta.webp",
     "focus": "Neuro-UX & Cognitive Ethics",
     "affiliation": "Medical Board"

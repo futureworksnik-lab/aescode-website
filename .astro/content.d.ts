@@ -120,7 +120,23 @@ declare module 'astro:content' {
 		: any;
 
 	type DataEntryMap = {
-		
+		"abstracts": Record<string, {
+  id: string;
+  body?: string;
+  collection: "abstracts";
+  data: InferEntrySchema<"abstracts">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"team": Record<string, {
+  id: string;
+  body?: string;
+  collection: "team";
+  data: InferEntrySchema<"team">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+
 	};
 
 	type ExtractLoaderTypes<T> = T extends import('astro/loaders').LiveLoader<
@@ -149,6 +165,6 @@ declare module 'astro:content' {
 		LiveContentConfig['collections'][C]['loader']
 	>;
 
-	export type ContentConfig = never;
+	export type ContentConfig = typeof import("../src/content.config.js");
 	export type LiveContentConfig = never;
 }

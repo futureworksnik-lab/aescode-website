@@ -9,7 +9,11 @@
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
-import researchData from '../data/research-briefs.json';
+import { getCollection } from 'astro:content';
+
+// Content Collections query — shape-preserving transform
+const abstractEntries = await getCollection('abstracts');
+const researchData = { briefs: abstractEntries.map(e => e.data) };
 
 const allTags = [...new Set(researchData.briefs.flatMap(b => b.tags))].sort();
 const sourceTypes = [...new Set(researchData.briefs.map(b => b.sourceType))].sort();

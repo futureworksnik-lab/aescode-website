@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cohort1-plantar-pressure",
+    "title": "Plantar Pressure Mapping for Early Diabetic Neuropathy Detection",
+    "publishedDate": "2026-04-04",
+    "authors": ["Cohort 1 — Finalist Team"],
+    "abstract": "A machine learning approach to detecting early diabetic neuropathy through plantar pressure distribution analysis, validated against clinical assessment protocols at Bharati Hospital, Pune.",
+    "tags": ["diabetic-neuropathy", "pressure-mapping", "diagnostics"],
+    "sourceType": "cohort_abstract",
+    "externalURL": null
+  },
+  {
+    "id": "cohort1-early-warning",
+    "title": "Physiological Deterioration Early Warning System Using Multivariate Time-Series",
+    "publishedDate": "2026-04-04",
+    "authors": ["Cohort 1 — Finalist Team"],
+    "abstract": "An ensemble-based early warning system for detecting physiological deterioration in ICU patients using multivariate vital sign time-series data.",
+    "tags": ["early-warning", "ICU", "time-series", "critical-care"],
+    "sourceType": "cohort_abstract",
+    "externalURL": null
+  },
+  {
+    "id": "cohort1-osteoporosis",
+    "title": "Opportunistic Osteoporosis Screening from Routine Chest X-rays",
+    "publishedDate": "2026-04-04",
+    "authors": ["Cohort 1 — Finalist Team"],
+    "abstract": "A convolutional neural network pipeline for detecting osteoporotic bone density loss from routine chest radiographs, enabling opportunistic screening without dedicated DXA scans.",
+    "tags": ["osteoporosis", "radiology", "screening", "CNN"],
+    "sourceType": "cohort_abstract",
+    "externalURL": null
+  },
+  {
+    "id": "federated-learning-overview",
+    "title": "Federated Learning in Indian Hospital Networks: Architecture and Privacy Guarantees",
+    "publishedDate": "2026-03-15",
+    "authors": ["Aescode Research"],
+    "abstract": "An overview of Aescode's federated learning infrastructure — how model weights, not patient data, move between hospital nodes and central aggregation servers.",
+    "tags": ["federated-learning", "privacy", "architecture"],
+    "sourceType": "deep_research",
+    "externalURL": null
+  }
+]

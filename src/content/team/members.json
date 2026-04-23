@@ -1,0 +1,66 @@
+[
+  {
+    "id": "nikhil-gour",
+    "name": "Nikhil Gour",
+    "role": "FOUNDER & CEO",
+    "bio": ["Leading the technical strategy and operational execution of AesCode Co., with a focus on institutional scaling and rigorous, evidence-based learning frameworks."],
+    "photo": "/images/team/Nikhil.webp",
+    "group": "leadership"
+  },
+  {
+    "id": "janushi-bhatia",
+    "name": "Janushi Bhatia",
+    "role": "CO-LEAD",
+    "bio": ["Orchestrating the synergy between technical excellence and student experience, leveraging a clinical medical background to bridge the gap between healthcare practice and technology."],
+    "photo": "/images/team/Janushi.webp",
+    "group": "leadership"
+  },
+  {
+    "id": "shruti-deshpande",
+    "name": "Shruti Deshpande",
+    "role": "Operations Head",
+    "bio": ["Ensuring the seamless execution of daily workflows and cohort management with surgical precision."],
+    "photo": "/images/team/Shruti.webp",
+    "group": "departmentHeads"
+  },
+  {
+    "id": "sahil-kankariya",
+    "name": "Sahil Kankariya",
+    "role": "Finance Head",
+    "bio": ["Managing the economic substrate of the organization with transparency and strategic foresight."],
+    "photo": "/images/team/Sahil.webp",
+    "group": "departmentHeads"
+  },
+  {
+    "id": "siddharta-kakani",
+    "name": "Siddharta Kakani",
+    "role": "Organising Secretary",
+    "photo": "/images/team/Siddhartha.webp",
+    "bio": [],
+    "group": "secretariat"
+  },
+  {
+    "id": "saurabh-sharma",
+    "name": "Saurabh Sharma",
+    "role": "Organising Secretary",
+    "photo": "/images/team/Saurabh.webp",
+    "bio": [],
+    "group": "secretariat"
+  },
+  {
+    "id": "anshika-gupta",
+    "name": "Anshika Gupta",
+    "role": "Organising Secretary",
+    "photo": "/images/team/Anshika.webp",
+    "bio": [],
+    "group": "secretariat"
+  },
+  {
+    "id": "srishti-jain",
+    "name": "Srishti Jain",
+    "role": "Organising Secretary",
+    "photo": "/images/team/Srishti.webp",
+    "bio": [],
+    "group": "secretariat"
+  }
+]

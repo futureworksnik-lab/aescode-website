@@ -11,7 +11,7 @@ interface Props {
   name: string;
   title: string;
   quote: string;
-  bio: string;
+  bio: string[];
   photo: string;
   focus: string;
   affiliation: string;
@@ -29,7 +29,7 @@ const { index, role, name, title, quote, bio, photo, focus, affiliation, reverse
     <h4 class="judge-card__name">{name}</h4>
     <span class="judge-card__title">{title}</span>
     <p class="judge-card__quote">"{quote}"</p>
-    <p class="judge-card__bio">{bio}</p>
+    {bio.map((p) => <p class="judge-card__bio">{p}</p>)}
     <div class="judge-card__meta">
       <div>
         <span class="judge-card__meta-label">FOCUS</span>

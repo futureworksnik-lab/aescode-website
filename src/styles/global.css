@@ -415,7 +415,7 @@ p a:hover,
   background-color: transparent;
   border: 1px solid var(--primary);
   border-radius: var(--radius-md);
-  padding: 1rem 2rem;
+  padding: var(--space-md) var(--space-xl);
   cursor: pointer;
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
@@ -458,7 +458,7 @@ p a:hover,
   background: transparent;
   border: none;
   border-bottom: 0.5px solid var(--outline-variant);
-  padding: 0.75rem 0;
+  padding: 0.75rem 0; /* intentional — no exact token match */
   width: 100%;
   outline: none;
   transition: border-color var(--transition-fast), border-width var(--transition-fast);
@@ -495,314 +495,6 @@ p a:hover,
   padding: var(--space-lg);
 }
 
-/* ============================================================
-   8. NAVBAR COMPONENT
-   Spec: Build System §1.3, §2.4, §3.1
-   - Text labels only, ALL-CAPS, Public Sans
-   - Letter-spacing +0.05em
-   - Active state: 1px navy underline (#021934)
-   - No icons, no dropdowns
-   - Sticky top, z-index 50
-   - Tabs: HOME, ABOUT, COHORT 1, AI ETHICS, CONTACT
-   - PROBLEMS removed from nav
-   ============================================================ */
-
-/* --- Navbar container --- */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background-color: var(--surface);
-}
-
-.navbar__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1.5rem 2rem;
-}
-
-/* --- Brand / Logo --- */
-.navbar__brand {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.5rem;
-  color: var(--primary);
-  text-decoration: none;
-  letter-spacing: -0.02em;
-  font-optical-sizing: auto;
-  line-height: 1;
-  transition: opacity var(--transition-fast);
-}
-
-.navbar__brand:hover {
-  opacity: 0.82;
-}
-
-/* --- Desktop nav link row --- */
-.navbar__links {
-  display: none;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* --- Individual nav link --- */
-.nav-link {
-  font-family: var(--font-sans);
-  font-size: var(--label-sm);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--secondary);
-  text-decoration: none;
-  padding-bottom: 0.375rem;
-  border-bottom: 1px solid transparent;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
-}
-
-.nav-link:hover {
-  color: var(--primary);
-  opacity: 1;
-}
-
-.nav-link.active {
-  color: var(--primary);
-  border-bottom: 1px solid var(--primary);
-}
-
-/* --- Mobile hamburger button --- */
-.navbar__toggle {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 60;
-}
-
-.navbar__toggle-bar {
-  display: block;
-  width: 20px;
-  height: 1.5px;
-  background-color: var(--primary);
-  transition: transform var(--transition-base), opacity var(--transition-base);
-  transform-origin: center;
-}
-
-/* Hamburger → X animation */
-.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
-}
-
-.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
-}
-
-/* --- Mobile menu panel --- */
-.navbar__mobile-menu {
-  display: none;
-  flex-direction: column;
-  gap: 0;
-  background-color: var(--surface);
-  padding: 0 2rem 1.5rem;
-  max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.navbar__mobile-menu.open {
-  display: flex;
-}
-
-.navbar__mobile-menu .nav-link {
-  display: block;
-  padding: 1rem 0;
-  border-bottom: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.3);
-  font-size: var(--label-md);
-  letter-spacing: 0.1em;
-}
-
-.navbar__mobile-menu .nav-link:last-child {
-  border-bottom: none;
-}
-
-.navbar__mobile-menu .nav-link.active {
-  border-bottom-color: var(--primary);
-  border-bottom-width: 1px;
-}
-
-/* --- Responsive: show desktop nav at 768px+ --- */
-@media (min-width: 768px) {
-  .navbar__links {
-    display: flex;
-  }
-
-  .navbar__toggle {
-    display: none;
-  }
-
-  .navbar__mobile-menu {
-    display: none !important;
-  }
-}
-
-/* ============================================================
-   11. NEWSLETTER COMPONENT
-   Spec: Build System §1.6 & 1.11
-   - Two variants: .newsletter--section, .newsletter--footer
-   - Input: underline only
-   - Button: Primary #021934, 4px radius
-   ============================================================ */
-
-/* Shared base */
-.newsletter {
-  width: 100%;
-}
-
-.newsletter__form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.newsletter__input-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.newsletter__input {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: var(--on-surface);
-  background: transparent;
-  border: none;
-  border-bottom: 0.5px solid var(--outline-variant);
-  padding: 0.75rem 0;
-  transition: border-color var(--transition-fast), border-width var(--transition-fast);
-}
-
-.newsletter__input::placeholder {
-  color: var(--secondary);
-}
-
-.newsletter__input:focus {
-  outline: none;
-  border-bottom: 1.5px solid var(--primary);
-  margin-bottom: -1px; /* prevents layout shift */
-}
-
-
-
-/* Variant: --section */
-.newsletter--section {
-  padding: 6rem 0;
-  background-color: var(--surface);
-}
-
-.newsletter--section .newsletter__content {
-  max-width: 40rem;
-}
-
-.newsletter--section .newsletter__label {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: var(--label-md);
-  color: var(--secondary);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-}
-
-.newsletter--section .newsletter__headline {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.newsletter--section .newsletter__subcopy {
-  font-family: var(--font-sans);
-  font-size: 1.125rem;
-  color: var(--on-surface-variant);
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
-}
-
-/* Variant: --footer */
-.newsletter--footer {
-  width: 100%;
-}
-
-.newsletter--footer .newsletter__form {
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .newsletter--footer .newsletter__form,
-  .newsletter--section .newsletter__form {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-start; /* Ensure left alignment */
-  }
-  
-  .newsletter--footer .newsletter__input-wrapper {
-    flex: 1;
-  }
-
-  .newsletter--section .newsletter__input-wrapper {
-    flex: none; /* Override flex: 1 */
-    width: 100%;
-    max-width: 360px; /* Fix 1: Desktop constraint */
-  }
-}
-
-/* Fix 2: Mobile input styling refinement */
-@media (max-width: 767px) {
-  .newsletter__input {
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-radius: 0 !important;
-    padding: 0.75rem 0;
-  }
-}
-
-.newsletter--footer .newsletter__label {
-  font-family: var(--font-sans);
-  font-size: var(--label-sm);
-  color: var(--secondary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-right: 1.5rem;
-  align-self: flex-start;
-}
-@media (min-width: 768px) {
-  .newsletter--footer .newsletter__label {
-     align-self: center;
-  }
-}
-
 /* Inline feedback messages swapping button */
 .btn-message {
   background: transparent !important;
@@ -820,168 +512,7 @@ p a:hover,
 }
 
 /* ============================================================
-   9. FOOTER COMPONENT
-   Spec: Build System §1.10
-   - 3 columns, 12-col grid
-   - Background: var(--surface)
-   - Padding top 80px
-   - All links: Public Sans, label-sm, all-caps, #707785
-   - Social: LinkedIn & X right aligned
-   ============================================================ */
-
-.footer {
-  background-color: var(--surface);
-  padding: 5rem 0 3rem; /* 80px top padding min */
-  margin-top: auto;
-}
-
-.footer__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  width: 100%;
-  max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-/* Col 1-4: Brand */
-.footer__brand {
-  grid-column: span 1;
-}
-
-.footer__brand-obj {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1.125rem;
-  color: var(--primary);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.footer__tagline {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--secondary);
-}
-
-.footer__abdm-note {
-  font-family: var(--font-sans);
-  font-size: var(--label-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--secondary);
-  margin-top: 0.75rem;
-  opacity: 0.7;
-}
-
-/* Col 5-8: Legal */
-.footer__legal {
-  grid-column: span 1;
-}
-
-/* Col 9-12: Connect */
-.footer__connect {
-  grid-column: span 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.footer__label {
-  font-family: var(--font-sans);
-  font-size: var(--label-md);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--on-surface);
-  margin-bottom: 1rem;
-}
-
-.footer__links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.footer__link {
-  font-family: var(--font-sans);
-  font-size: var(--label-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--secondary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.footer__link:hover {
-  color: var(--primary);
-}
-
-.footer__meta {
-  font-family: var(--font-sans);
-  font-size: var(--label-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--secondary);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.footer__social {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.footer__social-link {
-  color: var(--secondary);
-  transition: color var(--transition-fast);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer__social-link:hover {
-  color: var(--primary);
-}
-
-.footer__social-icon {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-
-/* Media query for tablet + desktop grid */
-@media (min-width: 768px) {
-  .footer__grid {
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2rem;
-  }
-
-  .footer__brand {
-    grid-column: span 4;
-  }
-
-  .footer__legal {
-    grid-column: span 4;
-  }
-
-  .footer__connect {
-    grid-column: span 4;
-  }
-}
-
-/* ============================================================
-   10. LAYOUT UTILITIES
+   8. LAYOUT UTILITIES
    ============================================================ */
 
 /* Content container — max-width with horizontal padding */
@@ -1017,27 +548,27 @@ header {
 
 /* ----- Hairline accents ----- */
 .hairline {
-  width: 3rem;
+  width: var(--space-2xl);
   height: 0.5px;
   background-color: var(--primary);
 }
 
 .hairline-muted {
-  width: 3rem;
+  width: var(--space-2xl);
   height: 0.5px;
   background-color: var(--outline-variant);
 }
 
 /* ============================================================
-   10. RESPONSIVE BREAKPOINTS
+   9. RESPONSIVE BREAKPOINTS
    Mobile-first: 375px, 768px, 1280px, 1440px
    ============================================================ */
 
 /* Tablet */
 @media (min-width: 768px) {
   .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
   }
 
   h1 {
@@ -1048,8 +579,8 @@ header {
 /* Desktop */
 @media (min-width: 1280px) {
   .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
   }
 }
 
@@ -1061,7 +592,7 @@ header {
 }
 
 /* ============================================================
-   10.5 SCROLL ENTRY ANIMATIONS
+   10. SCROLL ENTRY ANIMATIONS
    ============================================================ */
 
 .animate-on-scroll {
@@ -1145,99 +676,11 @@ img {
   opacity: 1;
 }
 
-/* ============================================================
-   13. STATS BAR COMPONENT
-   Spec: Build System (Responsive Marquee variant)
-   ============================================================ */
-
-.stats-section {
-  padding: 4rem 0;
-  border-top: var(--border-hairline) solid rgba(var(--outline-variant-rgb), 0.3);
-}
-
-.stats-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.stats-item__value {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: var(--display-md);
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-}
-
-.stats-item__label {
-  font-family: var(--font-sans);
-  font-size: var(--label-sm);
-  color: var(--secondary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* Desktop: Static 6-column grid */
-@media (min-width: 769px) {
-  .stats-marquee__track {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 2rem;
-  }
-  .stats-item--clone {
-    display: none;
-  }
-}
-
-/* Mobile: Infinite scrolling marquee */
-@media (max-width: 768px) {
-  .stats-section {
-    border-top: none; /* Remove horizontal divider per spec violation */
-  }
-
-  .stats-marquee {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .stats-marquee__track {
-    display: flex;
-    width: max-content;
-    gap: 48px;
-    animation: marquee-scroll 28s linear infinite;
-  }
-
-  .stats-marquee:hover .stats-marquee__track {
-    animation-play-state: paused;
-  }
-
-  .stats-item {
-    min-width: 120px;
-    flex-shrink: 0;
-  }
-}
-
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 /* ─── MOBILE RESPONSIVENESS — AesCode Co. ─── */
 
 @media (max-width: 768px) {
 
-  /* ── 1. NAVBAR ── */
-  .navbar__links {
-    display: none;
-  }
-  .navbar__toggle {
-    display: flex;
-  }
-  .navbar__inner {
-    padding: 0 1.25rem;
-  }
-
-  /* ── 2. HERO HEADINGS ── */
+  /* ── 1. HERO HEADINGS ── */
   h1 {
     font-size: clamp(2.5rem, 10vw, 4rem) !important;
     line-height: 1.1 !important;
@@ -1249,8 +692,7 @@ img {
     font-size: clamp(1.25rem, 5vw, 2rem) !important;
   }
 
-  /* ── 3. UNIVERSAL 12-COLUMN GRID COLLAPSE ── */
-  /* Any element using grid-template-columns: repeat(12, 1fr) */
+  /* ── 2. UNIVERSAL 12-COLUMN GRID COLLAPSE ── */
   [style*="grid-template-columns: repeat(12, 1fr)"],
   .grid-layout,
   .leadership-grid,
@@ -1258,7 +700,7 @@ img {
   .governance-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 2rem !important;
+    gap: var(--space-xl) !important;
   }
 
   /* Reset all inline grid-column spans on mobile */
@@ -1266,82 +708,52 @@ img {
     grid-column: auto !important;
   }
 
-  /* ── 4. MULTI-COLUMN CONTENT GRIDS ── */
-  /* Pillars (5-col), Secretariat (4-col), Dept Heads grids */
+  /* ── 3. MULTI-COLUMN CONTENT GRIDS ── */
   [style*="grid-template-columns: repeat(5, 1fr)"],
   [style*="grid-template-columns: repeat(4, 1fr)"],
   .pillars-grid,
   .secretariat-grid {
     grid-template-columns: 1fr 1fr !important;
-    gap: 2rem !important;
+    gap: var(--space-xl) !important;
   }
 
   /* 2-column grids → single column */
   [style*="grid-template-columns: repeat(2, 1fr)"] {
     grid-template-columns: 1fr !important;
-    gap: 3rem !important;
+    gap: var(--space-2xl) !important;
   }
 
-  /* ── 5. SECTION PADDING REDUCTION ── */
+  /* ── 4. SECTION PADDING REDUCTION ── */
   section {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
   }
 
-  /* ── 6. PORTRAIT / IMAGE CONTAINERS ── */
+  /* ── 5. PORTRAIT / IMAGE CONTAINERS ── */
   .portrait-container {
     width: 100% !important;
     max-width: 320px !important;
     margin: 0 auto !important;
   }
 
-  /* ── 7. COHORT 1 — INTERNAL ANCHOR NAV ── */
-  .anchor-nav {
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 1rem;
-  }
-
-  /* ── 8. STATS BAR ── */
-  .stats-bar,
-  [style*="grid-template-columns: repeat(5, 1fr)"].stats {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 2rem !important;
-  }
-
-  /* ── 9. FOOTER GRID ── */
-  .footer__grid {
-    grid-template-columns: 1fr !important;
-    gap: 3rem !important;
-  }
-
-  /* ── 10. NEWSLETTER BLOCK ── */
-  .newsletter-form,
-  [class*="newsletter"] form,
-  [class*="newsletter"] > div {
-    flex-direction: column !important;
-    gap: 1rem !important;
-  }
-
-  /* ── 11. PARTNER LOGOS ROW ── */
+  /* ── 6. PARTNER LOGOS ROW ── */
   .partners-row,
   [class*="partners"] {
     flex-wrap: wrap !important;
-    gap: 1.5rem !important;
+    gap: var(--space-lg) !important;
     justify-content: center !important;
   }
 
-  /* ── 12. CLOSING QUOTE TEXT ── */
+  /* ── 7. CLOSING QUOTE TEXT ── */
   blockquote {
     font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
-    padding: 0 0.5rem !important;
+    padding: 0 var(--space-sm) !important;
   }
 
-  /* ── 13. PREVENT OVERFLOW FROM LARGE PADDING/MARGIN ── */
+  /* ── 8. PREVENT OVERFLOW FROM LARGE PADDING/MARGIN ── */
   [style*="padding: 10rem"],
   [style*="padding: 8rem"] {
-    padding: 4rem 0 !important;
+    padding: var(--space-3xl) 0 !important;
   }
 
   /* Contact page email — prevent overflow on very small screens */
@@ -1362,7 +774,7 @@ img {
   }
 
   .container {
-    padding: 0 1rem !important;
+    padding: 0 var(--space-md) !important;
   }
 
   h1 {

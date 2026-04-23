@@ -5,7 +5,7 @@
     "name": "Mr. Viraj Gaur",
     "title": "PHD SCHOLAR, KCDH IIT BOMBAY",
     "specialty": "IMAGE PROCESSING",
-    "bio": "Mr. Viraj Gaur holds a Bachelor's and Master's degree in Computer Science from Queen's University Belfast (2022), followed by an Engineering Doctorate in Software Technology from Eindhoven University of Technology. His academic and professional background spans software development, automation, and published research in cyber-physical systems and image processing. He currently works at the intersection of neurology and technology, with a specialisation in image processing and deep learning, making him exceptionally well-placed to mentor teams working in the medtech space.",
+    "bio": ["Mr. Viraj Gaur holds a Bachelor's and Master's degree in Computer Science from Queen's University Belfast (2022), followed by an Engineering Doctorate in Software Technology from Eindhoven University of Technology. His academic and professional background spans software development, automation, and published research in cyber-physical systems and image processing. He currently works at the intersection of neurology and technology, with a specialisation in image processing and deep learning, making him exceptionally well-placed to mentor teams working in the medtech space."],
     "photo": "/images/mentors/gaur.webp"
   },
   {
@@ -14,7 +14,7 @@
     "name": "Dr. Subham Ghosh",
     "title": "POSTDOCTORAL FELLOW, KCDH IIT BOMBAY",
     "specialty": "WEARABLE SYSTEMS",
-    "bio": "Dr. Subham Ghosh is a Postdoctoral Fellow at the Koita Centre for Digital Health (KCDH), IIT Bombay. His work brings together wearable electronics, advanced signal processing, and shallow deep-learning models optimized for edge computing. His interdisciplinary expertise positions him strongly to guide teams working on real-time healthcare monitoring and intelligent sensing systems.",
+    "bio": ["Dr. Subham Ghosh is a Postdoctoral Fellow at the Koita Centre for Digital Health (KCDH), IIT Bombay. His work brings together wearable electronics, advanced signal processing, and shallow deep-learning models optimized for edge computing. His interdisciplinary expertise positions him strongly to guide teams working on real-time healthcare monitoring and intelligent sensing systems."],
     "photo": "/images/mentors/ghosh.webp"
   },
   {
@@ -23,7 +23,7 @@
     "name": "Mr. Shayantan Banerjee",
     "title": "PHD SCHOLAR, KCDH IIT BOMBAY",
     "specialty": "TRANSLATIONAL RESEARCH",
-    "bio": "Mr. Shayantan Banerjee is a PhD student at the Koita Centre for Digital Health (KCDH), IIT Bombay, working in computational omics. His research focuses on developing machine learning models using clinical data, with a strong emphasis on interpretability and generalizability. His expertise sits at the intersection of healthcare, data science, and translational research, making him exceptionally well-suited to mentor teams working on medtech challenges.",
+    "bio": ["Mr. Shayantan Banerjee is a PhD student at the Koita Centre for Digital Health (KCDH), IIT Bombay, working in computational omics. His research focuses on developing machine learning models using clinical data, with a strong emphasis on interpretability and generalizability. His expertise sits at the intersection of healthcare, data science, and translational research, making him exceptionally well-suited to mentor teams working on medtech challenges."],
     "photo": "/images/mentors/banerjee.webp"
   }
 ]
