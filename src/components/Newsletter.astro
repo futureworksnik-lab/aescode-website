@@ -1,0 +1,133 @@
+---
+// Newsletter.astro — AesCode Co. v2.0
+// Supabase-backed newsletter subscription — env vars
+---
+
+<section class="newsletter-section section-primary" id="newsletter" aria-labelledby="newsletter-heading">
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__content">
+        <p class="label-sm mb-md reveal" style="color: var(--accent);">STAY INFORMED</p>
+        <h2 id="newsletter-heading" class="display-sm serif italic text-primary mb-md reveal reveal--delay-1">Research updates, directly to your inbox.</h2>
+        <p class="body-md reveal reveal--delay-2" style="color: var(--on-surface-variant); margin-bottom: 0;">Weekly dispatches on MedTech research, cohort updates, and institutional announcements.</p>
+      </div>
+
+      <div class="newsletter__form-wrap reveal reveal--delay-2">
+        <p class="newsletter__social-proof mono data-sm mb-lg">Join 100+ clinicians and engineers</p>
+        <form class="newsletter__form" id="newsletter-form" novalidate aria-label="Email newsletter subscription">
+          <div class="newsletter__field-group">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              class="input newsletter__input"
+              placeholder="your@institution.edu"
+              autocomplete="email"
+              required
+              aria-required="true"
+            />
+            <button type="submit" class="btn btn--primary newsletter__btn" id="newsletter-submit">
+              Subscribe
+            </button>
+          </div>
+          <p class="newsletter__status body-sm" id="newsletter-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter-section { background: var(--surface); }
+
+  .newsletter__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl);
+    align-items: start;
+    padding-top: var(--space-lg);
+    border-top: 0.5px solid rgba(196, 198, 206, 0.35);
+  }
+
+  .newsletter__social-proof {
+    color: var(--secondary);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .newsletter__field-group {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-end;
+  }
+  .newsletter__input {
+    flex: 1;
+    font-size: var(--body-md);
+  }
+  .newsletter__btn { white-space: nowrap; flex-shrink: 0; }
+
+  .newsletter__status {
+    margin-top: var(--space-md);
+    min-height: 1.25rem;
+    color: var(--secondary);
+    display: none;
+  }
+  .newsletter__status.visible { display: block; }
+  .newsletter__status.success { color: var(--data-positive); }
+  .newsletter__status.error   { color: var(--error); }
+
+  /* Utility */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .newsletter__inner { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .newsletter__field-group { flex-direction: column; align-items: stretch; }
+    .newsletter__btn { justify-content: center; }
+  }
+</style>
+
+<script>
+  const SUPABASE_URL  = import.meta.env?.PUBLIC_SUPABASE_URL  || '';
+  const SUPABASE_KEY  = import.meta.env?.PUBLIC_SUPABASE_ANON_KEY || '';
+
+  const form   = document.getElementById('newsletter-form');
+  const btn    = document.getElementById('newsletter-submit');
+  const status = document.getElementById('newsletter-status');
+  const input  = document.getElementById('newsletter-email');
+
+  function setStatus(msg, type = '') {
+    if (!status) return;
+    status.textContent = msg;
+    status.className = `newsletter__status body-sm visible ${type}`;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (input as HTMLInputElement)?.value?.trim();
+    if (!email) { setStatus('Please enter a valid email.', 'error'); return; }
+
+    btn?.setAttribute('disabled', 'true');
+    setStatus('Subscribing…');
+
+    try {
+      const client = (window as any).supabase?.createClient(SUPABASE_URL, SUPABASE_KEY);
+      const { error } = await client.from('newsletter_subscriptions').insert([{ email }]);
+
+      if (error && error.code !== '23505') {
+        setStatus('Something went wrong. Please try again.', 'error');
+      } else {
+        setStatus('You\'re subscribed. Welcome to the network.', 'success');
+        (input as HTMLInputElement).value = '';
+      }
+    } catch {
+      setStatus('Unable to subscribe. Please try again later.', 'error');
+    } finally {
+      btn?.removeAttribute('disabled');
+    }
+  });
+</script>

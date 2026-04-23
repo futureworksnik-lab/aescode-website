@@ -1,0 +1,132 @@
+---
+// ClinicalPartners.astro — AesCode Co. v2.0
+// NEW section — Bharati Hospital as visual anchor with event photography
+---
+
+<section class="partners section-primary bg-surface-low" id="clinical-partners" aria-labelledby="partners-heading">
+  <div class="container">
+    <div class="partners__grid">
+
+      <!-- Left: Text content -->
+      <div class="partners__content">
+        <p class="label-sm mb-lg reveal" style="color: var(--accent);">OUR CLINICAL ANCHOR</p>
+        <h2 id="partners-heading" class="display-md serif italic text-primary mb-xl reveal reveal--delay-1">
+          Built on real hospital problems. Not hypothetical ones.
+        </h2>
+        <div class="hairline hairline--short hairline--accent mb-xl reveal reveal--delay-1"></div>
+
+        <p class="body-lg serif mb-xl reveal reveal--delay-2" style="color: var(--on-surface);">
+          Bharati Hospital, Pune — one of India's largest teaching hospitals — is the founding clinical partner of Aescode Co.
+        </p>
+        <p class="body-md mb-2xl reveal reveal--delay-2" style="color: var(--on-surface-variant);">
+          Every problem statement we work on is sourced directly from their clinicians. Every certified tool we produce is offered to them first. This is not co-branding — it is co-creation. Bharati Hospital is not a logo on our website. It is the source of truth for every research problem we accept.
+        </p>
+
+        <div class="partners__logos reveal reveal--delay-3">
+          <div class="partners__logo-item">
+            <img
+              src="/images/BV(DU)MC logo.png"
+              alt="Bharati Vidyapeeth Deemed University Medical College"
+              height="48"
+              style="height: 48px; width: auto; object-fit: contain; filter: grayscale(30%) opacity(0.8);"
+            />
+          </div>
+          <div class="partners__logo-sep"></div>
+          <div class="partners__logo-item">
+            <img
+              src="/images/KCDH - IITB.jpeg"
+              alt="Koita Centre for Digital Health, IIT Bombay"
+              height="36"
+              style="height: 36px; width: auto; object-fit: contain; filter: grayscale(30%) opacity(0.7); border-radius: 2px;"
+            />
+            <span class="mono data-sm" style="color: var(--secondary); margin-top: 0.25rem;">Partner - Cohort 1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Photography grid -->
+      <div class="partners__photos reveal reveal--delay-2">
+        <div class="partners__photo-main">
+          <img
+            src="/images/archive/event_03.jpeg"
+            alt="AesCode Cohort 1 — research presentation at Bharati Vidyapeeth Medical College"
+            class="partners__img partners__img--main"
+            loading="lazy"
+          />
+        </div>
+        <div class="partners__photo-pair">
+          <img
+            src="/images/archive/event_05.jpeg"
+            alt="AesCode Cohort 1 — mentorship session"
+            class="partners__img"
+            loading="lazy"
+          />
+          <img
+            src="/images/archive/event_07.jpeg"
+            alt="AesCode Cohort 1 — judging panel"
+            class="partners__img"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .partners__logos {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+  .partners__logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+  .partners__logo-sep {
+    width: 0.5px;
+    height: 48px;
+    background: rgba(196, 198, 206, 0.4);
+  }
+
+  /* Photo grid */
+  .partners__photos {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: var(--space-md);
+  }
+  .partners__photo-main,
+  .partners__photo-pair { border-radius: var(--radius-md); overflow: hidden; }
+  .partners__photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+  .partners__img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%) contrast(1.05);
+    border-radius: var(--radius-md);
+  }
+  .partners__img--main { aspect-ratio: 16 / 9; }
+  .partners__photo-pair .partners__img { aspect-ratio: 4 / 3; }
+
+  @media (max-width: 1024px) {
+    .partners__grid { grid-template-columns: 1fr; gap: var(--space-3xl); }
+  }
+  @media (max-width: 640px) {
+    .partners__photos { gap: var(--space-sm); }
+    .partners__photo-pair { gap: var(--space-sm); }
+  }
+</style>

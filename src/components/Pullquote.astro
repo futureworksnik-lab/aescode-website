@@ -1,0 +1,60 @@
+---
+// Pullquote.astro — AesCode Co. v2.0
+// Centered editorial quote with accent left-border
+export interface Props {
+  quote?: string;
+  attribution?: string;
+}
+const {
+  quote = 'Where clinical truth meets engineering precision, transformative systems are born.',
+  attribution = 'Aescode Co.'
+} = Astro.props;
+const q = quote;
+const attr = attribution;
+---
+
+<section class="pullquote-section section-primary" aria-label="Mission statement">
+  <div class="container">
+    <div class="pullquote reveal">
+      <blockquote class="pullquote__text serif italic display-sm text-primary">
+        &ldquo;{q}&rdquo;
+      </blockquote>
+      <footer class="pullquote__attribution">
+        <span class="mono data-sm" style="color: var(--secondary); letter-spacing: 0.08em;">— {attr}</span>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pullquote-section {
+    background: var(--surface-container-low);
+    border-top: 0.5px solid rgba(196, 198, 206, 0.35);
+    border-bottom: 0.5px solid rgba(196, 198, 206, 0.35);
+  }
+
+  .pullquote {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-left: var(--space-xl);
+    border-left: var(--border-accent);
+  }
+
+  .pullquote__text {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.4;
+    font-weight: 400;
+    margin-bottom: var(--space-xl);
+    color: var(--primary);
+  }
+
+  .pullquote__attribution {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .pullquote { padding-left: var(--space-lg); }
+  }
+</style>

@@ -1,0 +1,148 @@
+---
+// Footer.astro — AesCode Co. v2.0
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner container">
+    <div class="footer__brand">
+      <p class="footer__wordmark">AESCODE CO.</p>
+      <p class="footer__tagline">MedTech Research. Clinically Grounded.<br />Institutionally Anchored.</p>
+      <div class="footer__badges">
+        <span class="badge">DPDP ACT 2023</span>
+        <span class="badge">ICMR 2023</span>
+        <span class="badge">CDSCO SaMD</span>
+      </div>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <div class="footer__col">
+        <h4 class="footer__heading">Platform</h4>
+        <ul>
+          <li><a href="/" class="footer__link">Home</a></li>
+          <li><a href="/about" class="footer__link">About</a></li>
+          <li><a href="/cohort1" class="footer__link">Cohort 1</a></li>
+          <li><a href="/ai-ethics" class="footer__link">AI Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">Connect</h4>
+        <ul>
+          <li><a href="/contact" class="footer__link">Contact</a></li>
+          <li><a href="/meet-the-team" class="footer__link">Meet the Team</a></li>
+          <li><a href="/special-thanks" class="footer__link">Special Thanks</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">Legal</h4>
+        <ul>
+          <li><a href="#" class="footer__link">Privacy Policy</a></li>
+          <li><a href="#" class="footer__link">Terms of Service</a></li>
+          <li><a href="#" class="footer__link">Archive</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer__bottom container">
+    <span class="footer__copy">© {year} AesCode Co.</span>
+    <span class="footer__version">V2.0.0-REDESIGN</span>
+    <a
+      href="https://www.linkedin.com/company/aescode"
+      class="footer__link footer__social"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="AesCode on LinkedIn"
+    >
+      LinkedIn →
+    </a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--primary);
+    color: rgba(255, 255, 255, 0.75);
+    padding-top: var(--space-4xl);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-4xl);
+    padding-bottom: var(--space-3xl);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer__wordmark {
+    font-family: var(--font-sans);
+    font-size: var(--label-md);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+    margin-bottom: var(--space-md);
+  }
+  .footer__tagline {
+    font-size: var(--body-sm);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-lg);
+  }
+  .footer__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .footer__badges .badge {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .footer__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+  .footer__heading {
+    font-family: var(--font-sans);
+    font-size: var(--label-sm);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: var(--space-lg);
+    font-style: normal;
+  }
+  .footer__col ul { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .footer__link {
+    font-size: var(--body-sm);
+    color: rgba(255, 255, 255, 0.65);
+    transition: color var(--transition-fast);
+  }
+  .footer__link:hover { color: #fff; }
+
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    padding-block: var(--space-lg);
+  }
+  .footer__copy, .footer__version {
+    font-family: var(--font-mono);
+    font-size: var(--data-sm);
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.06em;
+  }
+  .footer__social { margin-left: auto; }
+
+  @media (max-width: 768px) {
+    .footer__inner { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .footer__nav { grid-template-columns: 1fr 1fr; }
+    .footer__bottom { flex-wrap: wrap; gap: var(--space-md); }
+    .footer__social { margin-left: 0; }
+  }
+  @media (max-width: 480px) {
+    .footer__nav { grid-template-columns: 1fr; }
+  }
+</style>

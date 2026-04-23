@@ -1,0 +1,108 @@
+/* ============================================================
+   AesCode Co. — Design Tokens v2.0
+   Redesign 2026 | Triple-stack typography system
+   ============================================================ */
+
+:root {
+
+  /* ── FONTS ── */
+  --font-serif:   'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Public Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* ── CORE COLORS ── */
+  --surface:                   #FCF9F8;
+  --primary:                   #021934;
+  --on-surface:                #1C1B1B;
+  --on-background:             #1C1B1B;
+  --secondary:                 #707785;
+
+  /* ── ACCENT (NEW — Teal) ── */
+  --accent:                    #0891B2;
+  --accent-hover:              #0E7490;
+  --accent-subtle:             #E0F7FA;
+  --accent-subtle-border:      #A5F3FC;
+  --data-positive:             #059669;
+  --mono-surface:              #F0F2F5;
+
+  /* ── SURFACE TIERS ── */
+  --surface-container-lowest:  #FFFFFF;
+  --surface-container-low:     #F6F3F2;
+  --surface-container:         #F0EDEC;
+  --surface-container-high:    #EBE7E7;
+  --surface-container-highest: #E5E2E1;
+  --surface-dim:               #DCD9D9;
+
+  /* ── ADDITIONAL SEMANTIC ── */
+  --surface-tint:              #4C5F7E;
+  --on-surface-variant:        #44474D;
+  --outline:                   #74777E;
+  --outline-variant:           #C4C6CE;
+  --on-primary:                #FFFFFF;
+  --primary-container:         #1A2E4A;
+  --error:                     #BA1A1A;
+  --error-container:           #FFDAD6;
+  --on-error:                  #FFFFFF;
+  --inverse-surface:           #313030;
+  --inverse-on-surface:        #F3F0EF;
+
+  /* ── TYPE SCALE ── */
+  --display-hero:  clamp(3rem,    6vw,  4.5rem);   /* Homepage hero only */
+  --display-lg:    clamp(2.5rem,  5vw,  3.5rem);   /* Page heroes */
+  --display-md:    clamp(2rem,    4vw,  2.5rem);   /* Section headlines */
+  --display-sm:    clamp(1.75rem, 3vw,  2rem);     /* Sub-headlines */
+  --headline-lg:   1.75rem;
+  --headline-md:   1.5rem;
+  --headline-sm:   1.25rem;
+  --title-lg:      1.125rem;
+  --title-md:      1rem;
+  --body-xl:       1.25rem;
+  --body-lg:       1.125rem;
+  --body-md:       1rem;
+  --body-sm:       0.875rem;
+  --label-lg:      0.875rem;
+  --label-md:      0.75rem;
+  --label-sm:      0.6875rem;
+  --data-lg:       clamp(2rem,    4vw,  3rem);     /* Hero stats */
+  --data-md:       1rem;
+  --data-sm:       0.75rem;
+
+  /* ── SPACING ── */
+  --space-xs:      0.25rem;    /*  4px */
+  --space-sm:      0.5rem;     /*  8px */
+  --space-md:      1rem;       /* 16px */
+  --space-lg:      1.5rem;     /* 24px */
+  --space-xl:      2rem;       /* 32px */
+  --space-2xl:     3rem;       /* 48px */
+  --space-3xl:     4rem;       /* 64px */
+  --space-4xl:     5rem;       /* 80px */
+  --space-5xl:     7.5rem;     /* 120px */
+  --space-6xl:     10rem;      /* 160px */
+
+  /* ── SECTION RHYTHM ── */
+  --section-hero:      var(--space-6xl);
+  --section-primary:   var(--space-4xl);
+  --section-secondary: var(--space-3xl);
+  --section-dense:     var(--space-2xl);
+
+  /* ── RADIUS ── */
+  --radius-none: 0;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+
+  /* ── SHADOW ── */
+  --shadow-ambient: 0px 20px 40px rgba(15, 15, 15, 0.04);
+  --shadow-card:    0px 4px 16px rgba(2, 25, 52, 0.06);
+
+  /* ── LAYOUT ── */
+  --max-width:  80rem;   /* 1280px */
+  --max-prose:  48rem;   /* 768px — optimal reading width */
+
+  /* ── TRANSITIONS ── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* ── ACCENT BORDER ── */
+  --border-accent: 2px solid var(--accent);
+}

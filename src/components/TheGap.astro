@@ -1,0 +1,96 @@
+---
+// TheGap.astro — AesCode Co. v2.0
+// Asymmetric 4/8 editorial grid — The structural problem AesCode solves
+---
+
+<section class="gap-section section-primary bg-surface-low" id="the-problem" aria-labelledby="gap-heading">
+  <div class="container">
+    <div class="gap-section__grid grid-12">
+
+      <!-- Left: Section label + headline (4 cols) -->
+      <div class="col-4 gap-section__left">
+        <p class="label-sm mb-lg reveal" style="color: var(--accent);">THE PROBLEM</p>
+        <h2 id="gap-heading" class="display-md serif italic text-primary reveal reveal--delay-1">
+          The gap is not ambition. It is infrastructure.
+        </h2>
+        <div class="hairline hairline--accent hairline--short mt-xl reveal reveal--delay-2"></div>
+      </div>
+
+      <!-- Right: Content (8 cols) -->
+      <div class="col-8 gap-section__right">
+        <!-- Key stat -->
+        <div class="gap-section__stat reveal">
+          <div class="gap-section__stat-number">
+            <span class="data-lg mono text-accent" data-counter data-target="834" data-suffix="M">834M</span>
+            <span class="gap-section__stat-label label-md">ABHA digital health IDs registered</span>
+          </div>
+          <p class="body-sm text-muted gap-section__stat-note">
+            National Digital Health Mission, Government of India, 2025
+          </p>
+        </div>
+
+        <!-- Body copy -->
+        <div class="gap-section__body reveal reveal--delay-1">
+          <p class="body-lg serif text-on-surface mb-xl" style="color: var(--on-surface);">
+            India has 834 million ABHA digital health IDs and 438,000 registered health facilities. The data infrastructure exists. The engineering talent exists. Clinical AI adoption is blocked by one thing: trust.
+          </p>
+          <p class="body-md mb-xl" style="color: var(--on-surface-variant);">
+            Hospital procurement teams will not deploy software that has not been independently validated against Indian patient populations. AI trained on US or European datasets performs differently — sometimes dangerously differently — on Indian patients. And there is no Indian institution that benchmarks and certifies clinical AI tools.
+          </p>
+          <p class="body-md semibold text-primary">
+            Aescode builds that institution.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .gap-section__grid {
+    column-gap: var(--space-4xl);
+    align-items: start;
+  }
+  .gap-section__left {
+    position: sticky;
+    top: calc(68px + var(--space-2xl));
+  }
+
+  .gap-section__stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-xl) var(--space-xl);
+    background: var(--surface-container-lowest);
+    border: 0.5px solid rgba(196, 198, 206, 0.4);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2xl);
+  }
+  .gap-section__stat-number {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+  .gap-section__stat-label {
+    color: var(--secondary);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .gap-section__stat-note {
+    margin-top: var(--space-sm);
+    color: var(--outline);
+    font-family: var(--font-mono);
+    font-size: var(--data-sm);
+    letter-spacing: 0.04em;
+  }
+
+  .gap-section__body { max-width: 100%; }
+
+  @media (max-width: 1024px) {
+    .gap-section__grid { display: flex; flex-direction: column; gap: var(--space-2xl); }
+    .gap-section__left { position: static; }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+// TrustStrip.astro — AesCode Co. v2.0
+// Institutional partner logos — NEW section
+---
+
+<section class="trust-strip section-dense" aria-label="Institutional partners and affiliations">
+  <div class="container">
+    <p class="trust-strip__label label-sm reveal">Institutional Partners &amp; Affiliations</p>
+    <div class="trust-strip__logos reveal reveal--delay-1">
+
+      <!-- Bharati Vidyapeeth -->
+      <div class="trust-strip__item">
+        <img
+          src="/images/BV(DU)MC logo.png"
+          alt="Bharati Vidyapeeth Deemed University Medical College — Founding Clinical Partner"
+          class="trust-strip__logo"
+          height="40"
+          loading="lazy"
+        />
+        <span class="trust-strip__caption">Founding Clinical Partner</span>
+      </div>
+
+      <div class="trust-strip__divider" aria-hidden="true"></div>
+
+      <!-- KCDH IIT Bombay -->
+      <div class="trust-strip__item">
+        <img
+          src="/images/KCDH - IITB.jpeg"
+          alt="Koita Centre for Digital Health, IIT Bombay — Partner, Cohort 1"
+          class="trust-strip__logo trust-strip__logo--kcdh"
+          height="40"
+          loading="lazy"
+        />
+        <span class="trust-strip__caption">Partner - Cohort 1</span>
+      </div>
+
+      <div class="trust-strip__divider" aria-hidden="true"></div>
+
+      <!-- Nexus -->
+      <div class="trust-strip__item">
+        <img
+          src="/images/nuxus_logo.png"
+          alt="Nexus 3.0 — Annual Research Conference"
+          class="trust-strip__logo"
+          height="40"
+          loading="lazy"
+        />
+        <span class="trust-strip__caption">Research Conference Host</span>
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-strip {
+    background: var(--surface-container-lowest);
+    border-top: 0.5px solid rgba(196, 198, 206, 0.3);
+    border-bottom: 0.5px solid rgba(196, 198, 206, 0.3);
+  }
+  .trust-strip__label {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--outline);
+  }
+  .trust-strip__logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3xl);
+    flex-wrap: wrap;
+  }
+  .trust-strip__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .trust-strip__logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.55);
+    transition: filter var(--transition-slow);
+  }
+  .trust-strip__logo--kcdh {
+    height: 34px;
+    border-radius: var(--radius-sm);
+  }
+  .trust-strip__logo:hover { filter: grayscale(0%) opacity(1); }
+  .trust-strip__caption {
+    font-family: var(--font-mono);
+    font-size: var(--data-sm);
+    color: var(--outline);
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  .trust-strip__divider {
+    width: 0.5px;
+    height: 48px;
+    background: rgba(196, 198, 206, 0.4);
+    flex-shrink: 0;
+  }
+  .trust-strip__item--badge { gap: var(--space-sm); }
+
+  @media (max-width: 768px) {
+    .trust-strip__logos { gap: var(--space-2xl); }
+    .trust-strip__divider { display: none; }
+  }
+</style>

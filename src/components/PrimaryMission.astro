@@ -1,0 +1,124 @@
+---
+// PrimaryMission.astro — AesCode Co. v2.0
+// Simple restrained single-column editorial section
+---
+
+<section class="mission section-primary" id="mission" aria-labelledby="mission-heading">
+  <div class="container">
+    <div class="mission__inner">
+
+      <div class="mission__label-col reveal">
+        <p class="label-sm" style="color: var(--accent);">THE PLATFORM</p>
+      </div>
+
+      <div class="mission__content">
+        <h2 id="mission-heading" class="display-md serif italic text-primary mb-xl reveal reveal--delay-1">
+          Three layers. One flywheel.
+        </h2>
+        <div class="hairline hairline--short hairline--accent mb-2xl reveal reveal--delay-1"></div>
+
+        <div class="mission__layers">
+
+          <div class="mission__layer reveal reveal--delay-1">
+            <div class="mission__layer-header">
+              <span class="mono data-md text-accent mission__layer-num">LAYER 0</span>
+              <h3 class="mission__layer-title serif text-primary">Talent Engine</h3>
+            </div>
+            <p class="body-md" style="color: var(--on-surface-variant);">
+              Recurring cohorts surface engineering teams working on real clinical problems from Bharati Hospital. The best teams advance to the next layer.
+            </p>
+          </div>
+
+          <div class="mission__connector" aria-hidden="true">
+            <span class="mono data-sm" style="color: var(--outline);">↓</span>
+          </div>
+
+          <div class="mission__layer reveal reveal--delay-2">
+            <div class="mission__layer-header">
+              <span class="mono data-md text-accent mission__layer-num">LAYER 1</span>
+              <h3 class="mission__layer-title serif text-primary">Federated Learning Infrastructure</h3>
+            </div>
+            <p class="body-md" style="color: var(--on-surface-variant);">
+              Selected teams train AI on real hospital data — without that data ever leaving the hospital. The model goes to the data. Not the other way around. Model weights, not patient records, are what moves.
+            </p>
+          </div>
+
+          <div class="mission__connector" aria-hidden="true">
+            <span class="mono data-sm" style="color: var(--outline);">↓</span>
+          </div>
+
+          <div class="mission__layer reveal reveal--delay-3">
+            <div class="mission__layer-header">
+              <span class="mono data-md text-accent mission__layer-num">LAYER 2</span>
+              <h3 class="mission__layer-title serif text-primary">Certification &amp; Benchmarking</h3>
+            </div>
+            <p class="body-md" style="color: var(--on-surface-variant);">
+              An independent evaluation process tests whether a clinical AI tool is accurate, safe, and fit for Indian clinical deployment. Pass = certification. Fail = structured feedback. Each certified model builds the benchmark. The system compounds.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .mission__inner {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+  .mission__label-col {
+    padding-top: 0.3rem;
+    position: sticky;
+    top: calc(68px + var(--space-2xl));
+  }
+
+  .mission__layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mission__layer {
+    padding: var(--space-xl) 0;
+    border-bottom: 0.5px solid rgba(196, 198, 206, 0.35);
+  }
+  .mission__layer:first-child { padding-top: 0; }
+  .mission__layer:last-child  { border-bottom: none; }
+
+  .mission__layer-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+  }
+  .mission__layer-num {
+    flex-shrink: 0;
+    letter-spacing: 0.08em;
+  }
+  .mission__layer-title {
+    font-size: var(--headline-md);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .mission__connector {
+    padding: var(--space-md) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding-left: calc(var(--data-md) + var(--space-lg) + 4rem);
+  }
+
+  @media (max-width: 768px) {
+    .mission__inner { grid-template-columns: 1fr; gap: var(--space-2xl); }
+    .mission__label-col { position: static; }
+    .mission__connector { padding-left: 0; }
+  }
+</style>

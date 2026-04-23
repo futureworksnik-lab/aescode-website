@@ -1,0 +1,227 @@
+---
+// Navbar.astro — AesCode Co. v2.0
+export interface Props {
+  activePage?: string;
+}
+const { activePage = '' } = Astro.props;
+
+const navLinks = [
+  { label: 'Home',      href: '/' },
+  { label: 'About',     href: '/about' },
+  { label: 'Cohort 1',  href: '/cohort1' },
+  { label: 'AI Ethics', href: '/ai-ethics' },
+  { label: 'Contact',   href: '/contact' },
+];
+---
+
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="navbar__inner container">
+    <a href="/" class="navbar__brand" aria-label="AesCode Co. — Home">
+      AesCode Co.
+    </a>
+
+    <ul class="navbar__links" id="nav-links" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class={`navbar__link ${activePage === link.href ? 'navbar__link--active' : ''}`}
+            aria-current={activePage === link.href ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="/contact" class="btn btn--primary navbar__cta hide-mobile">
+      Partner With Us
+    </a>
+
+    <button
+      class="navbar__toggle"
+      id="nav-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="navbar__bar"></span>
+      <span class="navbar__bar"></span>
+      <span class="navbar__bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="navbar__mobile" id="mobile-menu" role="menu" aria-hidden="true">
+    <div class="container">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`navbar__mobile-link ${activePage === link.href ? 'navbar__mobile-link--active' : ''}`}
+          role="menuitem"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/contact" class="btn btn--primary" style="margin-top: 1.5rem; width: 100%; justify-content: center;">
+        Partner With Us
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(252, 249, 248, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid rgba(196, 198, 206, 0.3);
+    transition: background var(--transition-base), box-shadow var(--transition-base);
+  }
+  .navbar.scrolled {
+    background: rgba(252, 249, 248, 0.98);
+    box-shadow: 0 1px 16px rgba(2, 25, 52, 0.06);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .navbar__brand {
+    font-family: var(--font-sans);
+    font-size: var(--label-lg);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    transition: opacity var(--transition-fast);
+  }
+  .navbar__brand:hover { opacity: 0.7; }
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .navbar__link {
+    font-family: var(--font-sans);
+    font-size: var(--body-sm);
+    font-weight: 500;
+    color: var(--secondary);
+    letter-spacing: 0.01em;
+    transition: color var(--transition-fast);
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width var(--transition-base);
+  }
+  .navbar__link:hover { color: var(--primary); }
+  .navbar__link:hover::after { width: 100%; }
+  .navbar__link--active { color: var(--primary); }
+  .navbar__link--active::after { width: 100%; }
+
+  /* CTA in nav */
+  .navbar__cta {
+    font-size: 0.75rem;
+    padding: 0.5625rem 1.25rem;
+  }
+
+  /* Hamburger */
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .navbar__bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--primary);
+    transition: transform var(--transition-base), opacity var(--transition-fast);
+    border-radius: 1px;
+  }
+  .navbar__toggle[aria-expanded="true"] .navbar__bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .navbar__toggle[aria-expanded="true"] .navbar__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar__toggle[aria-expanded="true"] .navbar__bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .navbar__mobile {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out, padding var(--transition-base);
+    background: var(--surface);
+    border-top: 0.5px solid rgba(196, 198, 206, 0.3);
+  }
+  .navbar__mobile.open {
+    max-height: 400px;
+    padding-block: var(--space-lg);
+  }
+  .navbar__mobile .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .navbar__mobile-link {
+    font-family: var(--font-sans);
+    font-size: var(--body-md);
+    font-weight: 500;
+    color: var(--secondary);
+    padding-block: var(--space-xs);
+    transition: color var(--transition-fast);
+  }
+  .navbar__mobile-link:hover,
+  .navbar__mobile-link--active { color: var(--primary); }
+
+  @media (max-width: 1024px) {
+    .navbar__links { gap: var(--space-lg); }
+  }
+
+  @media (max-width: 768px) {
+    .navbar__links { display: none; }
+    .navbar__toggle { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navbar = document.getElementById('navbar');
+
+  // Mobile menu toggle
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    mobileMenu?.classList.toggle('open');
+    mobileMenu?.setAttribute('aria-hidden', String(isOpen));
+  });
+
+  // Scroll shadow
+  window.addEventListener('scroll', () => {
+    navbar?.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>

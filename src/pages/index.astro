@@ -1,0 +1,36 @@
+---
+// index.astro — AesCode Co. Homepage v2.0
+// Section order: Navbar → Hero → TrustStrip → TheGap → PrimaryMission → WhyNow → StatsBar → ClinicalPartners → Pullquote → Newsletter → Footer
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import TheGap from '../components/TheGap.astro';
+import PrimaryMission from '../components/PrimaryMission.astro';
+import WhyNow from '../components/WhyNow.astro';
+import StatsBar from '../components/StatsBar.astro';
+import ClinicalPartners from '../components/ClinicalPartners.astro';
+import Pullquote from '../components/Pullquote.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="AesCode Co. — India's Clinical AI Validation Infrastructure"
+  description="AesCode Co. connects engineering teams to real clinical problems, trains AI on hospital data without moving it, and certifies the tools hospitals can trust. Built with Bharati Hospital, Pune."
+>
+  <Navbar activePage="/" />
+  <main id="main-content">
+    <Hero />
+    <TrustStrip />
+    <TheGap />
+    <PrimaryMission />
+    <WhyNow />
+    <StatsBar />
+    <ClinicalPartners />
+    <Pullquote />
+    <Newsletter />
+  </main>
+  <Footer />
+</BaseLayout>
