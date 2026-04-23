@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+
+const pillars = [
+  { num: '01', title: 'Primary Mission', body: 'AesCode is a MedTech research platform. We identify clinically significant, unsolved problems and support rigorous, interdisciplinary programs that produce validated, deployment-ready outcomes.', bold: 'Research is the work. Everything else follows from it.' },
+  { num: '02', title: 'Research Methodology', body: 'Every program begins with clinical observation. Proposed solutions are held against research standards — reproducibility, clinical relevance, and deployment feasibility — before any development begins.', bold: 'We do not accelerate ideas that have not been tested.' },
+  { num: '03', title: 'Secondary Function', body: 'Where research outcomes demonstrate commercial viability, AesCode provides structured pathways toward startup formation and institutional support.', bold: 'Incubation follows validation — not the inverse.' },
+  { num: '04', title: 'Institutional Grounding', body: 'Our programs operate within the academic frameworks of KCDH IIT Bombay and Bharati Vidyapeeth Medical College. Every initiative is held to the standards of peer-reviewed research and clinical practice.', bold: 'We do not lower that bar.' },
+  { num: '05', title: 'Federated Learning Infrastructure', body: 'Selected teams train AI models on real hospital data without that data leaving the hospital. The model goes to the data — not the other way around. Model weights, not patient records, are the only thing that moves.', bold: 'Privacy-preserving by architecture, not by policy.' },
+];
+---
+
+<BaseLayout
+  title="About — AesCode Co."
+  description="AesCode Co. is a MedTech research platform. We identify clinically significant, unsolved problems and support rigorous, interdisciplinary programs that produce validated, deployment-ready outcomes."
+>
+  <Navbar activePage="/about" />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="about-hero section-hero">
+      <div class="container">
+        <div class="about-hero__inner">
+          <p class="label-sm mb-xl reveal" style="color: var(--accent);">ABOUT · 01</p>
+          <h1 class="display-hero serif italic text-primary mb-lg reveal reveal--delay-1">The Origin.</h1>
+          <p class="mono data-sm reveal reveal--delay-2" style="color: var(--secondary); letter-spacing: 0.08em;">
+            AESCODE CO. · RESEARCH PLATFORM · FOUNDED 2026
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Origin Story -->
+    <section class="section-primary bg-surface-low">
+      <div class="container">
+        <div class="about-origin__grid">
+          <div class="about-origin__heading">
+            <p class="label-sm mb-lg reveal" style="color: var(--accent);">THE STORY</p>
+            <h2 class="display-md serif italic text-primary mb-lg reveal reveal--delay-1">Origin Story</h2>
+            <div class="hairline hairline--short hairline--accent reveal reveal--delay-1"></div>
+            <div class="about-origin__partners reveal reveal--delay-2">
+              <p class="label-sm mb-md">Key Partners</p>
+              <ul class="about-origin__partner-list">
+                <li>Koita Centre for Digital Health (KCDH), IIT Bombay — Partner, Cohort 1</li>
+                <li>Bharati Vidyapeeth Medical College &amp; Bharati Hospital, Pune — Founding clinical anchor</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="about-origin__body reveal reveal--delay-1">
+            <p class="body-lg serif mb-xl" style="color: var(--on-surface);">
+              AesCode Co. emerged from Nexus 3.0 — the annual undergraduate research conference at Bharati Vidyapeeth Medical College, Pune — co-hosted for its inaugural cohort in partnership with the Koita Centre for Digital Health at IIT Bombay.
+            </p>
+            <p class="body-md mb-lg" style="color: var(--on-surface-variant);">
+              The founding premise was straightforward: meaningful progress at the intersection of medicine and technology does not happen by accident. It requires structure — clinical rigour on one side, engineering capability on the other, and a shared problem to hold them together.
+            </p>
+            <p class="body-md mb-lg" style="color: var(--on-surface-variant);">
+              We recognised that the existing landscape of MedTech innovation in India was fragmented. Events were isolated. Prototypes were built without clinical grounding. Research findings rarely translated into deployable solutions. The gap was not one of ambition — it was one of infrastructure.
+            </p>
+            <p class="body-md mb-lg semibold text-primary">AesCode was built to close that gap.</p>
+            <p class="body-md mb-lg" style="color: var(--on-surface-variant);">
+              Our programs are designed around a single constraint: every problem we work on must be both medically significant and technically tractable. We do not begin with technology and search for applications. We begin with clinical need, and work backward toward the most rigorous technical response.
+            </p>
+            <p class="body-md mb-2xl" style="color: var(--on-surface-variant);">
+              Bharati Hospital provides the clinical foundation — a continuous source of real, documented clinical problems and a deployment context for validated tools. KCDH IIT Bombay's researchers served as research mentors and evaluation committee members for Cohort 1, contributing the computational standards the program demanded.
+            </p>
+
+            <div class="about-origin__photo">
+              <img
+                src="/images/archive/event_02.jpeg"
+                alt="AesCode Cohort 1 — research session at Bharati Vidyapeeth Medical College"
+                class="about-origin__img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Pillars -->
+    <section class="section-primary">
+      <div class="container">
+        <div class="mb-3xl reveal">
+          <p class="label-sm mb-md" style="color: var(--accent);">THE PLATFORM</p>
+          <h2 class="display-md serif italic text-primary">A MedTech Research Ecosystem.</h2>
+        </div>
+        <div class="about-pillars">
+          {pillars.map((p, i) => (
+            <div class={`about-pillar reveal reveal--delay-${(i % 3) + 1}`}>
+              <span class="about-pillar__num serif italic">{p.num}.</span>
+              <h3 class="about-pillar__title label-lg text-primary">{p.title}</h3>
+              <p class="body-sm" style="color: var(--on-surface-variant);">
+                {p.body} <strong style="color: var(--primary);">{p.bold}</strong>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="section-primary bg-surface-low" style="border-top: 0.5px solid rgba(196,198,206,0.3); text-align: center;">
+      <div class="container">
+        <blockquote class="about-quote serif italic text-primary reveal">
+          &ldquo;The most consequential medical technologies are not born from speed or ambition alone. They emerge from the disciplined convergence of clinical truth and engineering precision — built slowly, validated rigorously, and deployed only when the evidence demands it.&rdquo;
+        </blockquote>
+        <p class="label-sm mt-xl reveal reveal--delay-1" style="color: var(--secondary);">AESCODE CO. · RESEARCH PLATFORM · FOUNDED 2026</p>
+        <p class="body-md max-prose mt-2xl reveal reveal--delay-2" style="margin-inline: auto; color: var(--on-surface-variant);">
+          At the foundation of AesCode's methodology is a single conviction: medical technology must meet the same evidentiary standards as the clinical science it serves. We do not move fast. We build the conditions under which rigorous, deployable research becomes possible.
+        </p>
+      </div>
+    </section>
+
+    <!-- Cohort 2 Banner -->
+    <section class="about-cohort2">
+      <div class="container" style="text-align: center;">
+        <span class="mono data-sm reveal" style="display: block; letter-spacing: 0.3em; margin-bottom: var(--space-lg); color: rgba(255,255,255,0.5);">COHORT 2</span>
+        <h2 class="display-lg serif italic reveal reveal--delay-1" style="color: #ffffff;">Coming Soon.</h2>
+      </div>
+    </section>
+
+    <Newsletter />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .about-hero { padding-top: calc(68px + var(--space-6xl)); padding-bottom: var(--space-5xl); }
+  .about-hero__inner { max-width: 56rem; }
+
+  .about-origin__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+  .about-origin__heading { position: sticky; top: calc(68px + var(--space-2xl)); }
+  .about-origin__partners { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 0.5px solid rgba(196,198,206,0.35); }
+  .about-origin__partner-list {
+    display: flex; flex-direction: column; gap: var(--space-md);
+    font-size: var(--body-sm); color: var(--primary); font-weight: 500; line-height: 1.6;
+  }
+  .about-origin__photo { border-radius: var(--radius-md); overflow: hidden; }
+  .about-origin__img { width: 100%; aspect-ratio: 16/7; object-fit: cover; filter: grayscale(20%) contrast(1.05); display: block; }
+
+  .about-pillars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  .about-pillar { display: flex; flex-direction: column; gap: var(--space-lg); }
+  .about-pillar__num {
+    font-family: var(--font-serif); font-size: 3rem; color: var(--outline-variant); line-height: 1;
+  }
+  .about-pillar__title { margin-bottom: var(--space-sm); }
+
+  .about-quote {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.45;
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+
+  .about-cohort2 {
+    padding-block: var(--space-4xl);
+    background: var(--primary);
+  }
+
+  @media (max-width: 1024px) {
+    .about-pillars { grid-template-columns: repeat(2, 1fr); }
+    .about-origin__grid { grid-template-columns: 1fr; }
+    .about-origin__heading { position: static; }
+  }
+  @media (max-width: 640px) {
+    .about-pillars { grid-template-columns: 1fr; }
+  }
+</style>

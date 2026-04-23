@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const leadership = [
+  {
+    name: 'Nikhil Gour',
+    role: 'Founder & CEO',
+    bio: 'Leading the technical strategy and operational execution of AesCode Co., with a focus on institutional scaling and rigorous, evidence-based learning frameworks.',
+    img: '/images/team/Nikhil.png',
+    flip: false,
+  },
+  {
+    name: 'Janushi Bhatia',
+    role: 'Co-Lead',
+    bio: 'Orchestrating the synergy between technical excellence and student experience, leveraging a clinical medical background to bridge the gap between healthcare practice and technology.',
+    img: '/images/team/Janushi.png',
+    flip: true,
+  },
+];
+
+const heads = [
+  { name: 'Shruti Deshpande', role: 'Operations Head', bio: 'Ensuring the seamless execution of daily workflows and cohort management with surgical precision.', img: '/images/team/Shruti.png' },
+  { name: 'Sahil Kankariya', role: 'Finance Head', bio: 'Managing the economic substrate of the organization with transparency and strategic foresight.', img: '/images/team/Sahil.png' },
+];
+
+const secretariat = [
+  { name: 'Siddharta Kakani', img: '/images/team/Siddhartha.png' },
+  { name: 'Saurabh Sharma', img: '/images/team/Saurabh.png' },
+  { name: 'Anshika Gupta', img: '/images/team/Anshika.png' },
+  { name: 'Srishti Jain', img: '/images/team/Srishti.png' },
+];
+---
+<BaseLayout title="Meet the Team — AesCode Co." description="Meet the people who built AesCode Cohort 1.0 from the ground up.">
+  <Navbar activePage="/meet-the-team" />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="team-hero section-hero">
+      <div class="container">
+        <div class="team-hero__inner">
+          <p class="label-sm mb-lg reveal" style="color:var(--accent)">OUR FOUNDATION</p>
+          <h1 class="display-hero serif italic text-primary reveal reveal--delay-1">Meet the Team.</h1>
+          <p class="mono data-sm reveal reveal--delay-2" style="color:var(--secondary);letter-spacing:.06em">DOCUMENT REF: AES-C1-ORG</p>
+          <p class="body-xl mt-lg reveal reveal--delay-2" style="color:var(--on-surface-variant);max-width:32rem">The people who built AesCode Cohort 1.0 from the ground up.</p>
+        </div>
+        <div class="hairline mt-3xl"></div>
+      </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="section-primary">
+      <div class="container">
+        {leadership.map((p, i) => (
+          <div class={`team-leader ${p.flip ? 'team-leader--flip' : ''} reveal`}>
+            <div class="team-leader__photo">
+              <img src={p.img} alt={p.name} class="team-portrait" loading="lazy" />
+            </div>
+            <div class="team-leader__bio">
+              <p class="label-sm role-tag mb-xl">{p.role}</p>
+              <h2 class="display-sm serif italic text-primary mb-xl">{p.name}</h2>
+              <p class="body-lg" style="color:var(--on-surface-variant);line-height:1.8">{p.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Department Heads -->
+    <section class="section-primary bg-surface-low">
+      <div class="container">
+        <p class="label-sm mb-3xl reveal" style="color:var(--accent)">DEPARTMENT HEADS</p>
+        <div class="team-heads">
+          {heads.map((h, i) => (
+            <div class={`team-head reveal reveal--delay-${i+1}`}>
+              <div class="team-head__photo">
+                <img src={h.img} alt={h.name} class="team-portrait" loading="lazy" />
+              </div>
+              <p class="label-sm role-tag mt-xl mb-md">{h.role}</p>
+              <h2 class="headline-md serif italic text-primary mb-md">{h.name}</h2>
+              <p class="body-sm" style="color:var(--on-surface-variant);line-height:1.7">{h.bio}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Organising Secretariat -->
+    <section class="section-primary">
+      <div class="container">
+        <div class="mb-3xl reveal">
+          <p class="label-sm mb-md" style="color:var(--accent)">ORGANISING SECRETARIAT</p>
+          <div class="hairline"></div>
+        </div>
+        <div class="team-secretariat">
+          {secretariat.map((s, i) => (
+            <div class={`team-sec-member reveal reveal--delay-${(i%4)+1}`}>
+              <div class="team-sec-photo">
+                <img src={s.img} alt={s.name} class="team-portrait" loading="lazy" />
+              </div>
+              <h4 class="serif italic text-primary mt-lg">{s.name}</h4>
+              <p class="label-sm mt-xs" style="font-size:10px">Organising Secretary</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Quote -->
+    <section class="section-primary" style="text-align:center">
+      <div class="container">
+        <div style="max-width:56rem;margin-inline:auto">
+          <blockquote class="display-sm serif italic text-primary mb-xl reveal">&ldquo;We are architecting the systems where clinical precision meets technical rigor, ensuring the next generation of medical technology is built on a foundation of human intelligence and institutional integrity.&rdquo;</blockquote>
+          <p class="label-sm reveal reveal--delay-1" style="color:var(--secondary)">— THE COLLECTIVE MISSION OF AESCODE CO.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .team-hero { padding-top:calc(68px + var(--space-6xl)); padding-bottom:var(--space-3xl); }
+  .team-hero__inner { max-width:56rem; }
+
+  .team-leader {
+    display:grid; grid-template-columns:5fr 6fr; gap:var(--space-4xl);
+    align-items:center; margin-bottom:var(--space-4xl);
+    padding-bottom:var(--space-4xl); border-bottom:0.5px solid rgba(196,198,206,.3);
+  }
+  .team-leader:last-child { border-bottom:none; margin-bottom:0; }
+  .team-leader--flip .team-leader__photo { order:2; }
+  .team-leader--flip .team-leader__bio { order:1; text-align:right; }
+  .team-leader__photo { border-radius:var(--radius-md); overflow:hidden; }
+  .team-portrait { width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top; filter:grayscale(100%) contrast(1.1); transition:filter .4s ease; display:block; }
+  .team-portrait:hover { filter:grayscale(0%) contrast(1); }
+
+  .role-tag {
+    color:var(--primary)!important;
+    border-bottom:0.5px solid var(--primary);
+    padding-bottom:4px; display:inline-block;
+    letter-spacing:.05em; text-transform:uppercase;
+  }
+
+  .team-heads { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-3xl); max-width:56rem; margin-inline:auto; }
+  .team-head__photo { border-radius:var(--radius-md); overflow:hidden; }
+  .team-head__photo img { width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top; }
+  .headline-md { font-size:var(--headline-md); line-height:1.2; }
+
+  .team-secretariat { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-2xl); }
+  .team-sec-photo { border-radius:var(--radius-md); overflow:hidden; }
+  .team-sec-photo img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; }
+
+  @media(max-width:1024px){
+    .team-leader{grid-template-columns:1fr;gap:var(--space-2xl)}
+    .team-leader--flip .team-leader__photo{order:0}
+    .team-leader--flip .team-leader__bio{order:0;text-align:left}
+    .team-heads{grid-template-columns:1fr;max-width:32rem;margin-inline:auto}
+    .team-secretariat{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:480px){.team-secretariat{grid-template-columns:1fr 1fr}}
+</style>
