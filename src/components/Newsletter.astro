@@ -1,6 +1,9 @@
 ---
 // Newsletter.astro — AesCode Co. v2.0
 // Supabase-backed newsletter subscription — env vars
+// Read env vars in frontmatter (server context) and pass to client via define:vars
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || '';
+const SUPABASE_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
 ---
 
 <section class="newsletter-section section-primary" id="newsletter" aria-labelledby="newsletter-heading">
@@ -91,40 +94,37 @@
   }
 </style>
 
-<script>
-  const SUPABASE_URL  = import.meta.env?.PUBLIC_SUPABASE_URL  || '';
-  const SUPABASE_KEY  = import.meta.env?.PUBLIC_SUPABASE_ANON_KEY || '';
-
+<script define:vars={{ SUPABASE_URL, SUPABASE_KEY }}>
   const form   = document.getElementById('newsletter-form');
   const btn    = document.getElementById('newsletter-submit');
   const status = document.getElementById('newsletter-status');
   const input  = document.getElementById('newsletter-email');
 
-  function setStatus(msg, type = '') {
+  function setStatus(msg, type) {
     if (!status) return;
     status.textContent = msg;
-    status.className = `newsletter__status body-sm visible ${type}`;
+    status.className = 'newsletter__status body-sm visible ' + (type || '');
   }
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const email = (input as HTMLInputElement)?.value?.trim();
+    const email = input?.value?.trim();
     if (!email) { setStatus('Please enter a valid email.', 'error'); return; }
 
     btn?.setAttribute('disabled', 'true');
     setStatus('Subscribing…');
 
     try {
-      const client = (window as any).supabase?.createClient(SUPABASE_URL, SUPABASE_KEY);
-      const { error } = await client.from('newsletter_subscribers').insert([{ email, source: 'newsletter_component', created_at: new Date().toISOString() }]);
+      const client = window.supabase?.createClient(SUPABASE_URL, SUPABASE_KEY);
+      const result = await client.from('newsletter_subscribers').insert([{ email: email, source: 'newsletter_component', created_at: new Date().toISOString() }]);
 
-      if (error && error.code !== '23505') {
+      if (result.error && result.error.code !== '23505') {
         setStatus('Something went wrong. Please try again.', 'error');
       } else {
-        setStatus('You\'re subscribed. Welcome to the network.', 'success');
-        (input as HTMLInputElement).value = '';
+        setStatus("You're subscribed. Welcome to the network.", 'success');
+        input.value = '';
       }
-    } catch {
+    } catch (err) {
       setStatus('Unable to subscribe. Please try again later.', 'error');
     } finally {
       btn?.removeAttribute('disabled');
