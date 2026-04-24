@@ -2,8 +2,8 @@
 // Newsletter.astro — AesCode Co. v2.0
 // Supabase-backed newsletter subscription — env vars
 // Read env vars in frontmatter (server context) and pass to client via define:vars
-const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || '';
-const SUPABASE_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || 'https://tlltxgqkiljnnggkwpdq.supabase.co';
+const SUPABASE_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsbHR4Z3FraWxqbm5nZ2t3cGRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5ODY3OTAsImV4cCI6MjA5MjU2Mjc5MH0.WdvPWTL6A2Yjy3Qp1F0d4lv6FCbwZSUXsBi-WoDBXdI';
 ---
 
 <section class="newsletter-section section-primary" id="newsletter" aria-labelledby="newsletter-heading">
