@@ -116,7 +116,7 @@
 
     try {
       const client = (window as any).supabase?.createClient(SUPABASE_URL, SUPABASE_KEY);
-      const { error } = await client.from('newsletter_subscriptions').insert([{ email }]);
+      const { error } = await client.from('newsletter_subscribers').insert([{ email, source: 'newsletter_component', created_at: new Date().toISOString() }]);
 
       if (error && error.code !== '23505') {
         setStatus('Something went wrong. Please try again.', 'error');
