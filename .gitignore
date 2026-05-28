@@ -30,3 +30,9 @@ node_modules/
 *.swp
 *.swo
 .astro/
+
+# Large media — never commit videos
+*.mp4
+*.mov
+*.avi
+*.webm
