@@ -1,6 +1,16 @@
 // AesCode Co. — Scroll Reveal v2.0
 // IntersectionObserver-based fade-up animation
 // Respects prefers-reduced-motion
+//
+// USAGE — add these classes to any element you want to animate:
+//   .reveal              — fade + slide up on scroll into view
+//   .reveal--delay-1     — 100ms delay
+//   .reveal--delay-2     — 200ms delay
+//   .reveal--delay-3     — 300ms delay
+//   [data-counter]       — animates a numeric text value from 0 to its content
+//   [data-target="N"]    — override the counter target value
+//   [data-prefix="$"]    — prepend string to counter output
+//   [data-suffix="%"]    — append string to counter output
 
 (function () {
   'use strict';

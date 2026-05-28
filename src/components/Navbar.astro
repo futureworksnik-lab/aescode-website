@@ -1,17 +1,11 @@
 ---
 // Navbar.astro — AesCode Co. v2.0
+import { navLinks } from '../data/nav';
+
 export interface Props {
   activePage?: string;
 }
 const { activePage = '' } = Astro.props;
-
-const navLinks = [
-  { label: 'Home',      href: '/' },
-  { label: 'About',     href: '/about' },
-  { label: 'Cohort 1',  href: '/cohort1' },
-  { label: 'AI Ethics', href: '/ai-ethics' },
-  { label: 'Contact',   href: '/contact' },
-];
 ---
 
 <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
