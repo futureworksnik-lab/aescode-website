@@ -13,8 +13,18 @@ const faqs = [
   { q: 'How do I apply to participate?', a: 'Applications open with each cohort announcement. Subscribe for updates.' },
   { q: 'How do I partner with Aescode?', a: 'Email partnerships@aescode.nexus with your organization name and area of interest.' },
 ];
+
+const siteUrl = 'https://www.aescode.nexus';
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: siteUrl + '/contact' },
+  ],
+};
 ---
-<BaseLayout title="Contact — AesCode Co." description="Get in touch with AesCode Co. for partnerships, research collaboration, press inquiries, or general questions.">
+<BaseLayout title="Contact — AesCode Co." description="Get in touch with AesCode Co. for partnerships, research collaboration, press inquiries, or general questions." jsonLd={[breadcrumbSchema]}>
   <Navbar activePage="/contact" />
   <main id="main-content">
     <section class="contact-hero section-hero">

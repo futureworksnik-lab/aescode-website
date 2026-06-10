@@ -45,11 +45,41 @@ const honorees = [
     ],
   },
 ];
+
+const siteUrl = 'https://www.aescode.nexus';
+
+// Affiliation + role per honoree for Person structured data.
+const honoreeMeta = {
+  'Dr. (Brig) S.P. Gorthi': { jobTitle: 'Professor & Head, Department of Neurology', affiliation: 'Bharati Vidyapeeth Hospital, Pune' },
+  'Dr. Raghavendran Lakshminarayan': { jobTitle: 'Operations Lead & Senior Program Officer', affiliation: 'Koita Centre for Digital Health (KCDH), IIT Bombay' },
+  'Dr. Kshitij Jadhav': { jobTitle: 'Assistant Professor', affiliation: 'Koita Centre for Digital Health (KCDH), IIT Bombay' },
+  'Dr. Varsha Vaidya': { jobTitle: 'Professor, Department of Medicine', affiliation: 'Bharati Vidyapeeth, Pune' },
+};
+
+const mentorSchemas = honorees.map((h) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: h.name,
+  jobTitle: honoreeMeta[h.name]?.jobTitle,
+  affiliation: { '@type': 'Organization', name: honoreeMeta[h.name]?.affiliation },
+  image: siteUrl + h.img,
+  description: h.bios.join(' '),
+}));
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Special Thanks', item: siteUrl + '/special-thanks' },
+  ],
+};
 ---
 
 <BaseLayout
   title="Special Thanks — AesCode Co."
   description="AesCode Co. stands on the foundations of clinical excellence and rigorous research. We extend our gratitude to the leadership whose mentorship has guided our evolution."
+  jsonLd={[...mentorSchemas, breadcrumbSchema]}
 >
   <Navbar activePage="/special-thanks" />
   <main id="main-content">
@@ -82,7 +112,7 @@ const honorees = [
             <div class="st-honoree__photo">
               <img
                 src={h.img}
-                alt={h.name}
+                alt={`${h.name}${honoreeMeta[h.name]?.affiliation ? ' — ' + honoreeMeta[h.name].affiliation : ''}`}
                 class={`st-portrait ${h.name === 'Dr. Varsha Vaidya' ? 'st-portrait--varsha' : ''}`}
                 loading="lazy"
               />

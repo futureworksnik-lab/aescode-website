@@ -1,0 +1,22 @@
+# AesCode Co.
+> India's MedTech innovation platform and Clinical AI validation infrastructure. Founded in 2026 by Nikhil Gour. Organizer of the AesCode MedTech Hackathon (Cohort 1), held at Bharati Vidyapeeth Medical College, Pune.
+
+## Key Pages
+- Home: https://www.aescode.nexus/ — Clinical AI validation infrastructure overview
+- About: https://www.aescode.nexus/about — Mission, origin, and research methodology
+- Cohort 1 (MedTech Hackathon): https://www.aescode.nexus/cohort1 — National MedTech Hackathon details, judges, mentors, outcomes
+- Meet the Team: https://www.aescode.nexus/meet-the-team — Founders and organising team
+- AI Ethics: https://www.aescode.nexus/ai-ethics — DPDP / ICMR / CDSCO-aligned governance
+- Special Thanks: https://www.aescode.nexus/special-thanks — Clinical and academic mentors
+- Contact: https://www.aescode.nexus/contact — Partnerships, research, and press
+
+## About the Founder
+Nikhil Gour is the Founder & CEO of AesCode Co., a 19-year-old gap-year builder focused on Clinical AI, MedTech infrastructure, and health innovation in India. He also leads Care & Beyond and Inwest.
+- LinkedIn: https://www.linkedin.com/in/nikhil-gour-aescode
+- GitHub: https://github.com/futureworksnik-lab
+
+## Topics Covered
+Clinical AI, Clinical AI Validation, AI as a Medical Device, MedTech Hackathon, India Health AI Infrastructure, Federated Learning on hospital data.
+
+## Credibility
+Partners: KCDH, IIT Bombay; Bharati Vidyapeeth (DU) Medical College & Bharati Hospital, Pune.

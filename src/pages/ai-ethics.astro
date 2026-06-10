@@ -10,8 +10,18 @@ const pillars = [
   { num: '04', title: 'Augmented Human Oversight', body: 'AI is a tool for the clinician. We ensure final clinical authority remains strictly with certified medical professionals.' },
   { num: '05', title: 'Staged Socio-Technical Rollouts', body: 'We evaluate deployments for their impact on existing hospital workflows and provider workloads.' },
 ];
+
+const siteUrl = 'https://www.aescode.nexus';
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+    { '@type': 'ListItem', position: 2, name: 'AI Ethics & Integrity', item: siteUrl + '/ai-ethics' },
+  ],
+};
 ---
-<BaseLayout title="AI Ethics & Integrity — AesCode Co." description="AesCode Co. builds the moral infrastructure required to move AI from the lab to the bedside.">
+<BaseLayout title="AI Ethics & Integrity — AesCode Co." description="AesCode Co. builds the moral infrastructure required to move AI from the lab to the bedside." jsonLd={[breadcrumbSchema]}>
   <Navbar activePage="/ai-ethics" />
   <main id="main-content">
     <section class="ethics-hero section-hero">

@@ -34,8 +34,43 @@ const mentors = [
 ];
 
 const archiveImages = Array.from({length: 10}, (_, i) => `/images/archive/event_${String(i+1).padStart(2,'0')}.jpeg`);
+
+const siteUrl = 'https://www.aescode.nexus';
+
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'AesCode Cohort 1',
+  alternateName: ['National MedTech Hackathon', 'India MedTech Hackathon', 'Clinical AI Hackathon'],
+  description:
+    'A two-week MedTech research hackathon built around clinically sourced problem statements. 250+ research abstracts, 20 finalist teams, 5 clinical AI problems.',
+  startDate: '2026-03-21',
+  endDate: '2026-04-04',
+  eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  location: {
+    '@type': 'Place',
+    name: 'Bharati Vidyapeeth Medical College',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Pune',
+      addressRegion: 'Maharashtra',
+      addressCountry: 'IN',
+    },
+  },
+  organizer: { '@type': 'Organization', name: 'AesCode Co.', url: siteUrl },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Cohort 1', item: siteUrl + '/cohort1' },
+  ],
+};
 ---
-<BaseLayout title="Cohort 1 — AesCode Co." description="A two-week MedTech research hackathon structured around clinically sourced problem statements and interdisciplinary research teams.">
+<BaseLayout title="Cohort 1 — AesCode Co." description="A two-week MedTech research hackathon structured around clinically sourced problem statements and interdisciplinary research teams." jsonLd={[eventSchema, breadcrumbSchema]}>
   <Navbar activePage="/cohort1" />
 
   <!-- Sticky Section Nav -->

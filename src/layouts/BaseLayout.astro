@@ -5,17 +5,42 @@ export interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  jsonLd?: Record<string, any>[];
 }
 
 const {
   title,
   description = 'AesCode Co. — India\'s Clinical AI Validation Infrastructure. Connecting engineering teams to real clinical problems, training AI on hospital data without moving it.',
   canonical,
-  ogImage = '/images/og-default.jpg'
+  ogImage = '/images/og-default.jpg',
+  jsonLd = []
 } = Astro.props;
 
 const siteUrl = 'https://www.aescode.nexus';
 const resolvedCanonical = canonical || siteUrl + Astro.url.pathname;
+
+// Site-wide structured data — rendered on every page.
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'AesCode Co.',
+  alternateName: ['Ace Code Co.', 'AesCode'],
+  url: siteUrl,
+  logo: siteUrl + '/favicon.svg',
+  foundingDate: '2026',
+  founder: { '@type': 'Person', name: 'Nikhil Gour' },
+  description:
+    "India's MedTech innovation platform and Clinical AI validation infrastructure. Organizer of the AesCode MedTech Hackathon (Cohort 1).",
+  sameAs: ['https://www.linkedin.com/company/aescode'],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: siteUrl,
+  name: 'AesCode Co.',
+  alternateName: 'Ace Code Co.',
+};
 ---
 
 <!DOCTYPE html>
@@ -43,6 +68,17 @@ const resolvedCanonical = canonical || siteUrl + Astro.url.pathname;
 
   <!-- Robots -->
   <meta name="robots" content="index, follow" />
+
+  <!-- PWA / Manifest -->
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  {jsonLd.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -11,11 +11,22 @@ const pillars = [
   { num: '04', title: 'Institutional Grounding', body: 'Our programs operate within the academic frameworks of KCDH IIT Bombay and Bharati Vidyapeeth Medical College. Every initiative is held to the standards of peer-reviewed research and clinical practice.', bold: 'We do not lower that bar.' },
   { num: '05', title: 'Federated Learning Infrastructure', body: 'Selected teams train AI models on real hospital data without that data leaving the hospital. The model goes to the data — not the other way around. Model weights, not patient records, are the only thing that moves.', bold: 'Privacy-preserving by architecture, not by policy.' },
 ];
+
+const siteUrl = 'https://www.aescode.nexus';
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: siteUrl + '/about' },
+  ],
+};
 ---
 
 <BaseLayout
   title="About — AesCode Co."
   description="AesCode Co. is a MedTech research platform. We identify clinically significant, unsolved problems and support rigorous, interdisciplinary programs that produce validated, deployment-ready outcomes."
+  jsonLd={[breadcrumbSchema]}
 >
   <Navbar activePage="/about" />
   <main id="main-content">
@@ -64,8 +75,11 @@ const pillars = [
             <p class="body-md mb-lg" style="color: var(--on-surface-variant);">
               Our programs are designed around a single constraint: every problem we work on must be both medically significant and technically tractable. We do not begin with technology and search for applications. We begin with clinical need, and work backward toward the most rigorous technical response.
             </p>
-            <p class="body-md mb-2xl" style="color: var(--on-surface-variant);">
+            <p class="body-md mb-lg" style="color: var(--on-surface-variant);">
               Bharati Hospital provides the clinical foundation — a continuous source of real, documented clinical problems and a deployment context for validated tools. KCDH IIT Bombay's researchers served as research mentors and evaluation committee members for Cohort 1, contributing the computational standards the program demanded.
+            </p>
+            <p class="body-md mb-2xl" style="color: var(--on-surface-variant);">
+              AesCode Co. was founded in 2026 by <strong class="text-primary">Nikhil Gour</strong>, its Founder &amp; CEO. A 19-year-old gap-year builder, Nikhil leads AesCode's technical strategy and institutional partnerships, and also founded Care &amp; Beyond and Inwest — working across Clinical AI, MedTech infrastructure, and health innovation in India.
             </p>
 
             <div class="about-origin__photo">
