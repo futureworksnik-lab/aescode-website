@@ -1,6 +1,10 @@
 ---
 // TrustStrip.astro — AesCode Co. v2.0
 // Institutional partner logos — NEW section
+import { Image } from 'astro:assets';
+import bvLogo    from '../assets/BV(DU)MC logo.png';
+import kcdhLogo  from '../assets/KCDH - IITB.jpeg';
+import nuxusLogo from '../assets/nuxus_logo.png';
 ---
 
 <section class="trust-strip section-dense" aria-label="Institutional partners and affiliations">
@@ -10,11 +14,12 @@
 
       <!-- Bharati Vidyapeeth -->
       <div class="trust-strip__item">
-        <img
-          src="/images/BV(DU)MC logo.png"
+        <Image
+          src={bvLogo}
+          width={40}
+          height={40}
           alt="Bharati Vidyapeeth Deemed University Medical College — Founding Clinical Partner"
           class="trust-strip__logo"
-          height="40"
           loading="lazy"
         />
         <span class="trust-strip__caption">Founding Clinical Partner</span>
@@ -24,11 +29,12 @@
 
       <!-- KCDH IIT Bombay -->
       <div class="trust-strip__item">
-        <img
-          src="/images/KCDH - IITB.jpeg"
+        <Image
+          src={kcdhLogo}
+          width={96}
+          height={40}
           alt="Koita Centre for Digital Health, IIT Bombay — Partner, Cohort 1"
           class="trust-strip__logo trust-strip__logo--kcdh"
-          height="40"
           loading="lazy"
         />
         <span class="trust-strip__caption">Partner - Cohort 1</span>
@@ -38,11 +44,12 @@
 
       <!-- Nexus -->
       <div class="trust-strip__item">
-        <img
-          src="/images/nuxus_logo.png"
+        <Image
+          src={nuxusLogo}
+          width={23}
+          height={40}
           alt="Nexus 3.0 — Annual Research Conference"
           class="trust-strip__logo"
-          height="40"
           loading="lazy"
         />
         <span class="trust-strip__caption">Research Conference Host</span>
@@ -80,7 +87,6 @@
   }
   .trust-strip__logo {
     height: 40px;
-    width: auto;
     object-fit: contain;
     filter: grayscale(100%) opacity(0.55);
     transition: filter var(--transition-slow);

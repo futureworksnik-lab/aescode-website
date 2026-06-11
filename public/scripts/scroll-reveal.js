@@ -15,6 +15,7 @@
 (function () {
   'use strict';
 
+  const initTime = performance.now();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // If user prefers no motion, immediately show everything
@@ -29,6 +30,14 @@
     const prefix = el.dataset.prefix || '';
     const suffix = el.dataset.suffix || '';
     const isDecimal = target % 1 !== 0;
+
+    // Elements already in viewport at page load: show final value immediately.
+    // Avoids resetting server-rendered text to 0, which delays LCP paint.
+    if (performance.now() - initTime < 1000) {
+      el.textContent = prefix + (isDecimal ? target.toFixed(1) : Math.floor(target)) + suffix;
+      return;
+    }
+
     const duration = 1200;
     const start = performance.now();
 

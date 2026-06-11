@@ -1,5 +1,12 @@
 ---
 // BaseLayout.astro — AesCode Co. v2.0
+import '@fontsource-variable/crimson-pro';
+import '@fontsource-variable/crimson-pro/wght-italic.css';
+import '@fontsource-variable/public-sans';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/utilities.css';
 export interface Props {
   title: string;
   description?: string;
@@ -83,17 +90,6 @@ const websiteSchema = {
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Design System CSS -->
-  <link rel="stylesheet" href="/styles/tokens.css" />
-  <link rel="stylesheet" href="/styles/base.css" />
-  <link rel="stylesheet" href="/styles/utilities.css" />
-
-  <!-- Preconnect for Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- Supabase -->
-  <script is:inline src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <slot />

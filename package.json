@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/crimson-pro": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/public-sans": "^5.2.7",
     "@supabase/supabase-js": "^2.45.0",
     "astro": "^4.16.0"
   }

@@ -46,7 +46,7 @@ const { activePage = '' } = Astro.props;
   </div>
 
   <!-- Mobile menu -->
-  <div class="navbar__mobile" id="mobile-menu" role="menu" aria-hidden="true">
+  <div class="navbar__mobile" id="mobile-menu" role="menu" aria-hidden="true" inert>
     <div class="container">
       {navLinks.map(link => (
         <a
@@ -212,6 +212,11 @@ const { activePage = '' } = Astro.props;
     toggle.setAttribute('aria-expanded', String(!isOpen));
     mobileMenu?.classList.toggle('open');
     mobileMenu?.setAttribute('aria-hidden', String(isOpen));
+    if (isOpen) {
+      mobileMenu?.setAttribute('inert', '');
+    } else {
+      mobileMenu?.removeAttribute('inert');
+    }
   });
 
   // Scroll shadow

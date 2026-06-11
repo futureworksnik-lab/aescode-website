@@ -1,6 +1,12 @@
 ---
 // ClinicalPartners.astro — AesCode Co. v2.0
 // NEW section — Bharati Hospital as visual anchor with event photography
+import { Image, Picture } from 'astro:assets';
+import event03  from '../assets/archive/event_03.jpeg';
+import event05  from '../assets/archive/event_05.jpeg';
+import event07  from '../assets/archive/event_07.jpeg';
+import bvLogo   from '../assets/BV(DU)MC logo.png';
+import kcdhLogo from '../assets/KCDH - IITB.jpeg';
 ---
 
 <section class="partners section-primary bg-surface-low" id="clinical-partners" aria-labelledby="partners-heading">
@@ -24,20 +30,22 @@
 
         <div class="partners__logos reveal reveal--delay-3">
           <div class="partners__logo-item">
-            <img
-              src="/images/BV(DU)MC logo.png"
+            <Image
+              src={bvLogo}
+              width={48}
+              height={48}
               alt="Bharati Vidyapeeth Deemed University Medical College"
-              height="48"
-              style="height: 48px; width: auto; object-fit: contain; filter: grayscale(30%) opacity(0.8);"
+              style="height: 48px; object-fit: contain; filter: grayscale(30%) opacity(0.8);"
             />
           </div>
           <div class="partners__logo-sep"></div>
           <div class="partners__logo-item">
-            <img
-              src="/images/KCDH - IITB.jpeg"
+            <Image
+              src={kcdhLogo}
+              width={85}
+              height={36}
               alt="Koita Centre for Digital Health, IIT Bombay"
-              height="36"
-              style="height: 36px; width: auto; object-fit: contain; filter: grayscale(30%) opacity(0.7); border-radius: 2px;"
+              style="height: 36px; object-fit: contain; filter: grayscale(30%) opacity(0.7); border-radius: 2px;"
             />
             <span class="mono data-sm" style="color: var(--secondary); margin-top: 0.25rem;">Partner - Cohort 1</span>
           </div>
@@ -47,22 +55,31 @@
       <!-- Right: Photography grid -->
       <div class="partners__photos reveal reveal--delay-2">
         <div class="partners__photo-main">
-          <img
-            src="/images/archive/event_03.jpeg"
+          <Picture
+            src={event03}
+            formats={['avif', 'webp']}
+            width={568}
+            height={320}
             alt="AesCode Cohort 1 — research presentation at Bharati Vidyapeeth Medical College"
             class="partners__img partners__img--main"
             loading="lazy"
           />
         </div>
         <div class="partners__photo-pair">
-          <img
-            src="/images/archive/event_05.jpeg"
+          <Picture
+            src={event05}
+            formats={['avif', 'webp']}
+            width={280}
+            height={210}
             alt="AesCode Cohort 1 — mentorship session"
             class="partners__img"
             loading="lazy"
           />
-          <img
-            src="/images/archive/event_07.jpeg"
+          <Picture
+            src={event07}
+            formats={['avif', 'webp']}
+            width={280}
+            height={210}
             alt="AesCode Cohort 1 — judging panel"
             class="partners__img"
             loading="lazy"

@@ -1,6 +1,8 @@
 ---
 // Hero.astro — AesCode Co. v2.0
 // Split layout: text 60% / visual 40%
+import { Picture } from 'astro:assets';
+import heroImg from '../assets/archive/event_01.jpeg';
 ---
 
 <section class="hero section-hero" id="hero" aria-labelledby="hero-heading">
@@ -50,13 +52,16 @@
     <!-- Right: Visual -->
     <div class="hero__visual reveal reveal--delay-2">
       <div class="hero__visual-frame">
-        <img
-          src="/images/archive/event_01.jpeg"
+        <Picture
+          src={heroImg}
+          formats={['avif', 'webp']}
+          width={640}
+          height={800}
           alt="AesCode Cohort 1 — participants working on clinical AI problems at Bharati Vidyapeeth Medical College"
           class="hero__photo"
-          width="640"
-          height="800"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
         <div class="hero__visual-caption">
           <span class="mono data-sm" style="color: rgba(255,255,255,0.6);">COHORT 01 · BHARATI VIDYAPEETH · 2026</span>
